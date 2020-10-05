@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Welcome to My GitHub Pages
 
 You can use the [editor on GitHub](https://github.com/mrdat0194/pan-theory/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
@@ -35,3 +35,19 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 ### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+
+# My thesis on Tourism:
+
+1. Adventure tourism: 
+- High grass:
+- Emotional experience: 
+    - Joy 
+    
+**Bold**  
+
+_Italic_ 
+
+`Code` text
+     
+2. Animal detection: 
+
