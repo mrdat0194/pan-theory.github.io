@@ -56,14 +56,6 @@ def get_df_from_speadsheet(gsheet_id: str, sheet_name: str):
     # df.apply(lambda x: x.str.strip()).fillna(value='').astype(str)
     return df
 
-def get_df_from_query(query):
-    column_name = query.column_descriptions
-    list_column_name = []
-    for column in column_name:
-        list_column_name.append(column.get('name'))
-    df = pd.DataFrame(query.all(), columns=list_column_name)
-    return df
-
 def createList(r1, r2):
     return list(range(r1, r2+1))
 
