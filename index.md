@@ -64,39 +64,39 @@ within the project
 The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
 
-```markdown
+[comment]: <> (```markdown)
 
-Syntax highlighted code block
+[comment]: <> (Syntax highlighted code block)
 
-# Header 1
+[comment]: <> (# Header 1)
 
-## Header 2
+[comment]: <> (## Header 2)
 
-### Header 3
+[comment]: <> (### Header 3)
 
-- Bulleted
+[comment]: <> (- Bulleted)
 
-- List
+[comment]: <> (- List)
 
-1. Numbered
+[comment]: <> (1. Numbered)
 
-2. List
+[comment]: <> (2. List)
 
-**Bold** and _Italic_ and `Code` text
+[comment]: <> (**Bold** and _Italic_ and `Code` text)
 
-[Link](url) and ![Image](src)
+[comment]: <> ([Link]&#40;url&#41; and ![Image]&#40;src&#41;)
 
-```
+[comment]: <> (```)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/)
+[comment]: <> (For more details see [GitHub Flavored Markdown]&#40;https://guides.github.com/features/mastering-markdown/&#41;)
 
-### Jekyll Themes
+[comment]: <> (### Jekyll Themes)
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mrdat0194/pan-theory/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+[comment]: <> (Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings]&#40;https://github.com/mrdat0194/pan-theory/settings&#41;. The name of this theme is saved in the Jekyll `_config.yml` configuration file.)
 
-### Support or Contact
+[comment]: <> (### Support or Contact)
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+[comment]: <> (Having trouble with Pages? Check out our [documentation]&#40;https://help.github.com/categories/github-pages-basics/&#41; or [contact support]&#40;https://github.com/contact&#41; and we’ll help you sort it out.)
 
 
 
