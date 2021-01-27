@@ -1,16 +1,16 @@
-from core.aws.aws_config import AWSConfig
-from core.aws.s3.aws_s3 import existing_on_s3
-from core.crud.sql.datasource import get_all_by_ids
-from core.crud.sql.track import get_one_by_id
-from google_spreadsheet_api.function import get_df_from_speadsheet, get_gsheet_name
-from core.models.data_source_format_master import DataSourceFormatMaster
-from core import query_path
+from main_def.aws.aws_config import AWSConfig
+from main_def.aws.s3.aws_s3 import existing_on_s3
+from main_def.crud.sql.datasource import get_all_by_ids
+from main_def.crud.sql.track import get_one_by_id
+from main_def.ggl_api.google_spreadsheet_api.function import get_df_from_speadsheet, get_gsheet_name
+from main_def.models.data_source_format_master import DataSourceFormatMaster
+from main_def import query_path
 import time
 
 
-def get_split_info(vibbidi_title: str, track_title: str):
+def get_split_info(title: str, track_title: str):
 
-    k = vibbidi_title.replace(track_title, "").strip()[1:-1]
+    k = title.replace(track_title, "").strip()[1:-1]
     raw_year = k.split(' ')[-1]
     if raw_year.isnumeric():
         year = raw_year
@@ -47,9 +47,9 @@ def checking_lost_datasource_from_S3(datasource_ids: list):
                 joy_xinh = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values (uuid4(),'{db_datasource.track_id}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','replace' ,'$.youtube_url','{db_datasource.source_uri}','$.data_source_format_id','{db_datasource.format_id}','$.PIC', '{gsheet_name}_{sheet_name}'),1999);\n"
                 f2.write(joy_xinh)
             elif result == 0 and db_datasource.format_id == DataSourceFormatMaster.FORMAT_ID_MP4_LIVE:
-                vibbidi_title = db_datasource.info.get('vibbidi_title')
+                title = db_datasource.info.get('title')
                 track_title = db_track.title
-                live_info = get_split_info(vibbidi_title=vibbidi_title, track_title= track_title)
+                live_info = get_split_info(title=title, track_title= track_title)
                 joy_xinh = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values (uuid4(),'{db_datasource.track_id}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{db_datasource.source_uri}','$.data_source_format_id',{DataSourceFormatMaster.FORMAT_ID_MP4_LIVE},'$.concert_live_name','{live_info.get('concert_live_name')}','$.year','{live_info.get('year')}','$.PIC', '{gsheet_name}_{sheet_name}'),1999);\n"
                 f2.write(joy_xinh)
             else:

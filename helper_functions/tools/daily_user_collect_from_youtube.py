@@ -1,12 +1,12 @@
-from core.crud.sql.pointlog import collect_from_youtube_query
-from core.crud.get_df_from_query import get_df_from_query
+from main_def.crud.sql.pointlog import collect_from_youtube_query
+from main_def.crud.get_df_from_query import get_df_from_query
 from datetime import date
-from youtube_dl_fuction.fuctions import get_raw_title_uploader_from_youtube_url
+from main_def.youtube.fuctions import get_raw_title_uploader_from_youtube_url
 import time
 import pandas as pd
 from numpy import random
 
-from google_spreadsheet_api.create_new_sheet_and_update_data_from_df import creat_new_sheet_and_update_data_from_df
+from main_def.ggl_api.google_spreadsheet_api.create_new_sheet_and_update_data_from_df import creat_new_sheet_and_update_data_from_df
 
 
 def daily_user_collect_from_youtube():

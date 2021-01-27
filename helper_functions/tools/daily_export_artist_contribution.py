@@ -1,8 +1,8 @@
 # https://developers.google.com/sheets/api/quickstart/python
 
-from core.crud.get_df_from_query import get_df_from_query
-from core.crud.sql.external_identity import get_artists_from_album_ituneid
-from google_spreadsheet_api.function import get_df_from_speadsheet, create_new_gsheet, creat_new_sheet_and_update_data_from_df
+from main_def.crud.get_df_from_query import get_df_from_query
+from main_def.crud.sql.external_identity import get_artists_from_album_ituneid
+from main_def.ggl_api.google_spreadsheet_api.function import get_df_from_speadsheet, create_new_gsheet, creat_new_sheet_and_update_data_from_df
 import pandas as pd
 import time
 

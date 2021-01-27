@@ -1,17 +1,17 @@
 import os
-from core import BASE_DIR
-from core.crud.sql.album import get_album_wiki
-from core.crud.sql.track import get_track_wiki, get_track_lyric
-from core.crud.sql.crawlingtask import get_crawl_artist_image_status, get_artist_image_cant_crawl
-from core.crud.get_df_from_query import get_df_from_query
+from main_def import BASE_DIR
+from main_def.crud.sql.album import get_album_wiki
+from main_def.crud.sql.track import get_track_wiki, get_track_lyric
+from main_def.crud.sql.crawlingtask import get_crawl_artist_image_status, get_artist_image_cant_crawl
+from main_def.crud.get_df_from_query import get_df_from_query
 
-from google_spreadsheet_api.function import  get_list_of_sheet_title, update_value, get_df_from_speadsheet, get_gsheet_name
+from main_def.ggl_api.google_spreadsheet_api.function import  get_list_of_sheet_title, update_value, get_df_from_speadsheet, get_gsheet_name
 from google_spreadsheet_api.create_new_sheet_and_update_data_from_df import creat_new_sheet_and_update_data_from_df
 
 import time
 import pandas as pd
 import numpy as np
-from core import query_path
+from main_def import query_path
 
 
 # gsheet_id = input(f"\n Input gsheet_id: ").strip()

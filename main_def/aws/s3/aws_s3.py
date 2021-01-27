@@ -1,7 +1,7 @@
 import logging
 from typing import List
 import boto3
-from core.aws.aws_config import AWSConfig
+from main_def.aws.aws_config import AWSConfig
 
 low_level_client = boto3.client("s3")
 list_objects_paginator = low_level_client.get_paginator("list_objects_v2")

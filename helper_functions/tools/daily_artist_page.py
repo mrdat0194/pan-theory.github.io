@@ -1,8 +1,8 @@
-from google_spreadsheet_api.function import get_df_from_speadsheet,get_gsheet_name
+from main_def.ggl_api.google_spreadsheet_api.function import get_df_from_speadsheet,get_gsheet_name
 
 import pandas as pd
 import time
-from core import query_path
+from main_def import query_path
 
 
 def crawl_artist_album_from_artist_ituneid():

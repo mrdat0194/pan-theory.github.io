@@ -1,19 +1,19 @@
-from google_spreadsheet_api.function import update_value
-from google_spreadsheet_api.function import get_df_from_speadsheet
-from core.crud.get_df_from_query import get_df_from_query
-from core.crud.sql.user import get_user_uuid_from_user_name
-from core.crud.sql.artist import get_uuid_and_count_from_artist_name
-from core.crud.sql.genre import get_genre_uuid_from_genre_name
-from core.crud.sql.crawlingtask import get_crawl_E5_06_status, get_datasourceId_from_crawlingtask
-from core.crud.sql.external_identity import get_trackid_from_ituneid_and_tracknum
-from youtube_dl_fuction.fuctions import get_raw_title_uploader_from_youtube_url
+from main_def.ggl_api.google_spreadsheet_api.function import update_value
+from main_def.ggl_api.google_spreadsheet_api.function import get_df_from_speadsheet
+from main_def.crud.get_df_from_query import get_df_from_query
+from main_def.crud.sql.user import get_user_uuid_from_user_name
+from main_def.crud.sql.artist import get_uuid_and_count_from_artist_name
+from main_def.crud.sql.genre import get_genre_uuid_from_genre_name
+from main_def.crud.sql.crawlingtask import get_crawl_E5_06_status, get_datasourceId_from_crawlingtask
+from main_def.crud.sql.external_identity import get_trackid_from_ituneid_and_tracknum
+from main_def.youtube.fuctions import get_raw_title_uploader_from_youtube_url
 
-from support_function.text_similarity.text_similarity import get_token_set_ratio
+from my_functions.text_similarity.text_similarity import get_token_set_ratio
 
-from tools.get_uuid4 import get_uuid4
+from helper_functions.tools.get_uuid4 import get_uuid4
 import time
 import pandas as pd
-from core import query_path
+from main_def import query_path
 from numpy import random
 import numpy as np
 

@@ -1,14 +1,14 @@
-from google_spreadsheet_api.function import update_value
-from google_spreadsheet_api.function import get_df_from_speadsheet
-from core.crud.get_df_from_query import get_df_from_query
+from main_def.ggl_api.google_spreadsheet_api.function import update_value
+from main_def.ggl_api.google_spreadsheet_api.function import get_df_from_speadsheet
+from main_def.crud.get_df_from_query import get_df_from_query
 
-from youtube_dl_fuction.fuctions import get_raw_title_uploader_from_youtube_url
+from main_def.youtube.fuctions import get_raw_title_uploader_from_youtube_url
 
-from support_function.text_similarity.text_similarity import get_token_set_ratio
+from my_functions.text_similarity.text_similarity import get_token_set_ratio
 
 import time
 import pandas as pd
-from core import query_path
+from main_def import query_path
 from numpy import random
 import numpy as np
 

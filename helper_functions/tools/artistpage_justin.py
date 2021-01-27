@@ -1,18 +1,18 @@
-from google_spreadsheet_api.function import get_df_from_speadsheet, get_list_of_sheet_title, update_value, creat_new_sheet_and_update_data_from_df, get_gsheet_name
-from google_spreadsheet_api.create_new_sheet_and_update_data_from_df import creat_new_sheet_and_update_data_from_df
+from main_def.ggl_api.google_spreadsheet_api.function import get_df_from_speadsheet, get_list_of_sheet_title, update_value, creat_new_sheet_and_update_data_from_df, get_gsheet_name
+from main_def.ggl_api.google_spreadsheet_api.create_new_sheet_and_update_data_from_df import creat_new_sheet_and_update_data_from_df
 
-from core.crud.sql.datasource import get_datasourceid_from_youtube_url_and_trackid, related_datasourceid, get_youtube_info_from_trackid
-from core.models.data_source_format_master import DataSourceFormatMaster
-from core.crud.get_df_from_query import get_df_from_query
+from main_def.crud.sql.datasource import get_datasourceid_from_youtube_url_and_trackid, related_datasourceid, get_youtube_info_from_trackid
+from main_def.models.data_source_format_master import DataSourceFormatMaster
+from main_def.crud.get_df_from_query import get_df_from_query
 
-from youtube_dl_fuction.fuctions import get_raw_title_uploader_from_youtube_url
+from main_def.youtube.fuctions import get_raw_title_uploader_from_youtube_url
 
 from tools import get_uuid4
 from itertools import chain
 import pandas as pd
 import time
-from core import query_path
-from support_function.text_similarity.text_similarity import get_token_set_ratio
+from main_def import query_path
+from my_functions.text_similarity.text_similarity import get_token_set_ratio
 from numpy import random
 import numpy as np
 

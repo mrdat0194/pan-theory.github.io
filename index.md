@@ -42,6 +42,10 @@ pip install -r requirements.txt
 within the project
 
 ## Library At-A-Glance
+- `adHoc` &mdash; As an analyst, there is always adhoc.
+    - For reproducible result, adHoc can use notebook to test and implement beforehand SQL flow,
+    
+    
 - `main_def` &mdash; The definition that controls all the connection-wide
     - aws: working with aws
     - ggl_api: How to connect to google and edit
@@ -49,14 +53,19 @@ within the project
     - info: saving results
     - models: model of sqlachemy
     - sql: connection config
-    - Elasticsearch
-    - Neo4j:  
-    - youtube: 
+    - Elasticsearch: connect and test with database
+    - Neo4j:  connect and test with database
+    - youtube: Some functions use with youtube content
+    
 - `my_functions` &mdash; My developing functions
     - google_spreadsheet_api: code to work with spreadsheet
     - open_cv_function: code to work with openCv
     - text_similarity: code to work with fuzzy word
+    
 - `helper_functions` &mdash; The helper functions define
+    - tools : on-going projects
+
+- `datastructure` &mdash; The helper functions define
     - tools : on-going projects
 
 ## License
