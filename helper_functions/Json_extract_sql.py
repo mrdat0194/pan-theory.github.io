@@ -77,7 +77,7 @@ if __name__ == "__main__":
     # #  'in_top100', 'video_source', 'sub_genres', 'bg_1080_file_name', 'background_1080_video', 'faststart_migrated',
     # #  'is_background_360_video_cropped', 'source_title', 'screen_shot_interval', 'published_at',
     # #  'is_background_720_video_cropped', 'loudness_detection_note', 'loudness_detection_output', 'sub_genre_ids',
-    # #  'video_source2', 'featured_by_vibbidi']
+    # #  'video_source2', 'featured_by_samV']
 
     # result = extract_json("artists" ,"Ext" ,2)
     # ['short_id', 'n_playlists', 'square_image', 'itune_artist_id', 'external_id', 'image_verification',

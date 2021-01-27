@@ -1,7 +1,7 @@
 import traceback
 # import sentry_sdk
 # sentry_sdk.init(
-#     dsn="http://532914a0477f48cd8e5dd0452f1f52d6@v-mail.vibbidi.net/5"
+#     dsn="http://532914a0477f48cd8e5dd0452f1f52d6@v-mail.samV.net/5"
 # )
 
 def func():

@@ -32,7 +32,7 @@ def get_video_image(url: str):
 if __name__ == "__main__":
     start_time = time.time()
     urls = [
-       "https://berserker4.vibbidi-vid.com/vibbidi-us/videos/video_42AED2696FCD452E8D358B0CDBE28B6F.mp4"
+       "https://berserker4.samV-vid.com/samV-us/videos/video_42AED2696FCD452E8D358B0CDBE28B6F.mp4"
     ]
     for url in urls:
         k = get_video_decode(url)

@@ -17,6 +17,7 @@ import bcrypt
 
 def get_config():
     '''
+    How to enscrypt a strings, just for fun here.
     >>> import bcrypt
     >>> password = b"super secret password"
     >>> # Hash a password for the first time, with a randomly-generated salt

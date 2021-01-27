@@ -43,7 +43,7 @@ within the project
 
 ## Library At-A-Glance
 - `adHoc` &mdash; As an analyst, there is always adhoc.
-    - For reproducible result, adHoc can use notebook to test and implement beforehand SQL flow,
+    - For reproducible result, adHoc can use notebook to test and implement beforehand SQL flow.
     
     
 - `main_def` &mdash; The definition that controls all the connection-wide

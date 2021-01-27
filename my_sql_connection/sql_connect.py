@@ -27,13 +27,13 @@ print(result)
 # import numpy as np
 #
 # with sshtunnel.SSHTunnelForwarder(
-#         ssh_address_or_host=('db-proxy.vibbidi.net', 22),
+#         ssh_address_or_host=('db-proxy.samV.net', 22),
 #         ssh_username="ec2-user",
 #         ssh_pkey='/Users/petern/Downloads/ec2-proxy2-glue-th.pem',
 #         remote_bind_address=("localhost", 3306),
 # ) as tunnel:
 #     cnx = mysql.connector.MySQLConnection(
-#         host="v4-mysql-master.vibbidi.com",
+#         host="v4-mysql-master.samV.com",
 #         user="banhxeo",
 #         password="rEi2019Wa-05VtJ$p",
 #         database="v4",

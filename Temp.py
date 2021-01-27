@@ -11,7 +11,7 @@ from my_functions import timer
 
 # from my_functions import Complete_Function
 #
-# Complete_Function.Move_file.Data_move("hello.py" ,"/Users/petern/Desktop/VIBBIDI/Project/", "/Users/petern/Desktop/VIBBIDI/Project/helper_functions/")
+# Complete_Function.Move_file.Data_move("hello.py" ,"/Users/petern/Desktop/samV/Project/", "/Users/petern/Desktop/samV/Project/helper_functions/")
 
 # 1. append to excel
 # Complete_Function.append_df_to_excel("/Users/petern/Desktop/hello.xlsx" ,"a")
