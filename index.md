@@ -65,7 +65,7 @@ within the project
 - `helper_functions` &mdash; The helper functions define
     - tools : on-going projects
 
-- `datastructure` &mdash; The helper functions define
+- `datastructure` &mdash; The fun coding time
     - tools : on-going projects
 
 ## License
