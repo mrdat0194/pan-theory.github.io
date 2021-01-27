@@ -226,13 +226,13 @@ def update_wiki_singlepage():
                 url = df_wiki_filter.url_to_add.loc[i]
                 content = df_wiki_filter.content_to_add.loc[i].replace('\'', '\\\'').replace("\"", "\\\"")
 
-                joy_xinh = f"Update tracks set info =  Json_replace(Json_remove(info,'$.wiki'),'$.wiki_url','not ok') where id = '{id}';"
+                sam = f"Update tracks set info =  Json_replace(Json_remove(info,'$.wiki'),'$.wiki_url','not ok') where id = '{id}';"
                 query = ""
                 if url != "" and content != "" and url != 'none' and content != 'none':
                     query = f"UPDATE tracks SET info = Json_set(if(info is null,JSON_OBJECT(),info), '$.wiki', JSON_OBJECT('brief', '{content}'), '$.wiki_url','{url}') WHERE id = '{id}';"
                 else:
                     query = query
-                f.write(joy_xinh + "\n" + query + "\n")
+                f.write(sam + "\n" + query + "\n")
                 # print(query)
 
         # Step 3: update gsheet
@@ -258,13 +258,13 @@ def update_wiki_albumpage():
                 url = df_wiki_filter.url_to_add.loc[i]
                 content = df_wiki_filter.content_to_add.loc[i].replace('\'', '\\\'').replace("\"", "\\\"")
 
-                joy_xinh = f"Update albums set info =  Json_replace(Json_remove(info,'$.wiki'),'$.wiki_url','not ok') where uuid = '{uuid}';"
+                sam = f"Update albums set info =  Json_replace(Json_remove(info,'$.wiki'),'$.wiki_url','not ok') where uuid = '{uuid}';"
                 query = ""
                 if url != "" and content != "" and url != 'none' and content != 'none':
                     query = f"UPDATE albums SET info = Json_set(if(info is null,JSON_OBJECT(),info), '$.wiki', JSON_OBJECT('brief', '{content}'), '$.wiki_url','{url}') WHERE uuid = '{uuid}';"
                 else:
                     query = query
-                f.write(joy_xinh + "\n" + query + "\n")
+                f.write(sam + "\n" + query + "\n")
                 # print(query)
 
         # Step 3: update gsheet

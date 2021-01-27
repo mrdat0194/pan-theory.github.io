@@ -122,7 +122,7 @@ def crawl_itune_album():
         for i in row_index:
             ituneid = filter_df.ituneid.loc[i]
             region = filter_df['region'].loc[i]
-            query = f"insert into crawlingtasks(Id, ActionId, TaskDetail, Priority) values (uuid4(), '9C8473C36E57472281A1C7936108FC06',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.album_id','{ituneid}','$.region','{region}','$.PIC', \"Joy_xinh\"),999);\n"
+            query = f"insert into crawlingtasks(Id, ActionId, TaskDetail, Priority) values (uuid4(), '9C8473C36E57472281A1C7936108FC06',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.album_id','{ituneid}','$.region','{region}','$.PIC', \"sam\"),999);\n"
             print(query)
             f.write(query)
 
@@ -164,11 +164,11 @@ def check_get_trackid_from_ituneid_and_tracknum():
     # print(trackid_from_ituneid_and_tracknum)
 
     # Step print recheck_trackid_by_title
-    joy_xinh = pd.merge(original_live_essential[['ituneid', 'tracknum']], trackid_from_ituneid_and_tracknum, how='left',
+    sam = pd.merge(original_live_essential[['ituneid', 'tracknum']], trackid_from_ituneid_and_tracknum, how='left',
                         on=['ituneid', 'tracknum']).fillna(value='None')
-    joy_xinh = joy_xinh[['track_id', 'track_title', 'track_artist', 'token_set_ratio']]
-    column_name = joy_xinh.columns.values.tolist()
-    list_result = joy_xinh.values.tolist()  # transfer data_frame to 2D list
+    sam = sam[['track_id', 'track_title', 'track_artist', 'token_set_ratio']]
+    column_name = sam.columns.values.tolist()
+    list_result = sam.values.tolist()  # transfer data_frame to 2D list
     list_result.insert(0, column_name)
     range_to_update = f"{sheet_name}!AC1"
     update_value(list_result, range_to_update, gsheet_id)  # validate_value type: object, int, category... NOT DATETIME
@@ -207,11 +207,11 @@ def crawl_live_essential_youtube():
             trackid = filter_df.track_id.loc[i]
 
             if action_type == "live_video":
-                query = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values ('{id}','{trackid}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{youtube_url}','$.data_source_format_id','7F8B6CD82F28437888BD029EFDA1E57F','$.concert_live_name','{place}','$.year','{year}','$.PIC', \"Joy_xinh\"),999);\n"
+                query = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values ('{id}','{trackid}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{youtube_url}','$.data_source_format_id','7F8B6CD82F28437888BD029EFDA1E57F','$.concert_live_name','{place}','$.year','{year}','$.PIC', \"sam\"),999);\n"
             elif action_type == "cover_video":
-                query = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values ('{id}','{trackid}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{youtube_url}','$.data_source_format_id','F5D2FE4A15FB405E988A7309FD3F9920','$.covered_artist_name','{artist_cover}','$.year','{year}','$.PIC', \"Joy_xinh\"),999);\n"
+                query = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values ('{id}','{trackid}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{youtube_url}','$.data_source_format_id','F5D2FE4A15FB405E988A7309FD3F9920','$.covered_artist_name','{artist_cover}','$.year','{year}','$.PIC', \"sam\"),999);\n"
             elif action_type == "fancam_video":
-                query = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values ('{id}','{trackid}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{youtube_url}','$.data_source_format_id','DDC08421CAEB4E918F3FE373209020F9','$.concert_live_name','{place}','$.year','{year}','$.PIC', \"Joy_xinh\"),999);\n"
+                query = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values ('{id}','{trackid}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{youtube_url}','$.data_source_format_id','DDC08421CAEB4E918F3FE373209020F9','$.concert_live_name','{place}','$.year','{year}','$.PIC', \"sam\"),999);\n"
             else:
                 continue
             f.write(query)

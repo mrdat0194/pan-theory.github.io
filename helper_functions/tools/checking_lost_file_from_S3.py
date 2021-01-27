@@ -38,20 +38,20 @@ def checking_lost_datasource_from_S3(datasource_ids: list):
         print(f"Datasource id: [{db_datasource.id}] - {result}")
         with open('/Users/phamhanh/PycharmProjects/dataop/sources/datasource_id', "a+") as f1:
             if result == 0:
-                joy_xinh_qua = f"{db_datasource.track_id} -------{db_datasource.id}-------{db_datasource.format_id};\n"
-                f1.write(joy_xinh_qua)
+                sam_qua = f"{db_datasource.track_id} -------{db_datasource.id}-------{db_datasource.format_id};\n"
+                f1.write(sam_qua)
 
         with open(query_path, "a+") as f2:
             if result == 0 and db_datasource.format_id in (
                     DataSourceFormatMaster.FORMAT_ID_MP3_FULL, DataSourceFormatMaster.FORMAT_ID_MP4_FULL, DataSourceFormatMaster.FORMAT_ID_MP4_STATIC):
-                joy_xinh = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values (uuid4(),'{db_datasource.track_id}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','replace' ,'$.youtube_url','{db_datasource.source_uri}','$.data_source_format_id','{db_datasource.format_id}','$.PIC', '{gsheet_name}_{sheet_name}'),1999);\n"
-                f2.write(joy_xinh)
+                sam = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values (uuid4(),'{db_datasource.track_id}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','replace' ,'$.youtube_url','{db_datasource.source_uri}','$.data_source_format_id','{db_datasource.format_id}','$.PIC', '{gsheet_name}_{sheet_name}'),1999);\n"
+                f2.write(sam)
             elif result == 0 and db_datasource.format_id == DataSourceFormatMaster.FORMAT_ID_MP4_LIVE:
                 title = db_datasource.info.get('title')
                 track_title = db_track.title
                 live_info = get_split_info(title=title, track_title= track_title)
-                joy_xinh = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values (uuid4(),'{db_datasource.track_id}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{db_datasource.source_uri}','$.data_source_format_id',{DataSourceFormatMaster.FORMAT_ID_MP4_LIVE},'$.concert_live_name','{live_info.get('concert_live_name')}','$.year','{live_info.get('year')}','$.PIC', '{gsheet_name}_{sheet_name}'),1999);\n"
-                f2.write(joy_xinh)
+                sam = f"insert into crawlingtasks(Id,ObjectID ,ActionId, TaskDetail, Priority) values (uuid4(),'{db_datasource.track_id}' ,'F91244676ACD47BD9A9048CF2BA3FFC1',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()),'$.when_exists','keep both' ,'$.youtube_url','{db_datasource.source_uri}','$.data_source_format_id',{DataSourceFormatMaster.FORMAT_ID_MP4_LIVE},'$.concert_live_name','{live_info.get('concert_live_name')}','$.year','{live_info.get('year')}','$.PIC', '{gsheet_name}_{sheet_name}'),1999);\n"
+                f2.write(sam)
             else:
                 continue
 

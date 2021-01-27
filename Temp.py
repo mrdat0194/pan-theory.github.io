@@ -5,6 +5,7 @@ Created on Thu Jul 11 16:16:49 2019
 
 @author: petern
 """
+from my_functions import timer
 
 # 1. move_file
 

@@ -21,8 +21,8 @@ def crawl_artist_album_from_artist_ituneid():
     with open(query_path, "w") as f:
         for i in row_index:
             external_id = df.external_id.loc[i]
-            joy_xinh = f"insert into crawlingtasks(Id, ActionId, TaskDetail, Priority) values (uuid4(), '3FFA9CB0E221416288ACFE96B5810BD2',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.artist_id','{external_id}','$.PIC', '{gsheet_name}_{sheet_name}'),999) ;\n"
-            f.write(joy_xinh)
+            sam = f"insert into crawlingtasks(Id, ActionId, TaskDetail, Priority) values (uuid4(), '3FFA9CB0E221416288ACFE96B5810BD2',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.artist_id','{external_id}','$.PIC', '{gsheet_name}_{sheet_name}'),999) ;\n"
+            f.write(sam)
 
 
 if __name__ == "__main__":

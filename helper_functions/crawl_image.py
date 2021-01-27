@@ -29,12 +29,12 @@ def craw_image(gsheet_id, sheet_name):
         for i in artist_row_index:
             x = artist_filter_df['artist_uuid'].loc[i]
             y = artist_filter_df['artist_url_to_add'].loc[i]
-            query = f"insert into crawlingtasks(Id, ActionId,objectid ,TaskDetail, Priority) values (uuid4(), 'OA9CPKSUT6PBGI1ZHPLQUPQCGVYQ71S9','{x}',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.url','{y}','$.object_type',\"artist\",'$.when_exists',\"replace\",'$.PIC',\"Joy_xinh\"),999);"
+            query = f"insert into crawlingtasks(Id, ActionId,objectid ,TaskDetail, Priority) values (uuid4(), 'OA9CPKSUT6PBGI1ZHPLQUPQCGVYQ71S9','{x}',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.url','{y}','$.object_type',\"artist\",'$.when_exists',\"replace\",'$.PIC',\"sam\"),999);"
             print(query)
         # for j in album_row_index:
         #     x = album_filter_df['albums_uuid'].loc[j]
         #     y = album_filter_df['album_url_to_add'].loc[j]
-        #     query = f"insert into crawlingtasks(Id, ActionId,objectid ,TaskDetail, Priority) values (uuid4(), 'OA9CPKSUT6PBGI1ZHPLQUPQCGVYQ71S9','{x}',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.url','{y}','$.object_type',\"album\",'$.when_exists',\"replace\",'$.PIC',\"Joy_xinh\"),999);"
+        #     query = f"insert into crawlingtasks(Id, ActionId,objectid ,TaskDetail, Priority) values (uuid4(), 'OA9CPKSUT6PBGI1ZHPLQUPQCGVYQ71S9','{x}',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.url','{y}','$.object_type',\"album\",'$.when_exists',\"replace\",'$.PIC',\"sam\"),999);"
         #     print(query)
         f.write(query + "\n")
 
@@ -42,7 +42,7 @@ def craw_image(gsheet_id, sheet_name):
         # if albums_uuid == '':
         #     continue
         # else:
-        #     query2 = query + f"insert into crawlingtasks(Id, ActionId,objectid ,TaskDetail, Priority) values (uuid4(), 'OA9CPKSUT6PBGI1ZHPLQUPQCGVYQ71S9','{albums_uuid}',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.url','{albums_url}','$.object_type','artist','$.when_exists','replace','$.PIC','Joy_xinh'),99) ;\n"
+        #     query2 = query + f"insert into crawlingtasks(Id, ActionId,objectid ,TaskDetail, Priority) values (uuid4(), 'OA9CPKSUT6PBGI1ZHPLQUPQCGVYQ71S9','{albums_uuid}',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.url','{albums_url}','$.object_type','artist','$.when_exists','replace','$.PIC','sam'),99) ;\n"
         #     print(query2)
 
         # f.write(query + "\n")

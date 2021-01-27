@@ -1,5 +1,7 @@
 import cv2
 import time
+from my_functions import timer
+@timer
 def decode_fourcc(v: int):
     '''
     avc1: H.264
@@ -9,7 +11,7 @@ def decode_fourcc(v: int):
     v = int(v)
     return "".join([chr((v >> 8 * i) & 0xFF) for i in range(4)])
 
-
+@timer
 def get_video_decode(url: str):
     vidcap = cv2.VideoCapture(url)
     vidcap.set(cv2.CAP_PROP_POS_MSEC, 3000)  # just cue to 20 sec. position
@@ -17,6 +19,7 @@ def get_video_decode(url: str):
     decode_name = decode_fourcc(fourcc)
     return decode_name
 
+@timer
 def get_video_image(url: str):
     vidcap = cv2.VideoCapture(url)
     success,image = vidcap.read()
