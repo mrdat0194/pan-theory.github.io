@@ -57,13 +57,14 @@ within the project
     - Neo4j:  connect and test with database
     - youtube: Some functions use with youtube content
     
-- `my_functions` &mdash; My developing functions
+- `my_functions` &mdash; My developing functions to dive deep into solving the core problems.
     - google_spreadsheet_api: code to work with spreadsheet
     - open_cv_function: code to work with openCv
     - text_similarity: code to work with fuzzy word
     
-- `helper_functions` &mdash; The helper functions define
+- `helper_functions` &mdash; The helper functions define the tools to help others.
     - tools : on-going projects
+    - my_sql_connection: example of connecting SQL in ORM and cursors.
 
 - `datastructure` &mdash; The fun coding time
     - tools : on-going projects

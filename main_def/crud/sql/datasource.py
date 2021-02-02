@@ -1,18 +1,18 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import func, union, distinct, desc
-from core.mysql_database_connection.sqlalchemy_create_engine import SQLALCHEMY_DATABASE_URI
-from core.models.datasource import DataSource
-from core.models.playlist_datasource import PlaylistDataSource
-from core.models.usernarrative import UserNarrative
-from core.models.collection_datasource import CollectionDataSource
-from core.models.data_source_format_master import DataSourceFormatMaster
+from main_def.mysql_database_connection.sqlalchemy_create_engine import SQLALCHEMY_DATABASE_URI
+from main_def.models.datasource import DataSource
+from main_def.models.playlist_datasource import PlaylistDataSource
+from main_def.models.usernarrative import UserNarrative
+from main_def.models.collection_datasource import CollectionDataSource
+from main_def.models.data_source_format_master import DataSourceFormatMaster
 
 from typing import Optional, Tuple, Dict, List
-from core.crud.sqlalchemy import get_compiled_raw_mysql
+from main_def.crud.sqlalchemy import get_compiled_raw_mysql
 from itertools import chain
 
-from core.crud.get_df_from_query import get_df_from_query
+from main_def.crud.get_df_from_query import get_df_from_query
 import pandas as pd
 
 engine = create_engine(SQLALCHEMY_DATABASE_URI)
