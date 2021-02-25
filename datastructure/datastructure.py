@@ -19,6 +19,9 @@ exec(open("Data_Structures_Algorithms_In_Python-master/Stack_and_Queue/CircularQ
 exec(open("Data_Structures_Algorithms_In_Python-master/String_or_Array/Searching/Binary_Search.py").read())
 exec(open("Data_Structures_Algorithms_In_Python-master/Graph/Graph.py").read())
 
+
+
+
 ### https://www.geeksforgeeks.org/implementation-deque-using-circular-array/
 #
 # insertFront(): Adds an item at the front of Deque.

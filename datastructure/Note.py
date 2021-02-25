@@ -149,8 +149,8 @@ data = pd.read_csv(
 #            files[filename] = file.read()            
 
 #sys.path.append(os.getcwd())
-#from module.file import MyClass
-#instance = MyClass()
+# from module.file import MyClass
+# instance = MyClass()
 
 # REGX
 #https://www.coursera.org/learn/python-network-data/supplement/2WnqH/python-regular-expression-quick-guide
@@ -166,15 +166,15 @@ print('The reverse of KDnuggets is {}'.format(s[::-1]))
 
 #
 
-#Find character
+# Find character
 import re
 x = 'From: Using the : character'
 y = re.findall('^F.+:', x)
 print(y)
 
-
+# Find all the number in text
 import re
-hand = open("regex_sum.txt")
+hand = open("datastructure/regex_sum.txt")
 x=list()
 for line in hand:
     y=re.findall('[0-9]+',line)
@@ -184,14 +184,13 @@ for i in x:
     sum=sum + int(i)
 print(sum)
 
-["String" in x for x in strings]
 #
-
 
 # Using urllib which is easier than socket
 # socket is like a phonecall where you determine the connection
-import urllib
-fhand = urllib.urlopen('http://www.py4inf.com/code/romeo.txt')
+import urllib.request
+
+fhand = urllib.request.urlopen('http://www.py4inf.com/code/romeo.txt')
 print(type(fhand))
 # for line in fhand:
 #     print line.strip()
@@ -200,34 +199,32 @@ print(type(fhand))
 
 counts = dict()
 for line in fhand:
-    print line.strip()
+    print(line.strip())
     words = line.split()
     for word in words:
         counts[word] = counts.get(word, 0) + 1
-print counts
+print(counts)
 
+# Date time
 import datetime
-
-
 a = datetime.datetime(2019, 5, 26, 0, 0)
 b =  datetime.datetime.today()
 
-#dealing with str, replace, findall
+# dealing with str, replace, findall
+# https://chrisalbon.com/python/data_wrangling/pandas_string_munging/
 
-
-#https://chrisalbon.com/python/data_wrangling/pandas_string_munging/
-
-#merged = pd.merge(pop, abbrevs, how='outer',
+# merged = pd.merge(pop, abbrevs, how='outer',
 #                  left_on='state/region', right_on='abbreviation')
-#merged = merged.drop('abbreviation', 1) # drop duplicate info
+# merged = merged.drop('abbreviation', 1) # drop duplicate info
 
 # List
 
-list.index("")
-list.append("")
-list.insert(1,"")
-list.count(1,"")
-
+list = ['a']
+list.index("a")
+list.append("b")
+list.insert(0,"c")
+list.count("a")
+print(list)
 # Tuple is immutable
 
 co = (4,5)
@@ -466,12 +463,28 @@ else:
 
 #http://emailregex.com/
 
-#Em có string: "<red>AB CD<@red><yellow>EFGH<@yellow>"
+string = "<red>AB CD<@red><yellow>EFGH<@yellow>"
 #
-#Nếu em dùng : data = re.findall(r'w*', string) thì có kết quả sau :
-#
+data = re.findall(r'w*', string)
 #['', 'red', '', 'AB', '', 'CD', '', '', 'red', '', '', 'yellow', '', 'EFGH', '', '', 'yellow', '', '']
-#
-#Nhưng nếu em dùng : data = re.findall(r'<w+>\w*<\w+>', string ) thì nó lại ra :
-#
-#['<yellow>EFGH<@yellow>']    
+data = re.findall(r'<w+>\w*<\w+>', string )
+#['<yellow>EFGH<@yellow>']
+
+
+# generator
+
+from itertools import chain
+
+list1 = ["a","b","c"]
+list2 = ["d","e","f"]
+list3 = ["g","h","i"]
+print(list(chain(list1, list2, list3)))
+
+iterables = [list1, list2, list3]
+print(list(chain.from_iterable(iterables)))
+
+def gen_iterables():
+    for i in range(10):
+        yield range(i)
+
+print(list(chain.from_iterable(gen_iterables())))

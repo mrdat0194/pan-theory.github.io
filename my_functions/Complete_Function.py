@@ -11,6 +11,7 @@ import time
 import shutil
 import pandas as pd
 from main_def import MAIN_DIR
+
 import os
 import pickle
 import bcrypt
@@ -99,7 +100,7 @@ class Time_converse:
     """
     Process time series
     """
-    def Time_diff(self, Segmentation1, id_time, time_col):
+    def Time_diff(Segmentation1, id_time, time_col):
         """
 
         :param Segmentation1:
@@ -107,8 +108,6 @@ class Time_converse:
         :param time_col:
         :return:
         """
-#        abc = "^"+id_time+"$|^"+time_col +"$"
-#        col1 = [c for c in Segmentation1.columns if pd.Series(c).str.contains('^Date$|^Cohort$').bool()]
         Segmentation1['Timediff'] = float()
         Segmentation1[time_col] = pd.to_datetime(Segmentation1[time_col])        
         for i in range(1,Segmentation1.shape[0]):
@@ -122,7 +121,9 @@ class Time_converse:
                       and Segmentation1[time_col][i].day == Segmentation1[time_col][i-1].day 
                       and Segmentation1[time_col][i].hour == Segmentation1[time_col][i-1].hour):
                     Segmentation1["Timediff"][i-1] = (Segmentation1[time_col][i] - Segmentation1[time_col][i-1]).seconds
-                    Segmentation1["Timediff"][i] = (Segmentation1[time_col][i] - Segmentation1[time_col][i-1] ).seconds       
+                    Segmentation1["Timediff"][i] = (Segmentation1[time_col][i] - Segmentation1[time_col][i-1] ).seconds
+                    if (Segmentation1["Timediff"][i-1] == Segmentation1["Timediff"][i]):
+                        Segmentation1["Timediff"][i-1] = 0
                 else:
                     Segmentation1["Timediff"][i] = 0
             
@@ -160,96 +161,7 @@ class Chat_analyse:
                      inplace=True)
           return Connect_final
 
-#    def Time_diff1(self, Segmentation1, id_time, time_col):
-#        start_time = time.time()
-#        abc = "^"+id_time+"$|^"+time_col +"$"
-#        col1 = [c for c in Segmentation1.columns if pd.Series(c).str.contains('^Date$|^Cohort$').bool()]
-#
-#        Segmentation1['Timediff'] = float()
-#
-#        Segmentation1[time_col] = pd.to_datetime(Segmentation1[time_col])
-#
-#        for i in range(1,Segmentation1.shape[0]):
-#            if ~pd.isna(Segmentation1[id_time][i]):
-#                    Segmentation1["Timediff"][i] = (Segmentation1[time_col][i] - Segmentation1[time_col][i-1]).seconds
-#            else:
-#                    Segmentation1["Timediff"][i] = 0
-#        return Segmentation1
-#        print("My program took", time.time() - start_time, "to run")
-#    def Extract_Diff_id(self, Event.Category ,Var1, tota_FB_promotion, Question_user):
-#        
-#        tota_FB_promotion[Event.Category] = 
-#        
-#        Question_user[Var1] = 
 
-#        
-#Extract_Diff_id <- function(Event.Category, Var1, tota_FB_promotion,Question_user) {
-#    
-#    col3 <- grep(Var1,colnames(Question_user))
-#    
-#    names(Question_user)[col3] <- paste("Event.Category")
-#    
-#    #
-#    
-#    col2 <- grep(Event.Category,colnames(tota_FB_promotion))
-#    
-#    names(tota_FB_promotion)[col2] <- paste("Event.Category")
-#    
-#    
-#    
-#    col1 <- grep("Event.Category",colnames(Question_user))
-#    
-#    for (i in 1:dim(Question_user)[1]) {
-#      if (i==1) {
-#        tota_FB_promotion <- tota_FB_promotion[which(as.character(tota_FB_promotion$Event.Category) != as.character(Question_user[i,col1])),]
-#      } else { 
-#        tota_FB_promotion <- tota_FB_promotion[which(as.character(tota_FB_promotion$Event.Category) != as.character(Question_user[i,col1])),]
-#      }
-#    }
-#
-#    names(tota_FB_promotion)[col2] <- paste(Event.Category)
-#    
-#    return  (tota_FB_promotion)
-#    
-#    
-#}
-#
-#
-## Same extract
-#
-#\
-#
-### Trich ID: 
-#
-#Same_extract_id <- function(abc_b, abc_c,gonjoybot_chat, Chat_phone_usertx3) {
-#  
-#  col3 <- grep(abc_c,colnames(Chat_phone_usertx3))
-#  
-#  names(Chat_phone_usertx3)[col3] <- paste("Event Category")
-#  
-#  #
-#  
-#  col2 <- grep(abc_b,colnames(gonjoybot_chat))
-#  
-#  names(gonjoybot_chat)[col2] <- paste("Event Category")
-#  
-#  #
-#  
-#  
-#  for (i in 1:dim(Chat_phone_usertx3)[1]) {
-#    if (i==1) {
-#      Chat_phone_usert3_1 <- gonjoybot_chat[which(as.character(gonjoybot_chat$`Event Category`) == as.character(Chat_phone_usertx3$`Event Category`)[i]),]
-#    } else {
-#      Chat_phone_usert3_2 <- gonjoybot_chat[which(as.character(gonjoybot_chat$`Event Category`) == as.character(Chat_phone_usertx3$`Event Category`)[i]),]
-#      Chat_phone_usert3_1 <- rbind(Chat_phone_usert3_1,Chat_phone_usert3_2)
-#    }
-#  }
-#  
-#  names(Chat_phone_usert3_1)[col2] <- paste(abc_b)
-#  
-#  return (Chat_phone_usert3_1)
-#  
-#}
          
 def append_df_to_excel(filename, df, sheet_name='Sheet1', startrow=None,
                        truncate_sheet=False, 
@@ -314,17 +226,154 @@ def append_df_to_excel(filename, df, sheet_name='Sheet1', startrow=None,
     df.to_excel(writer, sheet_name, startrow=startrow, **to_excel_kwargs)
 
     # save the workbook
-    writer.save()    
+    writer.save()
+
+def is_prime(x):
+    '''
+    the original prime functions that could be improved.
+    :param x:
+    :return:
+    '''
+    for i in range(2, int(x**0.5) + 1):
+        if x%i == 0:
+            return False
+        else:
+            return True
+def twoSumHashing(num_arr, pair_sum):
+    sums = []
+    hashTable = {}
+
+    for i in range(len(num_arr)):
+        complement = pair_sum - num_arr[i]
+        if complement in hashTable:
+            print("Pair with sum", pair_sum,"is: (", num_arr[i],",",complement,")")
+        hashTable[num_arr[i]] = num_arr[i]
 
 if __name__ == "__main__":
+    pd.set_option('float_format', '{:,.2f}'.format)
+    pd.set_option("display.max_rows", None, "display.max_columns", 60, 'display.width', 1000)
+
     # append_df_to_excel("hello.xlsx", pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
     #                columns=['a', 'b', 'c']))
 
     # Connect_final2 = Chat_analyse.teamcheck(Connect_final1, "from_id", "KM_QR", "KM_Content",
     #                                         "khuyen mai|km|khuyến mãi", "ukm|ikm|dkm|kmxpm", Connect_final1)
-    abc = get_config()
-    print(abc)
+    # abc = get_config()
+    # print(abc)
+    #
+    # prime_or_not = is_prime(8)
+    # print(prime_or_not)
 
+    # data_trial = os.path.join(MAIN_DIR, "data", "Gonj/")
+    #
+    # gonjoybot_list = sorted( os.listdir(data_trial), reverse = True )[0:2]
+    #
+    # li = []
+    #
+    # for filename in gonjoybot_list:
+    #     filename = data_trial + filename
+    #     df = pd.read_csv(filename, index_col=None, header=0)
+    #     li.append(df)
+    #
+    # gonjoybot_chat = pd.concat(li, axis=0, ignore_index=True)
+    #
+    #
+    # gonjoybot_chat['Date'] = pd.to_datetime(gonjoybot_chat['time']) +   pd.Timedelta(hours=7)
+    #
+    # gonjoybot_chat = gonjoybot_chat[gonjoybot_chat['Date'].dt.date == pd.to_datetime("2019-06-25")]
+    #
+    # #
+    #
+    # col1 = [c for c in gonjoybot_chat.columns if pd.Series(c).str.contains('^from|^time$').bool()]
+    #
+    # Segmentation = gonjoybot_chat[col1]
+    #
+    # Segmentation1 = Segmentation[~pd.isna(Segmentation["from_id"]) ].reset_index()
+    #
+    # Segmentation2 = Time_converse.Time_diff(Segmentation1, "from_id", "time")
+    #
+    # print(Segmentation2)
+    #
+    # Segmentation3 = Segmentation2.sort_values(by=['time'])
+    #
+    # print(Segmentation3)
+
+    # # Driver Code for 2 sum
+    # num_arr = [4, 5, 1, 8]
+    # pair_sum = 9
+    #
+    # # Calling function
+    # twoSumHashing(num_arr, pair_sum)
+
+
+## Not fixed yet
+#Extract_Diff_id <- function(Event.Category, Var1, tota_FB_promotion,Question_user) {
+#
+#    col3 <- grep(Var1,colnames(Question_user))
+#
+#    names(Question_user)[col3] <- paste("Event.Category")
+#
+#    #
+#
+#    col2 <- grep(Event.Category,colnames(tota_FB_promotion))
+#
+#    names(tota_FB_promotion)[col2] <- paste("Event.Category")
+#
+#
+#
+#    col1 <- grep("Event.Category",colnames(Question_user))
+#
+#    for (i in 1:dim(Question_user)[1]) {
+#      if (i==1) {
+#        tota_FB_promotion <- tota_FB_promotion[which(as.character(tota_FB_promotion$Event.Category) != as.character(Question_user[i,col1])),]
+#      } else {
+#        tota_FB_promotion <- tota_FB_promotion[which(as.character(tota_FB_promotion$Event.Category) != as.character(Question_user[i,col1])),]
+#      }
+#    }
+#
+#    names(tota_FB_promotion)[col2] <- paste(Event.Category)
+#
+#    return  (tota_FB_promotion)
+#
+#
+#}
+#
+#
+## Same extract
+#
+#\
+#
+### Trich ID:
+#
+#Same_extract_id <- function(abc_b, abc_c,gonjoybot_chat, Chat_phone_usertx3) {
+#
+#  col3 <- grep(abc_c,colnames(Chat_phone_usertx3))
+#
+#  names(Chat_phone_usertx3)[col3] <- paste("Event Category")
+#
+#  #
+#
+#  col2 <- grep(abc_b,colnames(gonjoybot_chat))
+#
+#  names(gonjoybot_chat)[col2] <- paste("Event Category")
+#
+#  #
+#
+#
+#  for (i in 1:dim(Chat_phone_usertx3)[1]) {
+#    if (i==1) {
+#      Chat_phone_usert3_1 <- gonjoybot_chat[which(as.character(gonjoybot_chat$`Event Category`) == as.character(Chat_phone_usertx3$`Event Category`)[i]),]
+#    } else {
+#      Chat_phone_usert3_2 <- gonjoybot_chat[which(as.character(gonjoybot_chat$`Event Category`) == as.character(Chat_phone_usertx3$`Event Category`)[i]),]
+#      Chat_phone_usert3_1 <- rbind(Chat_phone_usert3_1,Chat_phone_usert3_2)
+#    }
+#  }
+#
+#  names(Chat_phone_usert3_1)[col2] <- paste(abc_b)
+#
+#  return (Chat_phone_usert3_1)
+#
+#}
 #def Get_id_GA_full(Joy_GA,No,DateUpdate):
 #    
 #    
@@ -380,87 +429,7 @@ if __name__ == "__main__":
 #  return (Joy_GA2)
 #  
 #}
-#
-##Time_diff <- function(Segmentation1 ,id_time, time_col) {
-##  
-##  time_col <- grep(time_col, colnames(Segmentation1))
-##  
-##  id_time <- grep(id_time, colnames(Segmentation1))
-##  
-##  t.lub <- ymd_hms(Segmentation1[,time_col])
-##  
-##  Segmentation1$Timediff = 0  
-##  
-##  col_dif <- grep("Timediff", colnames(Segmentation1))
-##  
-##  for (i in (2:dim(Segmentation1)[1])) {
-##    # is ID na
-##    if (is.na(Segmentation1[i,id_time]) == FALSE) {
-##      
-##      if (((Segmentation1[i,id_time]) == (Segmentation1[i-1,id_time]))
-##          && (month(t.lub[i]) == month(t.lub[i-1])) 
-##          && (day(t.lub[i]) == day(t.lub[i-1]) ) 
-##          && (hour(t.lub[i]) == hour(t.lub[i-1]) )) 
-##      {
-##        
-##        Segmentation1[i,col_dif] <- difftime(as.POSIXlt(Segmentation1[i,time_col]), as.POSIXlt(Segmentation1[i-1,time_col]))
-##        
-##      } else if ( (month(t.lub[i]) == month(t.lub[i-1])) 
-##                     && (day(t.lub[i]) == day(t.lub[i-1]) ) 
-##                     && (hour(t.lub[i]) == hour(t.lub[i-1]) )) 
-##      { 
-##        
-##        Segmentation1[i-1,col_dif] <- difftime(as.POSIXlt(Segmentation1[i,time_col]), as.POSIXlt(Segmentation1[i-1,time_col]))
-##        Segmentation1[i,col_dif] <- difftime(as.POSIXlt(Segmentation1[i,time_col]), as.POSIXlt(Segmentation1[i-1,time_col]))
-##        
-##      }
-##      else {
-##        Segmentation1[i,col_dif]  = 0; 
-##      }
-##    }
-##  }
-##  return(Segmentation1)
-##}
-##      
-##      
-##            
-##      y = os.listdir(Path)
-##      x = os.listdir(Destination_folder)
-##      print(y)
-##      print(x)
-#    
-#    
-##    Data_remove <- function (Find_name , Path  ) {
-##      
-##      setwd(Path)
-##      
-##      y <- list.files(path = Path)
-##      
-##      for (i in 1:length(y)) {
-##        if (grepl(Find_name,y[i])) {
-##          
-##          file.remove(y[i])
-##          
-##        }
-##      }
-##      
-##    }
-##    
-##    Data_move_trial <- function (Find_name , Path  , Destination_folder) {
-##    
-##      setwd(Path)
-##      
-##      y <- list.files(path = Path)
-##      
-##      for (i in 1:length(y)) {
-##        if (grepl(Find_name,y[i])) {
-##          file.move(y[i], Destination_folder)
-##        }
-##      }
-##      
-##      print(y)
-##      
-##    }
+
 #            
 ##class Database: 
 ##    

@@ -5,7 +5,7 @@ Created on Thu Jul 11 16:16:49 2019
 
 @author: petern
 """
-from my_functions import timer
+# from my_functions import timer
 
 # 1. move_file
 
@@ -17,4 +17,7 @@ from my_functions import timer
 # Complete_Function.append_df_to_excel("/Users/petern/Desktop/hello.xlsx" ,"a")
 
 
+
+
 if __name__ == '__main__':
+
