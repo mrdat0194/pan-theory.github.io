@@ -50,7 +50,7 @@ def printArray(ints, len):
     print()
 
 # Driver program to test above function
-""" 
+""" x   
 Constructed binary tree is  
            10 
        / \ 
