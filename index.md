@@ -1,7 +1,7 @@
 [comment]: <> (https://mrdat0194.github.io/pan-theory/)
 ## Welcome to My GitHub Pages
 
-Here is my official documents for my self [editor on GitHub](https://github.com/mrdat0194/pan-theory/edit/master/index.md).
+Here is my official documents for myself [editor on GitHub](https://github.com/mrdat0194/pan-theory/edit/master/index.md).
 
 [comment]: <> (Whenever you commit to this repository, GitHub Pages will run [Jekyll]&#40;https://jekyllrb.com/&#41; to rebuild the pages in your site, from the content in your Markdown files.)
 
