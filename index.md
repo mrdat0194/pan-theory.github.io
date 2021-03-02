@@ -61,13 +61,18 @@ within the project
     - google_spreadsheet_api: code to work with spreadsheet
     - open_cv_function: code to work with openCv
     - text_similarity: code to work with fuzzy word
+    - Music: editting music  
+    - others (Pic_toText, Text_toSpeech)
+    
     
 - `helper_functions` &mdash; The helper functions define the tools to help others.
     - tools : on-going projects
     - my_sql_connection: example of connecting SQL in ORM and cursors.
 
 - `datastructure` &mdash; The fun coding time
-    - tools : on-going projects
+    - CodingGame : complete Genetic Algorithms,..
+    - Probability : pure code
+    - Data_Structures : borrowing and improving.
 
 ## License
 

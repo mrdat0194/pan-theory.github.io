@@ -8,6 +8,8 @@
 6999 1000	(landX landY)
 
 5000 2500 -50 0 1000 90 0 (X Y hSpeed vSpeed fuel rotate power)
+https://www.codingame.com/blog/genetic-algorithm-mars-lander/
+https://neptune.ai/blog/adaptive-mutation-in-genetic-algorithm-with-python-examples
 '''
 import numpy as np
 import sys
@@ -231,9 +233,7 @@ def mutation(chrom):
         np.where(mutated < MUTATION, np.random.randint(-1, 2, size=LENGTH), 0)
     )
     chrom[:, :, 1] += np.cumsum(
-        np.where(
-            mutated < MUTATION, np.random.randint(-15, 16, size=LENGTH), 0
-        )
+        np.where(mutated < MUTATION, np.random.randint(-15, 16, size=LENGTH), 0)
     )
     return chrom
 

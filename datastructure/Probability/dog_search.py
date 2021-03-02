@@ -71,6 +71,11 @@ class coin():
                 break
         return num_tails
 
+    def twoCoint(self):
+        ''' Problem 6: Tossing a pair of coins
+        '''
+        pass
+
     def make_Xk(num_tails):
         """ Make a sequence of num_tails+1 uniform random variables"""
         X_k = np.random.uniform(low=0, high=5, size=num_tails+1)
@@ -78,7 +83,7 @@ class coin():
 
     def make_X(num_tails):
         """ Make r.v. X which is the sum of num_tails+1 uniform r.vs"""
-        X_k = make_Xk(num_tails)
+        X_k = coin.make_Xk(num_tails)
         X = np.sum(X_k)
         return X
 
@@ -99,6 +104,160 @@ class coin():
 
         print("Mean of r_X: {0}".format(np.mean(X_array)))
         print("Var of r_X: {0}".format(np.var(X_array)))
+
+    def num_toss_until_HT():
+        num_toss = 1
+        num_first_time = 0
+        num_second_time = 0
+        prev_res = np.random.choice(['H', 'T'], size=1)
+        first_succ = False
+        second_succ = False
+        while (not first_succ) or (not second_succ):
+            cur_res = np.random.choice(['H', 'T'], size=1)
+            num_toss += 1
+            if cur_res == 'H' and prev_res == 'H':
+                if not first_succ and not second_succ:
+                    num_first_time = num_toss
+                    first_succ = True
+                else:
+                    num_second_time = num_toss
+                    second_succ = True
+            prev_res = cur_res
+
+        return num_first_time, num_second_time-num_first_time
+
+    def test_tossHT(self):
+        nSims = 10000
+        num_first_list = []
+        num_second_list = []
+        for idx in range(nSims):
+            tmp = coin.num_toss_until_HT()
+            num_first_list.append(tmp[0])
+            num_second_list.append(tmp[1])
+
+        print(np.mean(num_first_list))
+        print(np.mean(num_second_list))
+
+    def gen_next_state(cur_state):
+        '''Problem 4: A simple Markov chain'''
+        if cur_state == 1:
+            next_state = np.random.choice([1, 2], p=[0.6, 0.4])
+        elif cur_state == 2:
+            next_state = np.random.choice([1, 2, 3], p=[0.2, 0.5, 0.3])
+        elif cur_state == 3:
+            next_state = np.random.choice([2, 3], p=[0.1, 0.9])
+        return next_state
+
+
+    def gen_seq(n_samples = 1000):
+        out_seq = []
+        cur_state = np.random.choice([1, 2, 3])
+        count_dict = {}
+        # out_seq.append(first_state)
+        for idx in range(1, n_samples):
+            # cur_state = out_seq[idx-1]
+            next_state = coin.gen_next_state(cur_state)
+            #out_seq.append(next_state)
+            count_dict[next_state] = count_dict.get(next_state, 0) + 1
+            cur_state = next_state
+        return count_dict
+
+# P(X2=2|X0=1)
+
+    def gen_2samples():
+        cur_state = 1
+        count_right = 0
+        count_right_S1 = 0
+
+        for idx in range(2):
+            next_state = coin.gen_next_state(cur_state)
+            cur_state = next_state
+        if cur_state == 2:
+            return True
+
+    def Test_markov(self):
+        nSims = 10000
+        count = 0
+        for idx in range(nSims):
+            if gen_2samples():
+                count += 1
+        print("{0}/{1}= {2:3.2f}".format(count, nSims, count/nSims))
+
+        # 4346/10000= 0.43
+        # 45
+        # Analyze the x sequence
+        nSims = 10000
+
+        counts = coin.gen_seq(nSims)
+        for k, v in counts.items():
+            print("{0}: {1:3.2f}".format(k, v/nSims))
+# 1: 0.14
+# 2: 0.23
+# 3: 0.63
+# 73
+    # Analyze the y sequence
+
+    def gen_seq_Y(n_samples = 1000):
+        out_seq = []
+        cur_state = np.random.choice([1, 2, 3])
+        count_dict = {}
+        for idx in range(1, n_samples):
+            next_state = gen_next_state(cur_state)
+            y_state = next_state - cur_state
+            count_dict[y_state] = count_dict.get(y_state, 0) + 1
+            cur_state = next_state
+        return count_dict
+
+    def Test_seq(self):
+        counts = coin.gen_seq_Y(nSims)
+        for k, v in counts.items():
+            print("{0}: {1:3.2f}".format(k, v/nSims))
+# 0: 0.78
+# 1: 0.11
+# -1: 0.11
+#     4.5 Given that the nth transition was a transition to the right (Yn=1), find (approximately) the probability that the state at time n−1 was state 1 (i.e., Xn−1=1). Assume that n is large.
+
+    def gen_seq_Y2(n_samples = 1000):
+        out_seq = []
+        cur_state = np.random.choice([1, 2, 3])
+        count_right = 0
+        count_right_S1 = 0
+
+        for idx in range(1, n_samples):
+            next_state = gen_next_state(cur_state)
+            y_state = next_state - cur_state
+            if y_state == 1:
+                count_right += 1
+                if cur_state==1:
+                    count_right_S1 += 1
+            cur_state = next_state
+        return count_right, count_right_S1
+
+    def test_seq2(self):
+        nSims = 10000
+        counts, counts_S1 = gen_seq_Y2(nSims)
+        print("{0}/{1}= {2:3.2f}".format(counts_S1, counts, counts_S1/counts))
+# 441/1103= 0.40
+# Suppose that X0=1. Let T be the first positive time index n at which the state is equal to 1.
+
+    def time_to_S1():
+        cur_state = 1
+        count_val = 0
+        succ = False
+        while not succ:
+            next_state = coin.gen_next_state(cur_state)
+            count_val += 1
+            if next_state == 1:
+                succ = True
+            cur_state = next_state
+        return count_val
+
+    def test_time_s1(self):
+        count_list = []
+        nSims = 5000
+        for idx in range(nSims):
+            count_list.append(coin.time_to_S1())
+        print(np.mean(count_list))
 
 class Coupon_collector():
     def num_repeats():

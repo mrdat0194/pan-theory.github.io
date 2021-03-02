@@ -4,6 +4,7 @@ from fuzzywuzzy import fuzz
 
 '''
 Sources: https://www.datacamp.com/community/tutorials/fuzzy-string-python
+https://github.com/seatgeek/fuzzywuzzy
 '''
 
 
@@ -24,6 +25,9 @@ def get_token_set_ratio(str1: str, str2: str):
     string_reformat1 = string_reformat(str1)
     string_reformat2 = string_reformat(str2)
     token_set_ratio = fuzz.token_set_ratio(string_reformat1, string_reformat2)
+    # token_set_ratio1 = fuzz.token_sort_ratio(string_reformat1, string_reformat2)
+    # token_set_ratio2 = fuzz.ratio(string_reformat1, string_reformat2)
+    # token_set_ratio3 = fuzz.partial_ratio(string_reformat1, string_reformat2)
     return token_set_ratio
 
 

@@ -24,7 +24,7 @@ B = np.array([[1,2],[3,4]])
 print(A + B)
 
 # Pandas
-
+import pandas as pd
 #
 
 #Dict_to_frame
