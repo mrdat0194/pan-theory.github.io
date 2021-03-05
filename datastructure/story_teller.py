@@ -53,20 +53,20 @@ class story_teller:
         :param r: num of exp
         :return:
         '''
-    a = Counter(arr)
-    b = Counter()
-    s = 0
-    for i in arr:
-        # số chia
-        j = i//r
-        # số nhân
-        k = i*r
-        a[i]-=1
-        # số lưu tạo đc bao nhiêu cặp 3
-        if b[j] and a[k] and not i%r:
-            s+=b[j]*a[k]
-        b[i]+=1
-    return s
+        a = Counter(arr)
+        b = Counter()
+        s = 0
+        for i in arr:
+            # số chia
+            j = i//r
+            # số nhân
+            k = i*r
+            a[i]-=1
+            # số lưu tạo đc bao nhiêu cặp 3
+            if b[j] and a[k] and not i%r:
+                s+=b[j]*a[k]
+            b[i]+=1
+        return s
 
 class Player:
     '''
@@ -127,8 +127,10 @@ class Solution(object):
         return True
 
 if __name__ == '__main__':
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
     # #Socks
-    # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
     # output = os.path.join(BASE_DIR, "output_sock.txt")
     # if os.path.exists(output):
     #     f = open(output, "r+")
@@ -145,7 +147,7 @@ if __name__ == '__main__':
     # print(myfile.readlines())
 
     # # countingValleys
-    # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
     # output = os.path.join(BASE_DIR, "valleycount.txt")
     # if os.path.exists(output):
     #     f = open(output, "r+")
@@ -162,7 +164,7 @@ if __name__ == '__main__':
     # print(myfile.readlines())
 
     # # repeatedstrings
-    # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
     # output = os.path.join(BASE_DIR, "repeatedstrings.txt")
     # if os.path.exists(output):
     #     f = open(output, "r+")
@@ -179,7 +181,7 @@ if __name__ == '__main__':
     # print(myfile.readlines())
 
     # # compare_award
-    # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
     # output = os.path.join(BASE_DIR, "compareTriplets.txt")
     # if os.path.exists(output):
     #     f = open(output, "r+")

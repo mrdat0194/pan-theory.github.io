@@ -15,3 +15,5 @@ result = str_good_mul - str_good_min
 print(str_good_mul)
 print(str_good_min)
 print(result)
+
+

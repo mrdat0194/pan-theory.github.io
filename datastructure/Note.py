@@ -130,14 +130,14 @@ print(dfObj)
 
 # Advanced CSV loading example
 data = pd.read_csv(
-    "data/files/complex_data_example.tsv",      # relative python path to subdirectory
-    sep='\t'           # Tab-separated value file.
-    quotechar="'",        # single quote allowed as quote character
-    dtype={"salary": int},             # Parse the salary column as an integer 
-    usecols=['name', 'birth_date', 'salary'].   # Only load the three columns specified.
-    parse_dates=['birth_date'],     # Intepret the birth_date column as a date
-    skiprows=10,         # Skip the first 10 rows of the file
-    na_values=['.', '??']  )     # Take any '.' or '??' values as NA
+"data/files/complex_data_example.tsv",      # relative python path to subdirectory
+sep='\t' ,         # Tab-separated value file.
+quotechar="'",        # single quote allowed as quote character
+dtype={"salary": int},             # Parse the salary column as an integer
+usecols=['name', 'birth_date', 'salary'] ,   # Only load the three columns specified.
+parse_dates=['birth_date'],     # Intepret the birth_date column as a date
+skiprows=10,         # Skip the first 10 rows of the file
+na_values=['.', '??']  )     # Take any '.' or '??' values as NA
 
 #files = {}
 # 
@@ -241,7 +241,14 @@ conversion.get("jan")
 
 conversion["mar"]
 
-word ='brontosaurus' d =dict()for c in word:if c not in d:d[c] =1 else: d[c] = d[c] +1 print(d)
+word ='brontosaurus'
+d =dict()
+for c in word:
+    if c not in d:
+        d[c] =1
+    else:
+        d[c] = d[c] +1
+    print(d)
 
 # Grid
 
@@ -305,7 +312,6 @@ else:
 
 #Ký tự dấu . này tương đương với việc so khớp một chuỗi phải chứa ít nhất một ký tự.
 
-VD:
 
 import re
 

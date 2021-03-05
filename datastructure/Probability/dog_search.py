@@ -372,8 +372,8 @@ class DivideClass:
         num_sim = 10000
         num_succ = 0
         for i_sum in range(num_sim):
-            groups = mk_three_groups(num_students=90)
-            if in_same_class(groups):
+            groups = DivideClass.mk_three_groups(num_students=90)
+            if DivideClass.in_same_class(groups):
                 num_succ += 1
         print(num_succ/num_sim)
 
@@ -503,7 +503,32 @@ class Dice:
         return probability
 
     def test_facesum(self):
-        assert sum(abs( face_sum(range(1,10),20) - 0.03037092151675485  )) < 10**-5
+        assert sum(abs( Dice.face_sum(range(1,10),20) - 0.03037092151675485  )) < 10**-5
+
+    def compositions(k, n):
+        # inputs: k and n are of type 'int'
+        # output: a set of tuples
+        if k == 1:
+            return {(n,)}
+        else:
+            s = set()
+            for i in range(1, n):
+                for j in compositions(k - 1, n - i): #i + n-i = n
+                    s.add((i,) + j)
+            return s
+
+    def constrained_sum_compositions(n, m):
+        # inputs: n is of type 'int' and m is a list of integers
+        # output: a set of tuples
+        k = len(m)
+        s = set()
+        for c in Dice.compositions(k, n):
+            if sum([c[i] <= m[i] for i in range(k)]) == k: #taking the sets of all comb. which are less than equal to the given
+                s.add(c)
+        return s
+
+    def test_sum_list():
+        print(Dice.constrained_sum_compositions(9, [1, 2, 3, 4, 5]))
 
 class DogSearch:
     '''
@@ -844,4 +869,6 @@ if __name__ == '__main__':
     # g[3:] += np.pi
 
     # print(np.unwrap(g))
-    coin.test_toss2()
+    # coin.test_toss2()
+
+    # Dice.test_sum_list()
