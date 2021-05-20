@@ -80,5 +80,10 @@ def constrained_sum_compositions(n, m):
     return s
 
 
+
 if __name__ == '__main__':
-    constrained_sum_compositions(9, [1, 2, 3, 4, 5])
+    # constrained_sum_compositions(9, [1, 2, 3, 4, 5])
+    data = "abcd"
+    a = (list(range(0, len(data), 2)) +
+     list(range(1, len(data), 2)))
+    print(a)

@@ -17,27 +17,27 @@ def knapSack(W, wt, val, size):
             else:
                 k[i][w] = k[i-1][w]
 
-    for w in k:
-        print(w)
+    # for w in k:
+    #     print(w)
 
     return k
 
 
-# def findElementsInSack(W, matrix, wt, val, size):
-#     i = size
-#     row = W
-#     arr = []
-#     while i > 0:
-#         print(matrix[i][row] - matrix[i-1][row - wt[i-1]] )
-#         print(val[i-1])
-#         if matrix[i][row] - matrix[i-1][row - wt[i-1]] == val[i-1]:
-#             arr.append(val[i-1])
-#             i -= 1
-#             row -= wt[i-1]
-#         else:
-#             i -= 1
-#
-#     return arr
+def findElementsInSack(W, matrix, wt, val, size):
+    i = size
+    row = W
+    arr = []
+    while i > 0:
+        print(matrix[i][row] - matrix[i-1][row - wt[i-1]] )
+        print(val[i-1])
+        if matrix[i][row] - matrix[i-1][row - wt[i-1]] == val[i-1]:
+            arr.append(val[i-1])
+            i -= 1
+            row -= wt[i-1]
+        else:
+            i -= 1
+
+    return arr
 
 price = [60, 100, 120]
 wt = [1, 2, 3]
@@ -45,4 +45,5 @@ W = 5
 n = len(price)
 k = knapSack(W, wt, price, n)
 print(k[n][W])
-# print(findElementsInSack(W, k, wt, price, n))
+print(k)
+print(findElementsInSack(W, k, wt, price, n))

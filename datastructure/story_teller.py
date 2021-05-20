@@ -88,6 +88,7 @@ class Player:
             return -1 if a.name < b.name else 1
         print(val)
         return val
+
     def compareTriplets(a, b):
         '''
         :param a: list point a 17 28 30
