@@ -1,4 +1,4 @@
-from main_def.ggl_api.function import get_df_from_speadsheet
+from main_def.ggl_api.google_spreadsheet_api.function import get_df_from_speadsheet
 import time
 import pandas as pd
 import numpy as np

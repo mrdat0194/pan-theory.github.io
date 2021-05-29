@@ -180,5 +180,7 @@ def main():
     sigma value is calculated. """
     print("Posterior mean of sigma ", np.mean(sigmas))
 
+
+
 if __name__ == '__main__':
     main()

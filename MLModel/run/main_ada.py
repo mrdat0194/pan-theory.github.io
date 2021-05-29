@@ -48,10 +48,10 @@ def run(train_link, test_link, result_link, aug_link_1, aug_link_2, save_result=
 
 
 if __name__ == "__main__":
-    csv_train = os.path.join(DATA_DIR,"v1", "train_encode.csv")
-    csv_test = os.path.join(DATA_DIR,"v1", "test_encode.csv")
-    csv_augment_1 = os.path.join(DATA_DIR,"v1", "train_encode_age2_1.csv")
-    csv_augment_2 = os.path.join(DATA_DIR,"v1", "train_encode_agemean_1.csv")
+    csv_train = os.path.join(DATA_DIR, "train_encode.csv")
+    csv_test = os.path.join(DATA_DIR, "test_encode.csv")
+    csv_augment_1 = os.path.join(DATA_DIR, "train_encode_age2_1.csv")
+    csv_augment_2 = os.path.join(DATA_DIR, "train_encode_agemean_1.csv")
 
     result = os.path.join(DATA_DIR, "MLResult","ada","result_adaboost_2.csv")
     run(csv_train, csv_test, result, csv_augment_1, csv_augment_2, save_result=1)

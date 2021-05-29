@@ -1,5 +1,5 @@
 from sklearn.model_selection import train_test_split
-from keras.utils.np_utils import to_categorical
+# from keras.utils.np_utils import to_categorical
 from sklearn.utils import resample
 import numpy as np
 import pandas as pd
@@ -50,8 +50,9 @@ def feature_selection(X, Y, n_feature):
 
 
 def get_data(link):
-    data = pd.read_csv(link)
-    # data = pd.read_excel(link)
+
+    # data = pd.read_csv(link)
+    data = pd.read_excel(link)
     data = data.drop_duplicates(subset=data.columns.difference(['label']))
     Y = data['label'].values
     data.drop(['id', 'label'], axis=1, inplace=True)

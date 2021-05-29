@@ -59,7 +59,8 @@ within the project
     
 - `my_functions` &mdash; My developing functions to dive deep into solving the core problems.
     - google_spreadsheet_api: code to work with spreadsheet
-    - open_cv_function: code to work with openCv
+    - open_cv_function: code to work with openCv:
+        - Blink detection ...
     - text_similarity: code to work with fuzzy word
     - Music: editting music  
     - others (Pic_toText, Text_toSpeech)
@@ -68,6 +69,7 @@ within the project
 - `helper_functions` &mdash; The helper functions define the tools to help others.
     - tools : on-going projects
     - my_sql_connection: example of connecting SQL in ORM and cursors.
+    - 
 
 - `datastructure` &mdash; The fun coding time
     - CodingGame : complete Genetic Algorithms,..
