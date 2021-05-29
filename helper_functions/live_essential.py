@@ -1,13 +1,13 @@
 from main_def.ggl_api.definitions import update_value, get_gsheet_name
 from main_def.ggl_api.definitions import get_df_from_speadsheet
-from main_def.manipulate.get_df_from_query import get_df_from_query
-from main_def.manipulate.sql.user import get_user_uuid_from_user_name
-from main_def.manipulate.sql.artist import get_uuid_and_count_from_artist_name
-from main_def.manipulate.sql.genre import get_genre_uuid_from_genre_name
-from main_def.manipulate.sql.crawlingtask import get_crawl_E5_06_status, get_datasourceId_from_crawlingtask
-from main_def.manipulate.sql.external_identity import get_trackid_from_ituneid_and_tracknum
+from main_def.crud.get_df_from_query import get_df_from_query
+from main_def.crud.sql.user import get_user_uuid_from_user_name
+from main_def.crud.sql.artist import get_uuid_and_count_from_artist_name
+from main_def.crud.sql.genre import get_genre_uuid_from_genre_name
+from main_def.crud.sql.crawlingtask import get_crawl_E5_06_status, get_datasourceId_from_crawlingtask
+from main_def.crud.sql.external_identity import get_trackid_from_ituneid_and_tracknum
 from main_def.youtube.fuctions import get_raw_title_uploader_from_youtube_url
-from support_function.text_similarity.text_similarity import get_token_set_ratio
+from my_functions.text_similarity.text_similarity import get_token_set_ratio
 from tools.get_uuid4 import get_uuid4
 import time
 import pandas as pd

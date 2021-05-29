@@ -4,13 +4,11 @@ import pydot
 
 from IPython.display import Image, display
 
-
 def view_pydot(pdot):
     plt = Image(pdot.create_png())
     display(plt)
 
-
-# this time, in graph_type we specify we want a DIrected GRAPH
+# this time, in graph_type we specify we want a Directed GRAPH
 graph = pydot.Dot(graph_type='digraph')
 
 # in the last example, we did no explicitly create nodes, we just created the edges and

@@ -28,6 +28,7 @@ def freqQuery(queries):
             freqs[freq - 1].add(value)
         elif command == 3:
             results.append(1 if freqs[value] else 0)
+    print(freqs)
     return results
 
 # 8

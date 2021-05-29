@@ -291,3 +291,5 @@ if __name__ == '__main__':
     df = get_as_dataframe(worksheet, parse_dates=True, skiprows=1, header=None )
 
     print(df[4])
+
+    df = pd.read_csv("mycreds1.txt")
