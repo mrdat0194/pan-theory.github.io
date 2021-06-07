@@ -95,7 +95,7 @@ assert divide_numbers([5, 10, 15, 20]) == ({10, 15}, {20, 5})
 
 #dynamic programming FIB
 
-def fib_dn(N, memo={0:1,1:1}):
+def fib_dn(N, memo={0:0,1:1}):
     if N not in memo:
         memo[N] = fib_dn(N-1,memo) + fib_dn(N-2,memo)
     return memo[N]
@@ -133,3 +133,4 @@ if __name__ == '__main__':
     data = [1, 1, 2,2,2,2,2,2, 3, 3, 3, 3, 4,4,4,4,4]
     stock = [225, 224, 407, 221, 259, 403]
     # max_profit(stock)
+    print(fib_dn(10))

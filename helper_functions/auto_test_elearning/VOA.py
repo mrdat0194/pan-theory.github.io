@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-driver = webdriver.Chrome("C:\Hello\AI\Webscrape\chromedriver_win32\chromedriver.exe")
+driver = webdriver.Chrome(r"C:\Users\PeterN\PycharmProjects\pan-theory\Webscrape\chromedriver_win32\chromedriver.exe")
 
 driver.get('http://vietnamonlineacademy.vn/Account/Login')
 

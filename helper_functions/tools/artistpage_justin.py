@@ -7,7 +7,6 @@ from main_def.crud.get_df_from_query import get_df_from_query
 
 from main_def.youtube.fuctions import get_raw_title_uploader_from_youtube_url
 
-from tools import get_uuid4
 from itertools import chain
 import pandas as pd
 import time

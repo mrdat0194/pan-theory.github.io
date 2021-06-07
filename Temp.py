@@ -5,6 +5,7 @@ Created on Thu Jul 11 16:16:49 2019
 
 @author: petern
 """
+
 # from my_functions import timer
 
 # 1. move_file
@@ -15,8 +16,6 @@ Created on Thu Jul 11 16:16:49 2019
 
 # 1. append to excel
 # Complete_Function.append_df_to_excel("/Users/petern/Desktop/hello.xlsx" ,"a")
-
-
 # Given a list of integers and a number K, return which contiguous elements of the list sum to K.
 #
 # For example, if the list is [1, 2, 3, 4, 5] and K is 9, then it should return [2, 3, 4], since 2 + 3 + 4 = 9.
@@ -79,6 +78,51 @@ def constrained_sum_compositions(n, m):
             s.add(c)
     return s
 
+def make_functions():
+    flist = []
+
+    for i in [1, 2, 3]:
+        def print_i():
+            print(i)
+        flist.append(print_i)
+
+    return flist
+
+
+# functions = make_functions()
+# for f in functions:
+#     f()
+
+
+def get_longest_uqsub(arr, seen=set()):
+    '''
+    Problem 189
+    :param arr:
+    :param seen:
+    :return:
+    '''
+    if not arr:
+        return len(seen)
+
+    curr = arr[0]
+    if curr in seen:
+        return len(seen)
+
+    seen_cp = seen.copy()
+    seen_cp.add(curr)
+
+    return max(get_longest_uqsub(arr[1:], seen_cp),
+               get_longest_uqsub(arr[1:]))
+
+# Tests
+# assert get_longest_uqsub([]) == 0
+# assert get_longest_uqsub([5, 5, 5]) == 1
+# assert get_longest_uqsub([5, 1, 3, 5, 2, 3, 4, 1]) == 5
+# assert get_longest_uqsub([5, 1, 3, 5, 2, 3, 4]) == 4
+# assert get_longest_uqsub([5, 1, 3, 5, 2, 3]) == 4
 
 if __name__ == '__main__':
     constrained_sum_compositions(9, [1, 2, 3, 4, 5])
+    # get_longest_uqsub([5, 1, 3, 5, 2, 3, 4])
+
+

@@ -50,7 +50,6 @@ def feature_selection(X, Y, n_feature):
 
 
 def get_data(link):
-
     # data = pd.read_csv(link)
     data = pd.read_excel(link)
     data = data.drop_duplicates(subset=data.columns.difference(['label']))

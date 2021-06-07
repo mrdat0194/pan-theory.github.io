@@ -493,4 +493,5 @@ def gen_iterables():
     for i in range(10):
         yield range(i)
 
-print(list(chain.from_iterable(gen_iterables())))
+# print(list(chain.from_iterable(gen_iterables())))
+print(list(gen_iterables()))

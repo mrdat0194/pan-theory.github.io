@@ -4,7 +4,7 @@ import requests
 import pprint
 import urllib
 
-with open("automated_test.txt") as f_test:
+with open("automated_test.txt", encoding="utf8") as f_test:
     test_auto = f_test.readlines()
 f_intent = open('automated_fail_intent.txt','w')
 f_tag = open('automated_fail_tag.txt','w')
@@ -15,7 +15,8 @@ count_tag=0
 count_gnj_place=0
 for sentence in test_auto:
     clean_sentence=sentence.split("\n")[0]
-    url="http://testgnjnlp.herokuapp.com/api/chunks/vi/"+urllib.quote_plus(clean_sentence.split(";")[0])
+    url="http://testgnjnlp.herokuapp.com/api/chunks/vi/"+ urllib.parse.quote_plus(clean_sentence.split(";")[0])
+    print(url)
     url=url.replace("+","%20")
     response2  = requests.get(url)
     count+= 1
