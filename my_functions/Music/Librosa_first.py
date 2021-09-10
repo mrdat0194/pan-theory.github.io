@@ -5,6 +5,7 @@ import librosa
 # 1. Get the file path to the included audio example
 filename = librosa.util.example_audio_file()
 
+
 # 2. Load the audio as a waveform `y`
 #    Store the sampling rate as `sr`
 y, sr = librosa.load(filename)

@@ -6,8 +6,8 @@ Created on Sun Feb 24 11:56:32 2019
 @author: petern
 """
 #setwd()
-
 # Numpy
+
 import numpy as np
 
 arr = np.array([[1,2,3],[4,5,6],[7,8,9]])

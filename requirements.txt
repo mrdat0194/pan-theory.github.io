@@ -129,3 +129,4 @@ keras==2.4.3
 # xlrd==2.0.1-py2.py3-none-any
 # tensorflow==2.4.1
 pymc3==3.11.1
+librosa==0.8.1
