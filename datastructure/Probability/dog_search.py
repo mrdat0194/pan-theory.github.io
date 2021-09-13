@@ -3,8 +3,6 @@ import pandas as pd
 from math import erf,sqrt
 import matplotlib.pyplot as plt
 from numpy import random
-
-import random
 import itertools
 from scipy.special import comb, factorial
 
@@ -12,14 +10,16 @@ from scipy.special import comb, factorial
 # from pgmpy.factors.discrete import TabularCPD
 
 class coin():
+    def __init__(self):
+        self.num_toss = 10
 
-    def toss_coins(num_tosses=10):
-        xpt = np.random.choice(a=['H', 'T'], size=num_toss, p=[0.75, 0.25])
+    def toss_coins(self):
+        xpt = np.random.choice(a=['H', 'T'], size=self.num_toss, p=[0.75, 0.25])
         return xpt
 
-    def compute_reward(in_seq):
+    def compute_reward(self, in_seq):
         reward = []
-        for idx in range(1,num_toss):
+        for idx in range(1, self.num_toss):
             r = in_seq[idx] == 'T' and in_seq[idx-1] == 'H'
             reward.append(r)
         reward_total = np.sum(reward)
@@ -34,12 +34,11 @@ class coin():
         Otherwise, no reward is given at time Let R be the sum of the rewards collected at times 1, 2,...,?
         :return:
         '''
-        num_toss = 10
-        num_simu = 25000
 
+        num_simu = 25000
         r_vals = []
         for idx in range(num_simu):
-            trial = coin.toss_coins(num_tosses=num_toss)
+            trial = coin.toss_coins()
             reward = coin.compute_reward(trial)
             r_vals.append(reward)
 
@@ -48,7 +47,7 @@ class coin():
 
         #Theory
 
-        n = num_toss
+        n = 10
         p = 0.75
         r_mean = n*p*(1-p)
         r_var = n*p*(1-p) + 2*(n-2)*(p**2)*(1-p)**2 + (n-2)*(n-3)*(p**2)*(1-p)**2 - r_mean**2
@@ -56,7 +55,7 @@ class coin():
         print('theory mean: {}'.format(r_mean))
         print('theory_var: {}'.format(r_var))
 
-    def simu_coin_toss():
+    def simu_coin_toss(self):
         """Function to simulate a coin toss
         Returns:
             number of tails until first head
@@ -87,7 +86,7 @@ class coin():
         X = np.sum(X_k)
         return X
 
-    def test_toss2():
+    def test_toss2(self):
         '''
         Problem 7: Sum of a random number of r.v.'s
         :return:
@@ -105,7 +104,7 @@ class coin():
         print("Mean of r_X: {0}".format(np.mean(X_array)))
         print("Var of r_X: {0}".format(np.var(X_array)))
 
-    def num_toss_until_HT():
+    def num_toss_until_HT(self):
         num_toss = 1
         num_first_time = 0
         num_second_time = 0
@@ -162,9 +161,9 @@ class coin():
             cur_state = next_state
         return count_dict
 
-# P(X2=2|X0=1)
+    # P(X2=2|X0=1)
 
-    def gen_2samples():
+    def gen_2samples(self):
         cur_state = 1
         count_right = 0
         count_right_S1 = 0
@@ -179,7 +178,7 @@ class coin():
         nSims = 10000
         count = 0
         for idx in range(nSims):
-            if gen_2samples():
+            if coin.gen_2samples():
                 count += 1
         print("{0}/{1}= {2:3.2f}".format(count, nSims, count/nSims))
 
@@ -191,10 +190,11 @@ class coin():
         counts = coin.gen_seq(nSims)
         for k, v in counts.items():
             print("{0}: {1:3.2f}".format(k, v/nSims))
-# 1: 0.14
-# 2: 0.23
-# 3: 0.63
-# 73
+
+    # 1: 0.14
+    # 2: 0.23
+    # 3: 0.63
+    # 73
     # Analyze the y sequence
 
     def gen_seq_Y(n_samples = 1000):
@@ -202,7 +202,7 @@ class coin():
         cur_state = np.random.choice([1, 2, 3])
         count_dict = {}
         for idx in range(1, n_samples):
-            next_state = gen_next_state(cur_state)
+            next_state = coin.gen_next_state(cur_state)
             y_state = next_state - cur_state
             count_dict[y_state] = count_dict.get(y_state, 0) + 1
             cur_state = next_state
@@ -212,10 +212,11 @@ class coin():
         counts = coin.gen_seq_Y(nSims)
         for k, v in counts.items():
             print("{0}: {1:3.2f}".format(k, v/nSims))
-# 0: 0.78
-# 1: 0.11
-# -1: 0.11
-#     4.5 Given that the nth transition was a transition to the right (Yn=1), find (approximately) the probability that the state at time n−1 was state 1 (i.e., Xn−1=1). Assume that n is large.
+
+    # 0: 0.78
+    # 1: 0.11
+    # -1: 0.11
+    #     4.5 Given that the nth transition was a transition to the right (Yn=1), find (approximately) the probability that the state at time n−1 was state 1 (i.e., Xn−1=1). Assume that n is large.
 
     def gen_seq_Y2(n_samples = 1000):
         out_seq = []
@@ -260,7 +261,7 @@ class coin():
         print(np.mean(count_list))
 
 class Coupon_collector():
-    def num_repeats():
+    def num_repeats(self):
         num_tosses = 0
         options = ['a', 'b', 'c', 'd', 'e', 'f']
         while options:
@@ -378,7 +379,7 @@ class DivideClass:
         print(num_succ/num_sim)
 
 class Umbrella:
-    def Rain():
+    def Rain(self):
         N = 100000
         prob_forecast = 0.2
         prob_seen = 0.8
@@ -445,7 +446,7 @@ class Umbrella:
     #                         evidence=['A'], evidence_card=[2])
 
 class Dice:
-    def three_sides():
+    def three_sides(self):
         num_simu = 15000
 
         xpt = np.random.choice([1, 2, 3], size=(num_simu, 6), p=[0.5, 0.25, 0.25])
@@ -777,7 +778,7 @@ def test_1():
 
 def seq_sum(n,Log):
     # s=2*(random.rand(n)>0.5)-1
-    s=sum(random.randn(n)>0.5)
+    s=sum(random.rand(n)>0.5)
     Log.append((n,s))
     return s
 
@@ -857,8 +858,8 @@ def combination():
     print("Number of combinations = %i!/(%i!(%i-%i)!) = %i" %(n,k,n,k,len(choose_k)  ))
 
 if __name__ == '__main__':
-    # Log=[]
-    # test_estimate_prob(Log)
+    Log=[]
+    test_estimate_prob(Log)
 
     # test_2()
     # permute()
