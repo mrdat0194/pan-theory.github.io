@@ -11,7 +11,7 @@ async-timeout==3.0.1
 attrs==20.1.0
 aws==0.2.5
 awscli==1.18.164
-aiobotocore=1.2.0
+aiobotocore==1.2.0
 backcall==0.2.0
 bcrypt==3.2.0
 billiard==3.6.3.0

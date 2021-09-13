@@ -5,60 +5,41 @@ import re
 import sys
 from collections import Counter
 from functools import cmp_to_key
+from functools import partial
+from my_functions import timer, print_param
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 class story_teller:
+    @timer
+    @print_param("output_sock.txt", BASE_DIR)
     def sockMerchant(n, ar):
-        '''
-       # #Socks
-
-    # output = os.path.join(BASE_DIR, "output_sock.txt")
-    # if os.path.exists(output):
-    #     f = open(output, "r+")
-    # else:
-    #     f = open(output, "w")
-
-    # n = int(input())
-    # ar = list(map(int, input().rstrip().split()))
-    # result = story_teller.sockMerchant(n, ar)
-
-    # f.write(str(result))
-    # f.close()
-    # myfile = open(output, 'r+')
-    # print(myfile.readlines())
+        """
+            # sum of pair of sock
+            # n = int(input())
+            # ar = list(map(int, input().rstrip().split()))
 
         :param n:how many socks : 9
         :param ar: 10 20 20 10 10 30 50 10 20
         :return: sum of pair of sock
-        '''
+        """
+
         sum=0
         for values in Counter(ar).values():
             sum+=values//2
         return sum
 
+    @print_param("valleycount.txt", BASE_DIR)
     def countingValleys(n, s):
-        '''
-
-    # # countingValleys
-
-    # output = os.path.join(BASE_DIR, "valleycount.txt")
-    # if os.path.exists(output):
-    #     f = open(output, "r+")
-    # else:
-    #     f = open(output, "w")
-    #
-    # n = int(input())
-    # s = input()
-    # result = story_teller.countingValleys(n, s)
-    #
-    # f.write(str(result))
-    # f.close()
-    # myfile = open(output, 'r+')
-    # print(myfile.readlines())
+        """
+            # countingValleys
+            # n = int(input())
+            # s = input()
+            # story_teller.countingValleys(n, s)
 
         :param :n 8
         :param s: UDDDUDUU
         :return: up and down how many valley
-        '''
+        """
         UD = {'U': 1, 'D': -1}
         sea_level = 0
         valley = 0
@@ -68,45 +49,55 @@ class story_teller:
                 valley += 1
         return valley
 
-    def repeatedString(s, n):
-        '''
-        # # repeatedstrings
+    def pyramid_build(n, ar):
+        """
+         You have N stones in a row, and would like to create from them a pyramid.
+         This pyramid should be constructed such that the height of each stone increases by one until reaching the tallest stone,
+         after which the heights decrease by one. In addition, the start and end stones of the pyramid should each be one stone high.
+         You can change the height of any stone by paying a cost of 1 unit to lower its height by 1, as many times as necessary.
+         Given this information, determine the lowest cost method to produce this pyramid.
+         For example, given the stones [1, 1, 3, 3, 2, 1], the optimal solution is to pay 2 to create [0, 1, 2, 3, 2, 1]
+            n = int(input())
+            ar = list(map(int, input().rstrip().split()))
+            story_teller.pyramid_build(n, ar)
+        :param n: 6
+        :param ar: 1 1 3 3 2 1
+        :return: [0, 1, 2, 3, 2, 1]
 
-        # output = os.path.join(BASE_DIR, "repeatedstrings.txt")
-        # if os.path.exists(output):
-        #     f = open(output, "r+")
-        # else:
-        #     f = open(output, "w")
-        #
-        # s = input()
-        # n = int(input())
-        # result = story_teller.repeatedString(s, n)
-        #
-        # f.write(str(result))
-        # f.close()
-        # myfile = open(output, 'r+')
-        # print(myfile.readlines())
+        """
+
+        print(ar)
+
+
+    @print_param("repeatedstrings.txt", BASE_DIR)
+    def repeatedString(s, n):
+        """
+            # repeatedstrings
+            # s = input()
+            # n = int(input())
+            # result = story_teller.repeatedString(s, n)
 
         :param s: aba
         :param n: 10 of letters contain aba aba aba / a (phần dư)
         :return: how many a
-        '''
+        """
         return s.count("a") * (n // len(s)) + s[:n % len(s)].count("a")
 
     def countTriplets(arr, r):
-        '''
-        Counting how many triplet of the group of exponential
-        # 5 5
-        # 1 5 5 25 125
+        """
+            # Counting how many triplet of the group of exponential
+            # 5 5
+            # 1 5 5 25 125
+            # n,r = map(int,input().split())
+            # arr = list(map(int,input().split()))
+            # print(countTriplets(arr, r))
+
         :param arr: increasing seq
         :param r: num of exp
-        :return:
-        # # Counttriplet how many triple that increase
-        # n,r = map(int,input().split())
-        # arr = list(map(int,input().split()))
-        # print(countTriplets(arr, r))
+        :return: Counttriplet how many triple that increase
 
-        '''
+
+        """
         a = Counter(arr)
         b = Counter()
         s = 0
@@ -123,43 +114,25 @@ class story_teller:
         return s
 
 class Player:
-    '''
-     # # compare_award
-
-    # output = os.path.join(BASE_DIR, "compareTriplets.txt")
-    # if os.path.exists(output):
-    #     f = open(output, "r+")
-    # else:
-    #     f = open(output, "w")
-    #
-    # a = list(map(int, input().rstrip().split()))
-    # b = list(map(int, input().rstrip().split()))
-    # result = Player.compareTriplets(a, b)
-    # f.write(' '.join(map(str, result)))
-    # f.write('\n')
-    # f.close()
-    # myfile = open(output, 'r+')
-    # print(myfile.readlines())
-
-    # # Name - Score compare one another
-    # n = int(input())
-    # data = []
-    # for i in range(n):
-    #     name, score = input().split()
-    #     score = int(score)
-    #     player = Player(name, score)
-    #     data.append(player)
-    # data = sorted(data, key=cmp_to_key(Player.comparator))
-    # for i in data:
-    #     print(i.name, i.score)
-
-    5
-    amy 100
-    david 100
-    heraldo 50
-    aakansha 75
-    aleksa 150
-    '''
+    """
+        # # Name - Score compare one another
+        # n = int(input())
+        # data = []
+        # for i in range(n):
+        #     name, score = input().split()
+        #     score = int(score)
+        #     player = Player(name, score)
+        #     data.append(player)
+        # data = sorted(data, key=cmp_to_key(Player.comparator))
+        # for i in data:
+        #     print(i.name, i.score)
+        5
+        amy 100
+        david 100
+        heraldo 50
+        aakansha 75
+        aleksa 150
+    """
     def __init__(self, name, score):
         self.name = name
         self.score = score
@@ -172,13 +145,17 @@ class Player:
         print(val)
         return val
 
+    @print_param("compareTriplets.txt", BASE_DIR)
     def compareTriplets(a, b):
-        '''
+        """
+            # compare_award
+            # a = list(map(int, input().rstrip().split()))
+            # b = list(map(int, input().rstrip().split()))
 
         :param a: list point a 17 28 30
         :param b: list point b 99 16 8
         :return: point for each player
-        '''
+        """
         A = a
         B = b
         C = sum([1 if x[0] > x[1] else 0 for x in zip(A,B)])
@@ -212,11 +189,9 @@ class Solution(object):
         return True
 
 if __name__ == '__main__':
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-
-
-
+    n = int(input())
+    ar = list(map(int, input().rstrip().split()))
+    story_teller.pyramid_build(n, ar)
 
 
 
