@@ -24,6 +24,7 @@ def checkMagazine(magazine, note):
             return False
     
     return all([x >= 0 for x in d.values()])
+
 #from collections import Counter
 
 #def ransom_note(magazine, rasom):

@@ -1,3 +1,5 @@
+#!/bin/python3
+
 import os
 import math
 import random
@@ -6,17 +8,43 @@ import sys
 from collections import Counter
 from functools import cmp_to_key
 from functools import partial
+from collections import defaultdict
+
+
 from my_functions import timer, print_param
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 class story_teller:
+    @print_param("output_makeAna.txt", BASE_DIR)
+    def makeAnagram(a, b):
+        """
+             How many deletion to make two string anagram
+
+             a = input()
+             b = input()
+             story_teller.makeAnagram(a,b)
+
+        :param a,b:
+             cde
+             abc
+        :return:
+        """
+
+        ct_a = Counter(a)
+        ct_b = Counter(b)
+        ct_a.subtract(ct_b)
+        print(ct_a)
+        print(ct_b)
+        return sum(abs(i) for i in ct_a.values())
+
     @timer
     @print_param("output_sock.txt", BASE_DIR)
     def sockMerchant(n, ar):
         """
-            # sum of pair of sock
-            # n = int(input())
-            # ar = list(map(int, input().rstrip().split()))
+            sum of pair of sock
+            n = int(input())
+            ar = list(map(int, input().rstrip().split()))
 
         :param n:how many socks : 9
         :param ar: 10 20 20 10 10 30 50 10 20
@@ -28,13 +56,81 @@ class story_teller:
             sum+=values//2
         return sum
 
+    @print_param("output_freqQuery.txt", BASE_DIR)
+    def freqQuery(queries):
+        """
+            command:
+            1 - x : Insert x in your data structure.
+            2 - y : Delete one occurence of y from your data structure, if present.
+            3 - z : Check if any integer is present whose frequency is exactly . If yes, print 1 else 0
+
+            q = int(input().strip())
+            queries = []
+            for _ in range(q):
+                queries.append(list(map(int, input().rstrip().split())))
+
+            story_teller.freqQuery(queries
+
+        :param queries:
+        8
+        1 5
+        1 6
+        3 2
+        1 10
+        1 10
+        1 6
+        2 5
+        3 2
+        :return:[]
+        """
+
+        results = []
+        lookup = dict()
+        freqs = defaultdict(set)
+        for command, value in queries:
+            freq = lookup.get(value, 0)
+            if command == 1:
+                lookup[value] = freq + 1
+                freqs[freq].discard(value)
+                freqs[freq + 1].add(value)
+            elif command == 2:
+                lookup[value] = max(0, freq - 1)
+                freqs[freq].discard(value)
+                freqs[freq - 1].add(value)
+            elif command == 3:
+                results.append(1 if freqs[value] else 0)
+        print(freqs)
+        return results
+
+    def coinChange(totalNumber, coins):
+        """
+            Greedy
+            story_teller.coinChange(201, [1,2,5,20,50,100])
+
+        :param coins: [1,2,5,20,50,100]
+        :return:
+        """
+        N = totalNumber
+        coins.sort()
+        index = len(coins)-1
+        while True:
+            coinValue = coins[index]
+            if N >= coinValue:
+                print(coinValue)
+                N = N - coinValue
+            if N < coinValue:
+                index -= 1
+
+            if N == 0:
+                break
+
     @print_param("valleycount.txt", BASE_DIR)
     def countingValleys(n, s):
         """
-            # countingValleys
-            # n = int(input())
-            # s = input()
-            # story_teller.countingValleys(n, s)
+            countingValleys
+            n = int(input())
+            s = input()
+            story_teller.countingValleys(n, s)
 
         :param :n 8
         :param s: UDDDUDUU
@@ -49,6 +145,14 @@ class story_teller:
                 valley += 1
         return valley
 
+    def construct_pyramid(lenMax):
+        if lenMax % 2 == 1:
+            peak = lenMax//2 + 1
+            x_left = [x for x in range(1,peak)]
+            x_right = list(reversed(x_left))
+            pyramid = x_left + [peak] + x_right
+            return pyramid
+
     def pyramid_build(n, ar):
         """
          You have N stones in a row, and would like to create from them a pyramid.
@@ -62,20 +166,43 @@ class story_teller:
             story_teller.pyramid_build(n, ar)
         :param n: 6
         :param ar: 1 1 3 3 2 1
+        1 1 1 5 1
         :return: [0, 1, 2, 3, 2, 1]
 
         """
+        lenStone = n
+        stones = ar
+        lenMax = lenStone if lenStone % 2 else lenStone - 1
+        cost = 0
+        while lenMax > 0:
+            pyramid = story_teller.construct_pyramid(lenMax)
 
-        print(ar)
+            for offset in (0, lenStone - lenMax):
+                valid = True
+                for enum_index, enum_val in enumerate(pyramid):
+                    stone_index = enum_index + offset
+                    if enum_val > stones[stone_index]:
+                        valid = False
+                        break
+
+                if valid:
+                    result = [0]*offset + pyramid +[0]*(lenStone-offset-lenMax)
+                    cost = sum([x[0] - x[1] for x in zip(stones,result)])
+                    print(cost)
+                    return result
+
+            lenMax -= 2
+        return []
+
 
 
     @print_param("repeatedstrings.txt", BASE_DIR)
     def repeatedString(s, n):
         """
-            # repeatedstrings
-            # s = input()
-            # n = int(input())
-            # result = story_teller.repeatedString(s, n)
+            repeatedstrings
+            s = input()
+            n = int(input())
+            result = story_teller.repeatedString(s, n)
 
         :param s: aba
         :param n: 10 of letters contain aba aba aba / a (phần dư)
@@ -85,12 +212,12 @@ class story_teller:
 
     def countTriplets(arr, r):
         """
-            # Counting how many triplet of the group of exponential
-            # 5 5
-            # 1 5 5 25 125
-            # n,r = map(int,input().split())
-            # arr = list(map(int,input().split()))
-            # print(countTriplets(arr, r))
+            Counting how many triplet of the group of exponential
+            5 5
+            1 5 5 25 125
+            n,r = map(int,input().split())
+            arr = list(map(int,input().split()))
+            print(countTriplets(arr, r))
 
         :param arr: increasing seq
         :param r: num of exp
@@ -115,17 +242,17 @@ class story_teller:
 
 class Player:
     """
-        # # Name - Score compare one another
-        # n = int(input())
-        # data = []
-        # for i in range(n):
-        #     name, score = input().split()
-        #     score = int(score)
-        #     player = Player(name, score)
-        #     data.append(player)
-        # data = sorted(data, key=cmp_to_key(Player.comparator))
-        # for i in data:
-        #     print(i.name, i.score)
+        Name - Score compare one another
+        n = int(input())
+        data = []
+        for i in range(n):
+            name, score = input().split()
+            score = int(score)
+            player = Player(name, score)
+            data.append(player)
+        data = sorted(data, key=cmp_to_key(Player.comparator))
+        for i in data:
+            print(i.name, i.score)
         5
         amy 100
         david 100
@@ -148,9 +275,9 @@ class Player:
     @print_param("compareTriplets.txt", BASE_DIR)
     def compareTriplets(a, b):
         """
-            # compare_award
-            # a = list(map(int, input().rstrip().split()))
-            # b = list(map(int, input().rstrip().split()))
+            compare_award
+            a = list(map(int, input().rstrip().split()))
+            b = list(map(int, input().rstrip().split()))
 
         :param a: list point a 17 28 30
         :param b: list point b 99 16 8
@@ -189,9 +316,13 @@ class Solution(object):
         return True
 
 if __name__ == '__main__':
-    n = int(input())
-    ar = list(map(int, input().rstrip().split()))
-    story_teller.pyramid_build(n, ar)
+    q = int(input().strip())
+    queries = []
+    for _ in range(q):
+        queries.append(list(map(int, input().rstrip().split())))
+
+    story_teller.freqQuery(queries)
+
 
 
 

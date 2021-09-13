@@ -16,7 +16,7 @@ def stock_loss():
 
 def stock_gain():
     '''
-    the most loss
+    the most gain
     # 7
     # 3 4 1 2 1 5 1
     :return:
@@ -33,6 +33,8 @@ def stock_gain():
 
 
 stock_gain()
+stock_loss()
+
 
 
 
