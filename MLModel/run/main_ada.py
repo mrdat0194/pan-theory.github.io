@@ -22,11 +22,6 @@ def run(train_link, test_link, result_link, aug_link_1, aug_link_2, save_result=
 
     X_final, Y_final = data_helper.imbalance_solve(X, Y, X_aug_1, Y_aug_1, X_aug_2, Y_aug_2, -1, 0.5)
 
-    # X_final, Y_final = data_helper.remove_duplicate(X_final, Y_final)
-
-    # fit = data_helper.feature_selection(X_final, Y_final, 45)
-    # X_final = fit.transform(X_final)
-
     X_train, X_test, Y_train, Y_test = data_helper.data_pipeline(X_final, Y_final)
 
     ada_model = ada_boost.model_ada(X_train, X_test, Y_train, Y_test)
