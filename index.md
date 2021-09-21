@@ -29,7 +29,6 @@ conda update conda
 ```
 conda create -n pan-theory python=3
 conda activate pan-theory
-
 ```
 
 - Step 5: install requirements
@@ -50,15 +49,16 @@ within the project
     - aws: working with aws
     - ggl_api: How to connect to google and edit
         - Google_spreadsheet_api: Definition 
+        - Google drive with pydrive or quickdrive for ref.
     - info: saving results
     - models: model of sqlachemy
     - sql: connection config
     - Elasticsearch: connect and test with database
     - Neo4j:  connect and test with database
+    - Mongodb: connect and test with database  
     - youtube: Some functions use with youtube content
     
 - `my_functions` &mdash; My developing functions to dive deep into solving the core problems.
-    - google_spreadsheet_api: code to work with spreadsheet
     - open_cv_function: code to work with openCv:
         - Blink detection ...
     - text_similarity: code to work with fuzzy word

@@ -8,7 +8,6 @@ from main_def import credentials, tokens
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 
-
 def service():
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
