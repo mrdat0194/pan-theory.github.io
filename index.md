@@ -76,6 +76,15 @@ within the project
     - Probability : pure code
     - Data_Structures : borrowing and improving.
 
+- `MLModel` &mdash; Components
+    - data_pipeline: helper function nn and ml
+    - MLData: dataset
+    - model: code in-progress
+    - model_nn_save: weight
+    - openCV: image processing
+    - run: factory
+
+
 ## License
 
 The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
