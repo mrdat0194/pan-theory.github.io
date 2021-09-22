@@ -45,4 +45,3 @@ graph.create(ab)
 #                      "RETURN a.message + ', from node ' + id(a)",message=message)
 #        return result.single()[0]
 
-    
