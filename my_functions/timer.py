@@ -11,7 +11,7 @@ def timer(func):
         return rv
     return f
 
-def print_param(name_output, BASE_DIR):
+def print_param(name_output = "error.txt", BASE_DIR = os.path.dirname(os.path.abspath(__file__))):
     def print_result(func):
         '''
         print_result(sockMerchant(n,ar),"output_sock.txt", BASE_DIR)

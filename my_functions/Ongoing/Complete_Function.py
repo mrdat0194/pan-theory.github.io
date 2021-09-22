@@ -17,19 +17,22 @@ import pickle
 import bcrypt
 
 def get_config():
-    '''
-    How to enscrypt a strings, just for fun here.
-    >>> import bcrypt
-    >>> password = b"super secret password"
-    >>> # Hash a password for the first time, with a randomly-generated salt
-    >>> hashed = bcrypt.hashpw(password, bcrypt.gensalt())
-    >>> # Check that an unhashed password matches one that has previously been
-    >>> # hashed
-    >>> if bcrypt.checkpw(password, hashed):
-        ...     print("It Matches!")
-    ... else:
-    ...     print("It Does not Match :(")
-    '''
+    """
+        How to enscrypt a strings, just for fun here.
+        >>> import bcrypt
+        >>> password = b"super secret password"
+        >>> # Hash a password for the first time, with a randomly-generated salt
+        >>> hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+        >>> # Check that an unhashed password matches one that has previously been
+        >>> # hashed
+        >>> if bcrypt.checkpw(password, hashed):
+            ...     print("It Matches!")
+        ... else:
+        ...     print("It Does not Match :(")
+
+        # abc = get_config()
+        # print(abc)
+    """
 
     path = os.path.join(MAIN_DIR, "ggl_api")
     path_save = os.path.join(path, "users_config.pkl")
@@ -50,7 +53,6 @@ def get_config():
     hashed = users_dict.get(username)
 
     if bcrypt.checkpw(password, hashed): # unless a password can be None we can use get
-
         with open(path_save, 'rb') as users:
             users_dict = pickle.load(users)
             return users_dict.get(get_what)
@@ -131,9 +133,11 @@ class Time_converse:
 
 
 class Chat_analyse:
-    '''
-    Sequence of chat data and create column
-    '''
+    """
+        # Connect_final2 = Chat_analyse.teamcheck(Connect_final1, "from_id", "KM_QR", "KM_Content",
+        #                                         "khuyen mai|km|khuyến mãi", "ukm|ikm|dkm|kmxpm", Connect_final1)
+      Sequence of chat data and create column
+    """
     def teamcheck(self, from_id ,AN1_QR, AN1_Content, ANsay, AN_not, Connect_final):
           col1 = [c for c in Connect_final.columns if pd.Series(c).str.contains(from_id).bool()]          
           Connect_final.rename(columns = {col1[0] : "from_id"}, inplace=True)          
@@ -167,6 +171,8 @@ def append_df_to_excel(filename, df, sheet_name='Sheet1', startrow=None,
                        truncate_sheet=False, 
                        **to_excel_kwargs):
     """
+        # append_df_to_excel("hello.xlsx", pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
+        #                columns=['a', 'b', 'c']))
     Append a DataFrame [df] to existing Excel file [filename]
     into [sheet_name] Sheet.
     If [filename] doesn't exist, then this function will create it.
@@ -186,6 +192,7 @@ def append_df_to_excel(filename, df, sheet_name='Sheet1', startrow=None,
                         [can be dictionary]
 
     Returns: None
+
     """
     from openpyxl import load_workbook
 
@@ -230,7 +237,10 @@ def append_df_to_excel(filename, df, sheet_name='Sheet1', startrow=None,
 
 def is_prime(x):
     '''
+
     the original prime functions that could be improved.
+        prime_or_not = is_prime(991)
+        print(prime_or_not)
     :param x:
     :return:
     '''
@@ -285,6 +295,15 @@ def simpleSieve(limit, primes):
 # in given range using
 # segmented sieve
 def primesInRange(low, high):
+    """
+        # Driver code
+        # low = 10
+        # high = 100
+        # primesInRange(low, high)
+    :param low:
+    :param high:
+    :return:
+    """
 
     # Comput all primes smaller
     # or equal to
@@ -420,21 +439,6 @@ if __name__ == "__main__":
     pd.set_option('float_format', '{:,.2f}'.format)
     pd.set_option("display.max_rows", None, "display.max_columns", 60, 'display.width', 1000)
 
-    # Driver code
-    # low = 10
-    # high = 100
-    # primesInRange(low, high)
-
-    # append_df_to_excel("hello.xlsx", pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
-    #                columns=['a', 'b', 'c']))
-
-    # Connect_final2 = Chat_analyse.teamcheck(Connect_final1, "from_id", "KM_QR", "KM_Content",
-    #                                         "khuyen mai|km|khuyến mãi", "ukm|ikm|dkm|kmxpm", Connect_final1)
-    # abc = get_config()
-    # print(abc)
-    #
-    prime_or_not = is_prime(991)
-    print(prime_or_not)
 
     # data_trial = os.path.join(MAIN_DIR, "data", "Gonj/")
     #
@@ -478,211 +482,208 @@ if __name__ == "__main__":
     # twoSumHashing(num_arr, pair_sum)
 
 
-## Not fixed yet
-#Extract_Diff_id <- function(Event.Category, Var1, tota_FB_promotion,Question_user) {
-#
-#    col3 <- grep(Var1,colnames(Question_user))
-#
-#    names(Question_user)[col3] <- paste("Event.Category")
-#
-#    #
-#
-#    col2 <- grep(Event.Category,colnames(tota_FB_promotion))
-#
-#    names(tota_FB_promotion)[col2] <- paste("Event.Category")
-#
-#
-#
-#    col1 <- grep("Event.Category",colnames(Question_user))
-#
-#    for (i in 1:dim(Question_user)[1]) {
-#      if (i==1) {
-#        tota_FB_promotion <- tota_FB_promotion[which(as.character(tota_FB_promotion$Event.Category) != as.character(Question_user[i,col1])),]
-#      } else {
-#        tota_FB_promotion <- tota_FB_promotion[which(as.character(tota_FB_promotion$Event.Category) != as.character(Question_user[i,col1])),]
-#      }
-#    }
-#
-#    names(tota_FB_promotion)[col2] <- paste(Event.Category)
-#
-#    return  (tota_FB_promotion)
-#
-#
-#}
-#
-#
-## Same extract
-#
-#\
-#
-### Trich ID:
-#
-#Same_extract_id <- function(abc_b, abc_c,gonjoybot_chat, Chat_phone_usertx3) {
-#
-#  col3 <- grep(abc_c,colnames(Chat_phone_usertx3))
-#
-#  names(Chat_phone_usertx3)[col3] <- paste("Event Category")
-#
-#  #
-#
-#  col2 <- grep(abc_b,colnames(gonjoybot_chat))
-#
-#  names(gonjoybot_chat)[col2] <- paste("Event Category")
-#
-#  #
-#
-#
-#  for (i in 1:dim(Chat_phone_usertx3)[1]) {
-#    if (i==1) {
-#      Chat_phone_usert3_1 <- gonjoybot_chat[which(as.character(gonjoybot_chat$`Event Category`) == as.character(Chat_phone_usertx3$`Event Category`)[i]),]
-#    } else {
-#      Chat_phone_usert3_2 <- gonjoybot_chat[which(as.character(gonjoybot_chat$`Event Category`) == as.character(Chat_phone_usertx3$`Event Category`)[i]),]
-#      Chat_phone_usert3_1 <- rbind(Chat_phone_usert3_1,Chat_phone_usert3_2)
-#    }
-#  }
-#
-#  names(Chat_phone_usert3_1)[col2] <- paste(abc_b)
-#
-#  return (Chat_phone_usert3_1)
-#
-#}
-#def Get_id_GA_full(Joy_GA,No,DateUpdate):
-#    
-#    
-#  setwd("~/Desktop/GonJoy/Right Time/")
-#  
-#  DateUpdate <- DateUpdate
-#  
-#  setwd("~/Desktop/GonJoy/Right Time/OnData/Datarequire/")
-#  
-#  DatabaseRequire_AllIn <- do.call(rbind,lapply(list.files(path = "~/Desktop/GonJoy/Right Time/OnData/Datarequire/"), read_csv))
-#  
-#  DatabaseRequire_AllIn$date <- DatabaseRequire_AllIn$Date
-#  
-#  DatabaseRequire_AllIn$date <- substr(DatabaseRequire_AllIn$date,1,8)
-#  
-#  DatabaseRequire_AllIn$date <- anydate(  DatabaseRequire_AllIn$date)
-#  
-#  DatabaseRequire_AllIn$date <- anydate( DatabaseRequire_AllIn$date)
-#  
-#  DatabaseRequire_AllIn <- DatabaseRequire_AllIn[which(as.Date(DatabaseRequire_AllIn$date) >= DateUpdate ), ]
-#  
-#  for (i in 1:length(DatabaseRequire_AllIn$`Event Category`)) {
-#    
-#    start_string <- str_locate_all(DatabaseRequire_AllIn[i,4],"-")
-#    
-#    start_string <- data.frame(start_string)
-#    
-#    DatabaseRequire_AllIn[i,3] <- substr(DatabaseRequire_AllIn[i,4], start_string[2,2]+2, 
-#                                         as.integer(nchar(as.character(DatabaseRequire_AllIn[i,4]))))
-#    
-#    start_string <- str_locate_all(DatabaseRequire_AllIn[i,3],"-")
-#    
-#    if (!isempty(start_string[[1]])) {
-#      
-#      start_string <- data.frame(start_string)
-#      
-#      DatabaseRequire_AllIn[i,3] <- substr(DatabaseRequire_AllIn[i,3], start_string[1,2]+2, 
-#                                           as.integer(nchar(as.character(DatabaseRequire_AllIn[i,3]))))
-#    }
-#    
-#  }
-#  
-#  DatabaseRequire_AllIn1 <- DatabaseRequire_AllIn[,grep("Event label|Event Category", names(DatabaseRequire_AllIn))]
-#  
-#  names(DatabaseRequire_AllIn1)[1] <- paste("Var1")
-#  
-#  names(Joy_GA)[No] <- paste("Var1")
-#  
-#  Joy_GA1 <- merge(Joy_GA,DatabaseRequire_AllIn1, by = "Var1", all.x = T )
-#  
-#  Joy_GA2 <- unique(Joy_GA1)
-#  
-#  return (Joy_GA2)
-#  
-#}
+    ## Not fixed yet
+    #Extract_Diff_id <- function(Event.Category, Var1, tota_FB_promotion,Question_user) {
+    #
+    #    col3 <- grep(Var1,colnames(Question_user))
+    #
+    #    names(Question_user)[col3] <- paste("Event.Category")
+    #
+    #    #
+    #
+    #    col2 <- grep(Event.Category,colnames(tota_FB_promotion))
+    #
+    #    names(tota_FB_promotion)[col2] <- paste("Event.Category")
+    #
+    #
+    #
+    #    col1 <- grep("Event.Category",colnames(Question_user))
+    #
+    #    for (i in 1:dim(Question_user)[1]) {
+    #      if (i==1) {
+    #        tota_FB_promotion <- tota_FB_promotion[which(as.character(tota_FB_promotion$Event.Category) != as.character(Question_user[i,col1])),]
+    #      } else {
+    #        tota_FB_promotion <- tota_FB_promotion[which(as.character(tota_FB_promotion$Event.Category) != as.character(Question_user[i,col1])),]
+    #      }
+    #    }
+    #
+    #    names(tota_FB_promotion)[col2] <- paste(Event.Category)
+    #
+    #    return  (tota_FB_promotion)
+    #
+    #
+    #}
+    #
+    #
+    ## Same extract
+    ### Trich ID:
+    #
+    #Same_extract_id <- function(abc_b, abc_c,gonjoybot_chat, Chat_phone_usertx3) {
+    #
+    #  col3 <- grep(abc_c,colnames(Chat_phone_usertx3))
+    #
+    #  names(Chat_phone_usertx3)[col3] <- paste("Event Category")
+    #
+    #  #
+    #
+    #  col2 <- grep(abc_b,colnames(gonjoybot_chat))
+    #
+    #  names(gonjoybot_chat)[col2] <- paste("Event Category")
+    #
+    #  #
+    #
+    #
+    #  for (i in 1:dim(Chat_phone_usertx3)[1]) {
+    #    if (i==1) {
+    #      Chat_phone_usert3_1 <- gonjoybot_chat[which(as.character(gonjoybot_chat$`Event Category`) == as.character(Chat_phone_usertx3$`Event Category`)[i]),]
+    #    } else {
+    #      Chat_phone_usert3_2 <- gonjoybot_chat[which(as.character(gonjoybot_chat$`Event Category`) == as.character(Chat_phone_usertx3$`Event Category`)[i]),]
+    #      Chat_phone_usert3_1 <- rbind(Chat_phone_usert3_1,Chat_phone_usert3_2)
+    #    }
+    #  }
+    #
+    #  names(Chat_phone_usert3_1)[col2] <- paste(abc_b)
+    #
+    #  return (Chat_phone_usert3_1)
+    #
+    #}
+    #def Get_id_GA_full(Joy_GA,No,DateUpdate):
+    #
+    #
+    #  setwd("~/Desktop/GonJoy/Right Time/")
+    #
+    #  DateUpdate <- DateUpdate
+    #
+    #  setwd("~/Desktop/GonJoy/Right Time/OnData/Datarequire/")
+    #
+    #  DatabaseRequire_AllIn <- do.call(rbind,lapply(list.files(path = "~/Desktop/GonJoy/Right Time/OnData/Datarequire/"), read_csv))
+    #
+    #  DatabaseRequire_AllIn$date <- DatabaseRequire_AllIn$Date
+    #
+    #  DatabaseRequire_AllIn$date <- substr(DatabaseRequire_AllIn$date,1,8)
+    #
+    #  DatabaseRequire_AllIn$date <- anydate(  DatabaseRequire_AllIn$date)
+    #
+    #  DatabaseRequire_AllIn$date <- anydate( DatabaseRequire_AllIn$date)
+    #
+    #  DatabaseRequire_AllIn <- DatabaseRequire_AllIn[which(as.Date(DatabaseRequire_AllIn$date) >= DateUpdate ), ]
+    #
+    #  for (i in 1:length(DatabaseRequire_AllIn$`Event Category`)) {
+    #
+    #    start_string <- str_locate_all(DatabaseRequire_AllIn[i,4],"-")
+    #
+    #    start_string <- data.frame(start_string)
+    #
+    #    DatabaseRequire_AllIn[i,3] <- substr(DatabaseRequire_AllIn[i,4], start_string[2,2]+2,
+    #                                         as.integer(nchar(as.character(DatabaseRequire_AllIn[i,4]))))
+    #
+    #    start_string <- str_locate_all(DatabaseRequire_AllIn[i,3],"-")
+    #
+    #    if (!isempty(start_string[[1]])) {
+    #
+    #      start_string <- data.frame(start_string)
+    #
+    #      DatabaseRequire_AllIn[i,3] <- substr(DatabaseRequire_AllIn[i,3], start_string[1,2]+2,
+    #                                           as.integer(nchar(as.character(DatabaseRequire_AllIn[i,3]))))
+    #    }
+    #
+    #  }
+    #
+    #  DatabaseRequire_AllIn1 <- DatabaseRequire_AllIn[,grep("Event label|Event Category", names(DatabaseRequire_AllIn))]
+    #
+    #  names(DatabaseRequire_AllIn1)[1] <- paste("Var1")
+    #
+    #  names(Joy_GA)[No] <- paste("Var1")
+    #
+    #  Joy_GA1 <- merge(Joy_GA,DatabaseRequire_AllIn1, by = "Var1", all.x = T )
+    #
+    #  Joy_GA2 <- unique(Joy_GA1)
+    #
+    #  return (Joy_GA2)
+    #
+    #}
 
-#            
-##class Database: 
-##    
-##    def Database_Loyalty(loyaltyCustomer, loyaltyProgram, Customer, Provider)
-##    
-##    Database_Loyalty <- function (loyaltyCustomer, loyaltyProgram, Customer, Provider) {
-##  
-##  # setwd("~/Desktop/GonJoy/Right Time/OnData/Datatest/Loyalty")
-##  # 
-##  # loyaltyCustomer <- read.csv("~/Desktop/GonJoy/Right Time/OnData/Datatest/Loyalty/gonjoy34.loyaltyCustomers.csv")
-##  # 
-##  # loyaltyProgram <- read.csv("~/Desktop/GonJoy/Right Time/OnData/Datatest/Loyalty/gonjoy34.loyaltyPrograms.csv")
-##  # 
-##  # Customer <- read.csv("~/Desktop/GonJoy/Right Time/OnData/Datatest/Customers/gonjoy34.customer.csv")
-##  # 
-##  # Provider <- read.csv("~/Desktop/GonJoy/Right Time/OnData/Datatest/Provider/gonjoy34.providers.csv")
-##  # 
-##  col1 <- grep("X_id", names(Customer))
-##  
-##  col2 <- grep("X_id", names(Provider))
-##  
-##  col3 <- grep("createdAt", names(Customer))
-##  
-##  col4 <- grep("createdAt", names(Provider))
-##  
-##  names(Customer)[col1] <- paste("customer")
-##  
-##  names(Provider)[col2] <- paste("provider")
-##  
-##  names(Customer)[col3] <- paste("createdAt_Cus")
-##  
-##  names(Provider)[col4] <- paste("createdAt_Pro")
-##  
-##  #Col_Provider
-##  
-##  cul_Customer1 <- grep("provider", colnames(Provider))
-##  cul_Customer2 <- grep("name", colnames(Provider))[1]
-##  cul_Customer3 <- grep("synonyms", colnames(Provider))
-##  cul_Customer4 <- grep("gps_coordinates", colnames(Provider))[1]
-##  cul_Customer6 <- grep("place", colnames(Provider))[1]
-##  
-##  #Col_cust
-##  
-##  col_Customer1 <- grep("fbId", colnames(Customer))
-##  col_Customer2 <- grep("name", colnames(Customer))[1]
-##  col_Customer3 <- grep("createdAt", colnames(Customer))
-##  col_Customer4 <- grep("lastActiveTime", colnames(Customer))
-##  col_Customer5 <- grep("customer", colnames(Customer))
-##  col_Customer6 <- grep("X_id", colnames(Customer))
-##  
-##  Customer1 <- Customer[,c(col_Customer1,col_Customer2,col_Customer3, col_Customer4, col_Customer5, col_Customer6)]
-##  
-##  Provider1 <- Provider[,c(cul_Customer1,cul_Customer2,cul_Customer3, cul_Customer4, cul_Customer6)]
-##  
-##  Loyalty_customer <- merge(loyaltyCustomer, Customer1, by = "customer", all.x = T)
-##  
-##  Loyalty_customer$fbId <- as.character(Loyalty_customer$fbId)
-##  
-##  Loyalty_customer1 <- Loyalty_customer
-##  
-##  # Loyalty program - customer - provider
-##  
-##  Loyalty_Provider <- merge(Loyalty_customer1, Provider1, by = "provider", all.x = T)
-##  
-##  Loyalty_Provider1 <- Loyalty_Provider[!duplicated(Loyalty_Provider$fbId),]
-##  
-##  co_Customer0 <- grep("X_id", colnames(loyaltyProgram))[1]
-##  co_Customer1 <- grep("name", colnames(loyaltyProgram))[1]
-##  co_Customer2 <- grep("provider", colnames(loyaltyProgram))[1]
-##  co_Customer3 <- grep("description", colnames(loyaltyProgram))
-##  co_Customer4 <- grep("levels", colnames(loyaltyProgram))[1]
-##  co_Customer5 <- grep("updatedAt", colnames(loyaltyProgram))[1]
-##  
-##  loyaltyProgram1 <- loyaltyProgram[,c(co_Customer0,co_Customer1,co_Customer2,co_Customer3,co_Customer4,co_Customer5)]
-##  
-##  names(loyaltyProgram1)[6] <- paste("updatedAt_program")
-##  
-##  #
-##  
-##  Loyalty_Provider_Customer_Program <- merge(Loyalty_Provider, loyaltyProgram1, by = "provider", all.x = T)
-##  
-##  return(Loyalty_Provider_Customer_Program)
-##  
-##}
+    #
+    ##class Database:
+    ##
+    ##    def Database_Loyalty(loyaltyCustomer, loyaltyProgram, Customer, Provider)
+    ##
+    ##    Database_Loyalty <- function (loyaltyCustomer, loyaltyProgram, Customer, Provider) {
+    ##
+    ##  # setwd("~/Desktop/GonJoy/Right Time/OnData/Datatest/Loyalty")
+    ##  #
+    ##  # loyaltyCustomer <- read.csv("~/Desktop/GonJoy/Right Time/OnData/Datatest/Loyalty/gonjoy34.loyaltyCustomers.csv")
+    ##  #
+    ##  # loyaltyProgram <- read.csv("~/Desktop/GonJoy/Right Time/OnData/Datatest/Loyalty/gonjoy34.loyaltyPrograms.csv")
+    ##  #
+    ##  # Customer <- read.csv("~/Desktop/GonJoy/Right Time/OnData/Datatest/Customers/gonjoy34.customer.csv")
+    ##  #
+    ##  # Provider <- read.csv("~/Desktop/GonJoy/Right Time/OnData/Datatest/Provider/gonjoy34.providers.csv")
+    ##  #
+    ##  col1 <- grep("X_id", names(Customer))
+    ##
+    ##  col2 <- grep("X_id", names(Provider))
+    ##
+    ##  col3 <- grep("createdAt", names(Customer))
+    ##
+    ##  col4 <- grep("createdAt", names(Provider))
+    ##
+    ##  names(Customer)[col1] <- paste("customer")
+    ##
+    ##  names(Provider)[col2] <- paste("provider")
+    ##
+    ##  names(Customer)[col3] <- paste("createdAt_Cus")
+    ##
+    ##  names(Provider)[col4] <- paste("createdAt_Pro")
+    ##
+    ##  #Col_Provider
+    ##
+    ##  cul_Customer1 <- grep("provider", colnames(Provider))
+    ##  cul_Customer2 <- grep("name", colnames(Provider))[1]
+    ##  cul_Customer3 <- grep("synonyms", colnames(Provider))
+    ##  cul_Customer4 <- grep("gps_coordinates", colnames(Provider))[1]
+    ##  cul_Customer6 <- grep("place", colnames(Provider))[1]
+    ##
+    ##  #Col_cust
+    ##
+    ##  col_Customer1 <- grep("fbId", colnames(Customer))
+    ##  col_Customer2 <- grep("name", colnames(Customer))[1]
+    ##  col_Customer3 <- grep("createdAt", colnames(Customer))
+    ##  col_Customer4 <- grep("lastActiveTime", colnames(Customer))
+    ##  col_Customer5 <- grep("customer", colnames(Customer))
+    ##  col_Customer6 <- grep("X_id", colnames(Customer))
+    ##
+    ##  Customer1 <- Customer[,c(col_Customer1,col_Customer2,col_Customer3, col_Customer4, col_Customer5, col_Customer6)]
+    ##
+    ##  Provider1 <- Provider[,c(cul_Customer1,cul_Customer2,cul_Customer3, cul_Customer4, cul_Customer6)]
+    ##
+    ##  Loyalty_customer <- merge(loyaltyCustomer, Customer1, by = "customer", all.x = T)
+    ##
+    ##  Loyalty_customer$fbId <- as.character(Loyalty_customer$fbId)
+    ##
+    ##  Loyalty_customer1 <- Loyalty_customer
+    ##
+    ##  # Loyalty program - customer - provider
+    ##
+    ##  Loyalty_Provider <- merge(Loyalty_customer1, Provider1, by = "provider", all.x = T)
+    ##
+    ##  Loyalty_Provider1 <- Loyalty_Provider[!duplicated(Loyalty_Provider$fbId),]
+    ##
+    ##  co_Customer0 <- grep("X_id", colnames(loyaltyProgram))[1]
+    ##  co_Customer1 <- grep("name", colnames(loyaltyProgram))[1]
+    ##  co_Customer2 <- grep("provider", colnames(loyaltyProgram))[1]
+    ##  co_Customer3 <- grep("description", colnames(loyaltyProgram))
+    ##  co_Customer4 <- grep("levels", colnames(loyaltyProgram))[1]
+    ##  co_Customer5 <- grep("updatedAt", colnames(loyaltyProgram))[1]
+    ##
+    ##  loyaltyProgram1 <- loyaltyProgram[,c(co_Customer0,co_Customer1,co_Customer2,co_Customer3,co_Customer4,co_Customer5)]
+    ##
+    ##  names(loyaltyProgram1)[6] <- paste("updatedAt_program")
+    ##
+    ##  #
+    ##
+    ##  Loyalty_Provider_Customer_Program <- merge(Loyalty_Provider, loyaltyProgram1, by = "provider", all.x = T)
+    ##
+    ##  return(Loyalty_Provider_Customer_Program)
+    ##
+    ##}
