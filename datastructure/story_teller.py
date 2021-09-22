@@ -249,15 +249,13 @@ class Player:
             score = int(score)
             player = Player(name, score)
             data.append(player)
-        data = sorted(data, key=cmp_to_key(Player.comparator))
-        for i in data:
-            print(i.name, i.score)
-        5
-        amy 100
-        david 100
-        heraldo 50
-        aakansha 75
-        aleksa 150
+        Player.score_billboard(data)
+5
+amy 100
+david 100
+heraldo 50
+aakansha 75
+aleksa 150
     """
     def __init__(self, name, score):
         self.name = name
@@ -268,8 +266,16 @@ class Player:
         val = b.score - a.score
         if val == 0:
             return -1 if a.name < b.name else 1
-        print(val)
         return val
+    def score_billboard(data):
+        """
+        data append Player
+        :return:
+        """
+        data = sorted(data, key=cmp_to_key(Player.comparator))
+        for i in data:
+            print(i.name, i.score)
+
 
     @print_param("compareTriplets.txt", BASE_DIR)
     def compareTriplets(a, b):
@@ -280,7 +286,7 @@ class Player:
 
         :param a: list point a 17 28 30
         :param b: list point b 99 16 8
-        :return: point for each player
+        :return: point for each player in each round
         """
         A = a
         B = b
@@ -291,6 +297,9 @@ class Player:
 class Solution(object):
     def nextPermutation(self, nums):
         """
+            #   arr = [0, 1, 0]
+            #   next_permutation(arr)  (returns True)
+            #   arr has been modified to be [1, 0, 0]
         https://www.nayuki.io/res/next-lexicographical-permutation-algorithm/nextperm.py
         :type nums: List[int]
         :rtype: list and arr modified to the next smallest permutation
@@ -310,18 +319,22 @@ class Solution(object):
         arr[i - 1], arr[j] = arr[j], arr[i - 1]
 
         # Reverse suffix
-        arr[i : ] = arr[len(arr) - 1 : i - 1 : -1]
+        print(arr)
+        arr[i:] = arr[len(arr) - 1 : i - 1 : -1]
         print(arr)
         return True
 
 if __name__ == '__main__':
-    q = int(input().strip())
-    queries = []
-    for _ in range(q):
-        queries.append(list(map(int, input().rstrip().split())))
 
-    story_teller.freqQuery(queries)
+    n = int(input())
+    data = []
+    for i in range(n):
+        name, score = input().split()
+        score = int(score)
+        player = Player(name, score)
+        data.append(player)
 
+    Player.score_billboard(data)
 
 
 
