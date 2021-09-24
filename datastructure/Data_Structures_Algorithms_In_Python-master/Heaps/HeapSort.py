@@ -2,7 +2,6 @@
 O(n log n) time complexity
 O(1) space complexity"""
 
-
 def max_heapify(indx, arr, size):
     """
     Assuming sub trees are already max heaps, converts tree rooted at current indx into a max heap.

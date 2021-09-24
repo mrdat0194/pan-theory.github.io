@@ -16,7 +16,6 @@ def printMaxActivities(activities):
     activities.sort(key=lambda x: x[2])
     i = 0
     firstA = activities[i][0]
-    print(firstA)
     for j in range(len(activities)):
         if activities[j][1] > activities[i][2]:
             print(activities[j][0])

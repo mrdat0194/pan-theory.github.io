@@ -2,15 +2,6 @@ import time
 import os
 from functools import wraps
 
-def timer(func):
-    def f(*arg, **kwarg):
-        before = time.time()
-        rv = func(*arg, **kwarg)
-        after = time.time()
-        print("--- %s seconds ---" %(after - before))
-        return rv
-    return f
-
 def print_param(name_output = "error.txt", BASE_DIR = os.path.dirname(os.path.abspath(__file__))):
     def print_result(func):
         '''
@@ -35,6 +26,15 @@ def print_param(name_output = "error.txt", BASE_DIR = os.path.dirname(os.path.ab
             return result
         return f
     return print_result
+
+def timer(func):
+    def f(*arg, **kwarg):
+        before = time.time()
+        rv = func(*arg, **kwarg)
+        after = time.time()
+        print("--- %s seconds ---" %(after - before))
+        return rv
+    return f
 
 
 @timer

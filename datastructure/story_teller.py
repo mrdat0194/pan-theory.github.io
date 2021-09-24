@@ -10,11 +10,130 @@ from functools import cmp_to_key
 from functools import partial
 from collections import defaultdict
 
-from my_functions import timer, print_param
+from my_functions import timer
+from my_functions.timer import print_param
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class story_teller:
+    @print_param("output_miniswap.txt", BASE_DIR)
+    def minimumSwaps(arr):
+        """
+        swap to get a increasing order
+        Given array
+        After swapping  we get 1 3 4 2
+        After swapping  we get 1 4 3 2
+        After swapping  we get 1 2 3 4
+        So, we need a minimum of 3 swaps to sort the array in ascending order
+
+        n = int(input())
+
+        arr = list(map(int, input().rstrip().split()))
+
+        res = minimumSwaps(arr)
+
+        # 4
+        # 4 3 1 2
+
+        :param arr:
+        :return:
+        """
+        ref_arr = sorted(arr)
+        index_dict = {v: i for i,v in enumerate(arr)}
+        swaps = 0
+
+        for i,v in enumerate(arr):
+            correct_value = ref_arr[i]
+            if v != correct_value:
+                to_swap_ix = index_dict[correct_value]
+                arr[to_swap_ix],arr[i] = arr[i], arr[to_swap_ix]
+                index_dict[v] = to_swap_ix
+                index_dict[correct_value] = i
+                swaps += 1
+        return swaps
+
+    def minimumBribes(Q):
+        '''
+        list of people in the queue, sequentially bribe the one in front of them
+            [1,2,3,4,5] -> [4,1,2,3,5] -> [5,4,1,2,3] 7 steps -> [5,4,3,1,2] 9 steps
+            Thought:
+
+                Easy:
+                [5,1,2,3,4]
+                -> init: [4,0,1,2,3] -> enum: [0,1,2,3,4]
+
+                Hard:
+                [5,4,3,1,2]
+                init:
+                [4,3,2,0,1]
+                enum:
+                [0,1,2,3,4]
+
+            at least how many bribes happened.
+
+            t = int(input())
+
+            for t_itr in range(t):
+                n = int(input())
+
+                q = list(map(int, input().rstrip().split()))
+
+            story_teller.minimumBribes(q)
+        # 2
+        # 5
+        # 2 1 5 3 4
+        # 5
+        # 2 5 1 3 4
+
+        :param Q:
+        :return:
+        '''
+        #
+        # initialize the number of moves
+        moves = 0
+        #
+        # decrease Q by 1 to make index-matching more intuitive
+        # so that our values go from 0 to N-1, just like our
+        # indices.  (Not necessary but makes it easier to
+        # understand.)
+        # Init:
+        Q = [P-1 for P in Q]
+        #
+        # Loop through each person (P) in the queue (Q)
+        for i,P in enumerate(Q):
+            # i is the current position of P, while P is the
+            # original position of P.
+            #
+            # First check if any P is more than two ahead of
+            # its original position
+            # if P - i > 5:
+            #     print("Too chaotic")
+            #     return
+            #
+
+            # From here on out, we don't care if P has moved
+            # forwards, it is better to count how many times
+            # P has RECEIVED a bribe, by looking at who is
+            # ahead of P.  P's original position is the value
+            # of P.
+            # Anyone who bribed P cannot get to higher than
+            # one position in front if P's original position,
+            # so we need to look from one position in front
+            # of P's original position to one in front of P's
+            # current position, and see how many of those
+            # positions in Q contain a number large than P.
+            # In other words we will look from P-1 to i-1,
+            # which in Python is range(P-1,i-1+1), or simply
+            # range(P-1,i).  To make sure we don't try an
+            # index less than zero, replace P-1 with
+            # max P-1,0)
+
+            for j in range(max(P-100,0),i):
+                if Q[j] > P:
+                    moves += 1
+            print(moves)
+            return moves
+
     @print_param("output_makeAna.txt", BASE_DIR)
     def makeAnagram(a, b):
         """
@@ -194,7 +313,6 @@ class story_teller:
         return []
 
 
-
     @print_param("repeatedstrings.txt", BASE_DIR)
     def repeatedString(s, n):
         """
@@ -323,6 +441,49 @@ class Solution(object):
         arr[i:] = arr[len(arr) - 1 : i - 1 : -1]
         print(arr)
         return True
+
+
+
+class MySpecialQueue:
+    """
+    Special queue to get the highest bidder to maximize profit
+    """
+    def __init__(self):
+        # Do not change the variable name of self.queue
+        self.queue = None
+
+    def insert(self, data):
+
+        if self.queue == None:
+            self.queue = [data]
+        else:
+            if data != '':
+                self.queue.append(data)
+
+
+    def dequeue(self):
+        largest = max(self.queue)
+        self.queue.remove(largest)
+
+def leftover_bidders( bids, number_of_items ) :
+    """
+    print(leftover_bidders([1,2,3,4,5,6,7,8,9,], 2 ))
+
+    :param bids:
+    :param number_of_items:
+    :return:
+    """
+    ######### DO NOT MODIFY BELOW ###########
+    myQueue = MySpecialQueue()
+
+    for bid in bids:
+        myQueue.insert(bid)
+    for sale in range(number_of_items):
+        myQueue.dequeue()
+
+    return myQueue.queue if myQueue.queue else [None]
+
+    ######### DO NOT MODIFY ABOVE ###########
 
 if __name__ == '__main__':
 
