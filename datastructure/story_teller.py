@@ -9,7 +9,6 @@ from collections import Counter
 from functools import cmp_to_key
 from functools import partial
 from collections import defaultdict
-
 from my_functions import timer
 from my_functions.timer import print_param
 
@@ -19,6 +18,7 @@ class story_teller:
     @print_param("output_miniswap.txt", BASE_DIR)
     def minimumSwaps(arr):
         """
+        Note: Minimum swap cannot solve wholy as minimumBribe
         swap to get a increasing order
         Given array
         After swapping  we get 1 3 4 2
@@ -155,6 +155,33 @@ class story_teller:
         print(ct_a)
         print(ct_b)
         return sum(abs(i) for i in ct_a.values())
+
+    @print_param("SherlockAna.txt", BASE_DIR)
+    def sherlockAndAnagrams(string):
+        '''
+        # 2
+        # ifailuhkqq
+        # kkkk
+        For the first query, we have anagram pairs  and  at positions  and  respectively.
+
+        For the second query:
+        There are 6 anagrams of the form  at positions  and .
+        There are 3 anagrams of the form  at positions  and .
+        There is 1 anagram of the form  at position .
+        :param string:
+        :return:
+        '''
+        buckets = {}
+        for i in range(len(string)):
+            for j in range(1, len(string) - i + 1):
+                key = frozenset(Counter(string[i:i+j]).items()) # O(N) time key extract
+                # print(key)
+                buckets[key] = buckets.get(key, 0) + 1
+        count = 0
+        # print(buckets)
+        for key in buckets:
+            count += buckets[key] * (buckets[key]-1) // 2
+        return count
 
     @timer
     @print_param("output_sock.txt", BASE_DIR)

@@ -1,6 +1,8 @@
 from typing import TypeVar
 from typing import Any, List
 Element=TypeVar("Element")
+# Optional[]
+# Named Tuple
 #https://www.youtube.com/watch?v=3m7uTWqwg34
 #mypy check list
 
@@ -15,5 +17,3 @@ vString = ["Hello", "World"]
 
 a = printArray(vInt)
 b = printArray(vString)
-print(type(a))
-print(type(b))
