@@ -399,6 +399,20 @@ def dynaFibo2(N,memo=None):
     if not memo[N]: memo[N] = dynaFibo2(N-1,memo) + dynaFibo2(N-2,memo)
     return memo[N]
 
+cache = [0, 1]   # Initialize with the first two terms of Fibonacci series.
+def fibonacci(n):
+    """
+    Returns the n-th number in the Fibonacci sequence.
+    bottom up
+    Parameters
+    ----------
+    n: int
+       The n-th number in the Fibonacci sequence.
+    """
+    for i in range(2, n):
+        cache.append(cache[i-1] + cache[i-2])
+    return cache[-1]
+
 def binFibo(N):
     a,b   = 0,1
     f0,f1 = 1,1

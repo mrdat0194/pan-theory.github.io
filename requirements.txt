@@ -130,3 +130,4 @@ keras==2.4.3
 # tensorflow==2.4.1
 pymc3==3.11.1
 librosa==0.8.1
+hmmlearn==0.2.6
