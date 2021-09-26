@@ -9,8 +9,8 @@ from collections import Counter
 from functools import cmp_to_key
 from functools import partial
 from collections import defaultdict
-from my_functions import timer
-from my_functions.timer import print_param
+
+from my_functions.timer import print_param, timer
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -134,27 +134,26 @@ class story_teller:
             print(moves)
             return moves
 
-    @print_param("output_makeAna.txt", BASE_DIR)
-    def makeAnagram(a, b):
-        """
-             How many deletion to make two string anagram
-
-             a = input()
-             b = input()
-             story_teller.makeAnagram(a,b)
-
-        :param a,b:
-             cde
-             abc
+    @print_param("twoString.txt", BASE_DIR)
+    def twoStrings(s1, s2):
+        '''
+            String that intersect
+            # 1
+            # hello
+            # world
+        :param s1:
+        :param s2:
         :return:
-        """
-
-        ct_a = Counter(a)
-        ct_b = Counter(b)
-        ct_a.subtract(ct_b)
-        print(ct_a)
-        print(ct_b)
-        return sum(abs(i) for i in ct_a.values())
+        '''
+        s1 = set(s1)
+        s2 = set(s2)
+        result = s1.intersection(s2)
+        if not result:
+            print('NO')
+            return 'NO'
+        else:
+            print('YES')
+            return 'YES'
 
     @print_param("SherlockAna.txt", BASE_DIR)
     def sherlockAndAnagrams(string):
@@ -182,6 +181,67 @@ class story_teller:
         for key in buckets:
             count += buckets[key] * (buckets[key]-1) // 2
         return count
+
+    @print_param("output_makeAna.txt", BASE_DIR)
+    def makeAnagram(a, b):
+        """
+             How many deletion to make two string anagram
+
+             a = input()
+             b = input()
+             story_teller.makeAnagram(a,b)
+
+        :param a,b:
+             cde
+             abc
+        :return:
+        """
+
+        ct_a = Counter(a)
+        ct_b = Counter(b)
+        ct_a.subtract(ct_b)
+        return sum(abs(i) for i in ct_a.values())
+
+    def checkMagazine(magazine, note):
+        '''
+        6 4
+        give me one grand today night
+        give one grand today
+        completely contain in magazine as in note
+
+            mn = input().split()
+
+            m = int(mn[0])
+
+            n = int(mn[1])
+
+            magazine = input().rstrip().split()
+
+            note = input().rstrip().split()
+
+            print(ransom_note(magazine, note))
+            print(checkMagazine(magazine, note))
+
+        :param magazine:
+        :param note:
+        :return:
+        '''
+        d = {}
+        for word in magazine:
+            d.setdefault(word, 0)
+            d[word] += 1
+            # print(d)
+        for word in note:
+            if word in d:
+                d[word] -= 1
+            else:
+                return False
+
+        return all([x >= 0 for x in d.values()])
+
+
+    def ransom_note(magazine, rasom):
+        return (Counter(rasom) - Counter(magazine)) == {}
 
     @timer
     @print_param("output_sock.txt", BASE_DIR)
@@ -386,21 +446,7 @@ class story_teller:
 
 class Player:
     """
-        Name - Score compare one another
-        n = int(input())
-        data = []
-        for i in range(n):
-            name, score = input().split()
-            score = int(score)
-            player = Player(name, score)
-            data.append(player)
-        Player.score_billboard(data)
-5
-amy 100
-david 100
-heraldo 50
-aakansha 75
-aleksa 150
+        series play
     """
     def __init__(self, name, score):
         self.name = name
@@ -414,7 +460,23 @@ aleksa 150
         return val
     def score_billboard(data):
         """
+        Name - Score compare one another
+        n = int(input())
+        data = []
+        for i in range(n):
+            name, score = input().split()
+            score = int(score)
+            player = Player(name, score)
+            data.append(player)
+        Player.score_billboard(data)
+
         data append Player
+        5
+        amy 100
+        david 100
+        heraldo 50
+        aakansha 75
+        aleksa 150
         :return:
         """
         data = sorted(data, key=cmp_to_key(Player.comparator))
@@ -469,8 +531,6 @@ class Solution(object):
         print(arr)
         return True
 
-
-
 class MySpecialQueue:
     """
     Special queue to get the highest bidder to maximize profit
@@ -492,37 +552,32 @@ class MySpecialQueue:
         largest = max(self.queue)
         self.queue.remove(largest)
 
-def leftover_bidders( bids, number_of_items ) :
-    """
-    print(leftover_bidders([1,2,3,4,5,6,7,8,9,], 2 ))
+    def leftover_bidders( bids, number_of_items ) :
+        """
+        print(MySpecialQueue.leftover_bidders([1,2,3,4,5,6,7,8,9,], 2 ))
 
-    :param bids:
-    :param number_of_items:
-    :return:
-    """
-    ######### DO NOT MODIFY BELOW ###########
-    myQueue = MySpecialQueue()
+        :param bids:
+        :param number_of_items:
+        :return:
+        """
+        ######### DO NOT MODIFY BELOW ###########
+        myQueue = MySpecialQueue()
 
-    for bid in bids:
-        myQueue.insert(bid)
-    for sale in range(number_of_items):
-        myQueue.dequeue()
+        for bid in bids:
+            myQueue.insert(bid)
+        for sale in range(number_of_items):
+            myQueue.dequeue()
 
-    return myQueue.queue if myQueue.queue else [None]
+        return myQueue.queue if myQueue.queue else [None]
 
-    ######### DO NOT MODIFY ABOVE ###########
+        ######### DO NOT MODIFY ABOVE ###########
+
+class Stock:
+    pass
 
 if __name__ == '__main__':
 
-    n = int(input())
-    data = []
-    for i in range(n):
-        name, score = input().split()
-        score = int(score)
-        player = Player(name, score)
-        data.append(player)
-
-    Player.score_billboard(data)
+    print(MySpecialQueue.leftover_bidders([1,2,3,4,5,6,7,8,9,], 2 ))
 
 
 
