@@ -1,3 +1,4 @@
+from hdp import hpd_grid
 import pandas as pd
 from helper_functions import plotter
 import numpy as np
@@ -140,7 +141,6 @@ def hpd(x, alpha=0.05):
         sx = np.sort(x)
         return np.array(calc_min_interval(sx, alpha))
 
-
 def main():
     """ Load and pre-process data. """
     data_path = os.path.join(DATA_DIR,"posterior_posteriorsGdpInfantMortality.csv")
@@ -168,12 +168,10 @@ def main():
     print()
     """ Credible intervals of 80 % around the highest density regions. """
     print("Credible intervals of 80 % around the highest density regions")
-    # print("alpha: ", pymc3.data.hpd(alphas, alpha=0.2))
-    # print("beta: ", pymc3.data.hpd(betas, alpha=0.2))
-    # print("sigma: ", pymc3.data.hpd(sigmas, alpha=0.2))
-    print("alpha: ", hpd(alphas, alpha=0.2))
-    print("beta: ", hpd(betas, alpha=0.2))
-    print("sigma: ", hpd(sigmas, alpha=0.2))
+
+    print("alpha1: ", hpd_grid(alphas, alpha=0.2))
+    print("beta1: ", hpd_grid(betas, alpha=0.2))
+    print("sigma1: ", hpd_grid(sigmas, alpha=0.2))
 
     print()
     """ For comparison of the frequentist sigma value a point estimate of the

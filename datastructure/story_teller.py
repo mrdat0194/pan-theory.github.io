@@ -5,6 +5,7 @@ import math
 import random
 import re
 import sys
+import itertools
 from collections import Counter
 from functools import cmp_to_key
 from functools import partial
@@ -261,6 +262,8 @@ class story_teller:
             sum+=values//2
         return sum
 
+
+
     @print_param("output_freqQuery.txt", BASE_DIR)
     def freqQuery(queries):
         """
@@ -443,6 +446,85 @@ class story_teller:
                 s+=b[j]*a[k]
             b[i]+=1
         return s
+
+    def formingMagicSquare(s):
+        """
+        convert it into a magic square at minimal cost. Print this cost on a new line.
+
+        Note: The resulting magic square must contain distinct integers in the inclusive range [1-9]
+            s = []
+            for s_i in range(3):
+                s += [int(s_temp) for s_temp in input().strip().split(' ')]
+            result = formingMagicSquare(s)
+
+        4 9 2
+        3 5 7
+        8 1 5
+        :param s:
+        :return:
+        """
+        squares = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6],
+                   [0, 3, 6], [1, 4, 7], [2, 5, 8]]
+        def ismagic(xs):
+            for sq in squares:
+                if sum(xs[s] for s in sq) != 15:
+                    return False
+            return True
+
+        gen = filter(ismagic, list(itertools.permutations(range(1,10))))
+
+        return min(sum(abs(x - y) for x, y in zip(gl, s)) for gl in gen)
+
+class problem308:
+    """
+    # Determine the number of ways to group the array elements using parentheses so that the entire expression evaluates to True.
+    #
+    # For example, suppose the input is ['F', '|', 'T', '&', 'T']. In this case, there are two acceptable groupings: (F | T) & T and F | (T & T).
+    """
+    def split(expression):
+        operands, operators = [], []
+
+        for value in expression:
+            if value in {'T', 'F'}:
+                operands.append(value)
+            else:
+                operators.append(value)
+
+        return operands, operators
+
+    def solve(expression):
+        operands, operators = problem308.split(expression)
+
+        n = len(operands)
+        T = [[0 for _ in range(n)] for _ in range(n)]
+        F = [[0 for _ in range(n)] for _ in range(n)]
+
+        for i in range(n):
+            if operands[i] == 'T':
+                T[i][i] = 1; F[i][i] = 0
+            else:
+                T[i][i] = 0; F[i][i] = 1
+
+        for gap in range(1, n):
+            for i in range(n - gap):
+                j = i + gap
+
+                for k in range(i, j):
+                    all_options = (T[i][k] + F[i][k]) * (T[k+1][j] + F[k+1][j])
+
+                    if operators[k] == '&':
+                        T[i][j] += T[i][k] * T[k+1][j]
+                        F[i][j] += (all_options - T[i][j])
+
+                    elif operators[k] == '|':
+                        F[i][j] += F[i][k] * F[k+1][j]
+                        T[i][j] += (all_options - F[i][j])
+
+                    elif operators[k] == '^':
+                        T[i][j] += F[i][k] * T[k+1][j] + T[i][k] * F[k+1][j]
+                        F[i][j] += T[i][k] * T[k+1][j] + F[i][k] * F[k+1][j]
+
+        return T[0][n - 1]
 
 class Player:
     """

@@ -236,7 +236,7 @@ class coin():
 
     def test_seq2(self):
         nSims = 10000
-        counts, counts_S1 = gen_seq_Y2(nSims)
+        counts, counts_S1 = coin.gen_seq_Y2(nSims)
         print("{0}/{1}= {2:3.2f}".format(counts_S1, counts, counts_S1/counts))
 # 441/1103= 0.40
 # Suppose that X0=1. Let T be the first positive time index n at which the state is equal to 1.
@@ -519,6 +519,11 @@ class Dice:
             return s
 
     def constrained_sum_compositions(n, m):
+        """
+            constrained_sum_compositions(9, [1, 2, 3, 4, 5])
+        :param m:
+        :return:
+        """
         # inputs: n is of type 'int' and m is a list of integers
         # output: a set of tuples
         k = len(m)
@@ -528,7 +533,7 @@ class Dice:
                 s.add(c)
         return s
 
-    def test_sum_list():
+    def test_sum_list(self):
         print(Dice.constrained_sum_compositions(9, [1, 2, 3, 4, 5]))
 
 class DogSearch:

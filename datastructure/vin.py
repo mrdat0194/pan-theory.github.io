@@ -55,57 +55,6 @@ def maxProfitWithKTransactions(prices, k):
         print(curr_trans)
     return curr_trans[-1]
 
-def max_profit(price):
-    max_profit = 0
-    for day_buy in range(len(price)-1):
-        for day_sell in range(day_buy+1, len(price)):
-            profit_amt = price[day_sell] - price[day_buy]
-            if profit_amt > max_profit:
-                day_buy_best = day_buy
-                day_sell_best = day_sell
-                max_profit = profit_amt
-    print(f"Buy at day {day_buy_best +1},Sell at {day_sell_best+1}")
-
-def stock_loss():
-    '''
-    stock_loss()
-    the most loss
-    # 7
-    # 3 4 1 2 1 5 1
-    :return:
-    '''
-    n = int(input())
-    prices = map(int, input().split())
-    loss = 0
-    high = next(prices)
-    for p in prices:
-        high = max(high, p)
-        loss = min(loss, p - high)
-    print("loss",loss)
-
-def stock_gain():
-    '''
-    the most gain
-    # 7
-    # 3 4 1 2 1 5 1
-    stock_gain()
-
-    :return:
-    '''
-    n = int(input())
-    prices = map(int, input().split())
-    print(prices)
-    gain = 0
-    low = next(prices)
-    for p in prices:
-        low = min(low, p)
-        gain = max(gain, p - low)
-    print("gain",gain)
-
-
-
-
-
 
 def get_diff(s1, s1_sum, s2, s2_sum, score):
     """

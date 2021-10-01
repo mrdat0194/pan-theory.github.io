@@ -41,7 +41,6 @@ def run(train_link, test_link, result_link, aug_link_1, aug_link_2, save_result=
             df = pd.DataFrame(result_matrix)
             df.to_csv(result_link, index=False)
 
-
 if __name__ == "__main__":
     csv_train = os.path.join(DATA_DIR,"v1", "train_encode.csv")
     csv_test = os.path.join(DATA_DIR,"v1", "test_encode.csv")

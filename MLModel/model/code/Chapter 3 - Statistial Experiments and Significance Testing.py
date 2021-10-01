@@ -137,6 +137,7 @@ print(pd.read_csv(FOUR_SESSIONS_CSV).head())
 observed_variance = four_sessions.groupby('Page').mean().var()[0]
 print('Observed means:', four_sessions.groupby('Page').mean().values.ravel())
 print('Variance:', observed_variance)
+
 # Permutation test example with stickiness
 def perm_test(df):
     df = df.copy()

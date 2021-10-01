@@ -17,21 +17,21 @@ from heapq import heapify, heappop, heappush
 import numpy as np
 
 from functools import reduce #python 3
-
-# reduce(lambda x,y: list(x)+list(y),result)
-
-# poduct = reduce((lambda x, y: x * y), [1, 2, 3, 4])
-# product
 #
+# product = reduce((lambda x, y: x * y), [1, 2, 3, 4])
+
+
+# # 0
 # n, d = (3,5)
 # arr = (1,2,3,4,5)
+# print(type(arr))
 # d %= n
 # print(d)
 # print(*(arr[d:] + arr[:d]))
-#
-# #
+
+# # 1
 # my_dict = {
-#     "out" : "Dat",
+#     "out" :"Dat",
 #     "in" : "Dat",
 #     "on" : "Hanh",
 #     "out" : "Hanh"
@@ -49,12 +49,13 @@ from functools import reduce #python 3
 #             else:
 #                 if k in new_dict.keys():
 #                     new_dict[value].append(key)
-#                     print(new_dict)
+#                     # print(new_dict)
 #                 else:
 #                     new_dict[k] = [key]
-#                     print(new_dict)
 #
-# #
+# print(new_dict)
+
+# # 2
 # c = dict(zip(['A', 'Z'], [1, -1]))
 # d = dict([('A', 1), ('Z', -1)])
 # e = dict({'Z': -1, 'A': 1})
@@ -89,54 +90,23 @@ from functools import reduce #python 3
 #
 # ##
 #
-# def formingMagicSquare(s):
-#     squares = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 4, 8], [2, 4, 6],
-#                [0, 3, 6], [1, 4, 7], [2, 5, 8]]
-#     def ismagic(xs):
-#         for sq in squares:
-#             if sum(xs[s] for s in sq) != 15:
-#                 return False
-#         return True
-#
-#     gen = filter(ismagic, list(itertools.permutations(range(1,10))))
-#     print(gen)
-#     return min(sum(abs(x - y) for x, y in zip(gl, s)) for gl in gen)
-#
-#
-# if __name__ == "__main__":
-#     s = []
-#     for s_i in range(3):
-#         s += [int(s_temp) for s_temp in input().strip().split(' ')]
-#     result = formingMagicSquare(s)
-#     print(result)
-
-
-#4 9 2
-# 3 5 7
-# 8 1 5
 
 #
-# Complete the 'pickingNumbers' function below.
+# def pickingNumbers(a):
+#     # Write your code here
+#     #count the instances of the integer in the array
+#     from collections import Counter
 #
-# The function is expected to return an INTEGER.
-# The function accepts INTEGER_ARRAY a as parameter.
+#     a= ["4","6","5","3","3","1"]
+#     count = Counter(a)
+#     #get the integer count and the integer + 1 count if exists, else 0
+#     #for the unique integers in the array
 #
-
-def pickingNumbers(a):
-    # Write your code here
-    #count the instances of the integer in the array
-    from collections import Counter
-
-    a= ["4","6","5","3","3","1"]
-    count = Counter(a)
-    #get the integer count and the integer + 1 count if exists, else 0
-    #for the unique integers in the array
-
-    all_combos = [(count.get(k) + count.get(str(int(k) + 1),0)) for k in count.keys()]
-    #now all we need is the max value of the combos,
-    #keep in mind the combo can be just one integer!
-    print(max(all_combos))
-    return max(all_combos)
+#     all_combos = [(count.get(k) + count.get(str(int(k) + 1),0)) for k in count.keys()]
+#     #now all we need is the max value of the combos,
+#     #keep in mind the combo can be just one integer!
+#     print(max(all_combos))
+#     return max(all_combos)
 
 # if __name__ == '__main__':
 #     #    fptr = open(os.environ['OUTPUT_PATH'], 'w')
@@ -153,30 +123,30 @@ def pickingNumbers(a):
 # 6
 # 4 6 5 3 3 1
 ###
-
-def climbingLeaderboard(scores, alice):
-    # List to contain and return Alice's ranks.
-    results = []
-
-    # Unique values from scores, since duplicate scores will have same rank (their index value).
-    leaderboard = sorted(set(scores), reverse = True)
-
-    # Use this var to track index within leaderboard later.
-    l = len(leaderboard)
-
-    # Loop through each of Alice's scores
-    for a in alice:
-
-        # If Alice's score is >= the score at the index of the end of leaderboard...
-        # Subtract 1 from that index value (which is also the rank) to check the next score up.
-        # If the score is less than the next score up, the index (rank) will be added to results.
-        while (l > 0) and (a >= leaderboard[l-1]):
-            l -= 1
-
-        # We add 1 to the appended value to account for 0-indexing.
-        results.append(l+1)
-
-    return results
+#
+# def climbingLeaderboard(scores, alice):
+#     # List to contain and return Alice's ranks.
+#     results = []
+#
+#     # Unique values from scores, since duplicate scores will have same rank (their index value).
+#     leaderboard = sorted(set(scores), reverse = True)
+#
+#     # Use this var to track index within leaderboard later.
+#     l = len(leaderboard)
+#
+#     # Loop through each of Alice's scores
+#     for a in alice:
+#
+#         # If Alice's score is >= the score at the index of the end of leaderboard...
+#         # Subtract 1 from that index value (which is also the rank) to check the next score up.
+#         # If the score is less than the next score up, the index (rank) will be added to results.
+#         while (l > 0) and (a >= leaderboard[l-1]):
+#             l -= 1
+#
+#         # We add 1 to the appended value to account for 0-indexing.
+#         results.append(l+1)
+#
+#     return results
 #
 # if __name__ == '__main__':
 #     fptr = open(os.environ['OUTPUT_PATH'], 'w')
@@ -202,11 +172,13 @@ def climbingLeaderboard(scores, alice):
 # 50 65 77 90 102
 
 
-def palindrome(word):
-    for i in range(len(word)//2):
-        if word[i] != word[-1-i]:
-            return False
-    return True
+# def palindrome(word):
+#     for i in range(len(word)//2):
+#         if word[i] != word[-i-1]:
+#             return False
+#     return True
+
+# print(palindrome("abcba"))
 
 
 # Complete the hourglassSum function below.
@@ -1134,251 +1106,3 @@ def palindrome(word):
 # # 1 3
 # # 0 4
 #
-# # import java.io.BufferedReader;
-# # import java.io.InputStreamReader;
-# # import java.io.IOException;
-# # import java.util.Arrays;
-# # import java.util.Comparator;
-# # import java.util.HashMap;
-# # import java.util.Map;
-#
-# # public class Solution {
-# #     public static void main(String[] args) throws IOException {
-# #         // Read user input
-# #
-# #         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-# #         String[] parts = br.readLine().split(" ");
-# #         final int numWrestlers = Integer.parseInt(parts[0]);
-# #         int maxHeightDifference = Integer.parseInt(parts[1]);
-# #         String[] heightStrings = br.readLine().split(" ");
-# #         int[] heights = new int[numWrestlers];
-# #         Wrestler[] wrestlers = new Wrestler[numWrestlers];
-# #
-# #         if (numWrestlers == 0) {
-# #             System.out.println("0");
-# #             return;
-# #         }
-# #
-# #         for (int i = 0; i < numWrestlers; ++i) {
-# #             heights[i] = Integer.parseInt(heightStrings[i]);
-# #             int height = Integer.parseInt(heightStrings[i]);
-# #             wrestlers[i] = new Wrestler(height, i);
-# #         }
-# #
-# #         int numQueries = Integer.parseInt(br.readLine());
-# #         Query[] queries = new Query[numQueries];
-# #
-# #         for (int i = 0; i < numQueries; ++i) {
-# #             String[] queryStrings = br.readLine().split(" ");
-# #             int queryLow = Integer.parseInt(queryStrings[0]);
-# #             int queryHigh = Integer.parseInt(queryStrings[1]);
-# #             queries[i] = new Query(queryLow, queryHigh, i);
-# #         }
-# #
-# #         // Sort wrestlers by height and make a reverse map
-# #
-# #         Wrestler[] sortedWrestlers = new Wrestler[numWrestlers];
-# #         System.arraycopy(wrestlers, 0, sortedWrestlers, 0, numWrestlers);
-# #
-# #         Arrays.sort(sortedWrestlers, new Comparator<Wrestler>() {
-# #             public int compare(Wrestler wrestler1, Wrestler wrestler2) {
-# #                 return wrestler1.height - wrestler2.height;
-# #             }
-# #         });
-# #
-# #         Map<Integer, SortedTriplet> unsortedIndexToSortedTriplet = new HashMap<Integer, SortedTriplet>();
-# #
-# #         for (int i = 0; i < numWrestlers; ++i) {
-# #             Wrestler currentWrestler = sortedWrestlers[i];
-# #
-# #             int unsortedIndex = currentWrestler.index;
-# #             int heightIndex = i;
-# #             int heightMinusKIndex = findLeftmostValueGTE(sortedWrestlers, currentWrestler.height - maxHeightDifference);
-# #             int heightPlusKIndex = findRightmostValueLTE(sortedWrestlers, currentWrestler.height + maxHeightDifference);
-# #             SortedTriplet sortedTriplet = new SortedTriplet(heightIndex, heightMinusKIndex, heightPlusKIndex);
-# #
-# #             unsortedIndexToSortedTriplet.put(unsortedIndex, sortedTriplet);
-# #         }
-# #
-# #
-# #         // Sort queries according to Mo's algorithm
-# #
-# #         Arrays.sort(queries, new Comparator<Query>() {
-# #             public int compare(Query query1, Query query2) {
-# #                 int sqrtMaxHigh = (int)Math.sqrt(numWrestlers);
-# #
-# #                 int sqrtBucket1 = (query1.low / sqrtMaxHigh);
-# #                 int sqrtBucket2 = (query2.low / sqrtMaxHigh);
-# #
-# #                 if (sqrtBucket1 == sqrtBucket2) {
-# #                     return query1.high - query2.high;
-# #                 }
-# #
-# #                 return sqrtBucket1 - sqrtBucket2;
-# #             }
-# #         });
-# #
-# #         // Process queries in sorted order
-# #
-# #         int currentLow = 0;
-# #         int currentHigh = -1;
-# #         long currentAnswer = 0;
-# #         long[] answers = new long[numQueries];
-# #         FenwickTree wrestlersInQuery = new FenwickTree(numWrestlers);
-# #
-# #         for (int i = 0; i < numQueries; ++i) {
-# #             Query query = queries[i];
-# #
-# #             while (currentLow < query.low) {
-# #                 SortedTriplet sorted = unsortedIndexToSortedTriplet.get(currentLow);
-# #                 int numWrestlersInRangeOfValue = wrestlersInQuery.sum(sorted.heightMinusKIndex, sorted.heightPlusKIndex) - 1;
-# #                 currentAnswer -= numWrestlersInRangeOfValue;
-# #                 wrestlersInQuery.add(sorted.heightIndex, -1);
-# #                 ++currentLow;
-# #             }
-# #
-# #             while (currentLow > query.low) {
-# #                 --currentLow;
-# #                 SortedTriplet sorted = unsortedIndexToSortedTriplet.get(currentLow);
-# #                 int numWrestlersInRangeOfValue = wrestlersInQuery.sum(sorted.heightMinusKIndex, sorted.heightPlusKIndex);
-# #                 currentAnswer += numWrestlersInRangeOfValue;
-# #                 wrestlersInQuery.add(sorted.heightIndex, 1);
-# #             }
-# #
-# #             while (currentHigh < query.high) {
-# #                 ++currentHigh;
-# #                 SortedTriplet sorted = unsortedIndexToSortedTriplet.get(currentHigh);
-# #                 int numWrestlersInRangeOfValue = wrestlersInQuery.sum(sorted.heightMinusKIndex, sorted.heightPlusKIndex);
-# #                 currentAnswer += numWrestlersInRangeOfValue;
-# #                 wrestlersInQuery.add(sorted.heightIndex, 1);
-# #             }
-# #
-# #             while (currentHigh > query.high) {
-# #                 SortedTriplet sorted = unsortedIndexToSortedTriplet.get(currentHigh);
-# #                 int numWrestlersInRangeOfValue = wrestlersInQuery.sum(sorted.heightMinusKIndex, sorted.heightPlusKIndex) - 1;
-# #                 currentAnswer -= numWrestlersInRangeOfValue;
-# #                 wrestlersInQuery.add(sorted.heightIndex, -1);
-# #                 --currentHigh;
-# #             }
-# #
-# #             answers[query.index] = currentAnswer;
-# #         }
-# #
-# #         // Output results
-# #
-# #         StringBuilder result = new StringBuilder();
-# #
-# #         for (int i = 0; i < numQueries; ++i) {
-# #             result.append(answers[i]);
-# #             result.append("\n");
-# #         }
-# #
-# #         System.out.print(result.toString());
-# #     }
-# #
-# #     private static int findLeftmostValueGTE(Wrestler[] sortedWrestlers, int valueToFind) {
-# #         int n = sortedWrestlers.length;
-# #         int low = 0;
-# #         int high = n - 1;
-# #
-# #         while (low <= high) {
-# #             int mid = low + (high - low) / 2;
-# #
-# #             if (sortedWrestlers[mid].height >= valueToFind && (mid == 0 || sortedWrestlers[mid - 1].height < valueToFind)) {
-# #                 return mid;
-# #             } else if (sortedWrestlers[mid].height < valueToFind) {
-# #                 low = mid + 1;
-# #             } else {
-# #                 high = mid - 1;
-# #             }
-# #         }
-# #
-# #         return -1;
-# #     }
-# #
-# #     private static int findRightmostValueLTE(Wrestler[] sortedWrestlers, int valueToFind) {
-# #         int n = sortedWrestlers.length;
-# #         int low = 0;
-# #         int high = n - 1;
-# #
-# #         while (low <= high) {
-# #             int mid = low + (high - low) / 2;
-# #
-# #             if (sortedWrestlers[mid].height <= valueToFind && (mid == n - 1 || sortedWrestlers[mid + 1].height > valueToFind)) {
-# #                 return mid;
-# #             } else if (sortedWrestlers[mid].height > valueToFind) {
-# #                 high = mid - 1;
-# #             } else {
-# #                 low = mid + 1;
-# #             }
-# #         }
-# #
-# #         return -1;
-# #     }
-# #
-# #     private static class SortedTriplet {
-# #         int heightIndex;
-# #         int heightMinusKIndex;
-# #         int heightPlusKIndex;
-# #
-# #         public SortedTriplet(int heightIndex, int heightMinusKIndex, int heightPlusKIndex) {
-# #             this.heightIndex = heightIndex;
-# #             this.heightMinusKIndex = heightMinusKIndex;
-# #             this.heightPlusKIndex = heightPlusKIndex;
-# #         }
-# #     }
-# #
-# #     private static class Wrestler {
-# #         int height;
-# #         int index;
-# #
-# #         public Wrestler(int height, int index) {
-# #             this.height = height;
-# #             this.index = index;
-# #         }
-# #     }
-# #
-# #     private static class Query {
-# #         int low;
-# #         int high;
-# #         int index;
-# #
-# #         public Query(int low, int high, int index) {
-# #             this.low = low;
-# #             this.high = high;
-# #             this.index = index;
-# #         }
-# #     }
-# #
-# #     private static class FenwickTree {
-# #         private int[] tree;
-# #
-# #         public FenwickTree(int capacity) {
-# #             this.tree = new int[capacity];
-# #         }
-# #
-# #         public void add(int index, int value) {
-# #             for (; index < this.tree.length; index |= index + 1) {
-# #                 this.tree[index] += value;
-# #             }
-# #         }
-# #
-# #         public int get(int index) {
-# #             return this.sum(index, index);
-# #         }
-# #
-# #         public int sum(int startIndex, int endIndex) {
-# #             return this.prefixSum(endIndex + 1) - this.prefixSum(startIndex);
-# #         }
-# #
-# #         private int prefixSum(int index) {
-# #             int sum = 0;
-# #
-# #             for (; index > 0; index &= index - 1) {
-# #                 sum += this.tree[index - 1];
-# #             }
-# #
-# #             return sum;
-# #         }
-# #     }
-# # }

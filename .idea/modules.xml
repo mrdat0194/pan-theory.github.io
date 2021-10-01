@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/CS224W_Winter2021/.idea/CS224W_Winter2021.iml" filepath="$USER_HOME$/CS224W_Winter2021/.idea/CS224W_Winter2021.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pan-theory.iml" filepath="$PROJECT_DIR$/.idea/pan-theory.iml" />
     </modules>
   </component>
