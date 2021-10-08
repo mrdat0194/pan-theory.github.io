@@ -209,6 +209,7 @@ class coin():
         return count_dict
 
     def Test_seq(self):
+        nSims = 10000
         counts = coin.gen_seq_Y(nSims)
         for k, v in counts.items():
             print("{0}: {1:3.2f}".format(k, v/nSims))

@@ -17,6 +17,7 @@ def first():
 
     cpd_d = TabularCPD('A', 2, [[1/3], [2/3]])
 
+
     # Associating the CPDs with the network structure.
     model.add_cpds(cpd_t1, cpd_t2 , cpd_d)
 
@@ -27,6 +28,8 @@ def first():
 
     # VariableElimination
     infer = VariableElimination(model)
+
+    # 1. A vs B which has more chance to get when one T1 or T2 positive
 
     posterior_p = infer.query(['T1','T2'], evidence={'A': 0})
     Pa = posterior_p.values[0][1]+ posterior_p.values[1][0]
@@ -40,6 +43,20 @@ def first():
 
     print(Pa*posterior_p.values[1]/Pt)
     print(26/33)
+
+    # 2. 2 T are positive, A chance to get?
+
+    posterior_p = infer.query(['T1','T2'], evidence={'A': 0})
+    Pa = posterior_p.values[0][0]
+
+    posterior_p = infer.query(['T1','T2'], evidence={'A': 1})
+    Pb = posterior_p.values[0][0]
+
+    posterior_p = infer.query(['A'])
+
+    Pt = Pb*posterior_p.values[0] + Pa*posterior_p.values[1]
+
+    print(Pa*posterior_p.values[1]/Pt)
     print(((2/3)*(18/25))/(289/600))
 
 if __name__ == '__main__':
