@@ -17,12 +17,6 @@ Created on Thu Jul 11 16:16:49 2019
 # Complete_Function.append_df_to_excel("/Users/petern/Desktop/hello.xlsx" ,"a")
 
 
-# Given a list of integers and a number K, return which contiguous elements of the list sum to K.
-#
-# For example, if the list is [1, 2, 3, 4, 5] and K is 9, then it should return [2, 3, 4], since 2 + 3 + 4 = 9.
-
-
-
 
 if __name__ == '__main__':
 
