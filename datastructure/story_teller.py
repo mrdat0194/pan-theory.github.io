@@ -12,6 +12,7 @@ from functools import partial
 from collections import defaultdict
 
 from my_functions.timer import print_param, timer
+import heapq
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -841,37 +842,6 @@ def solve(tree, queries):
         2 3
         2 5
         1 6
-    :param tree:
-    :param queries:
-    :return:
-    """
-    n = len(tree)+1
-    tree.sort(key=lambda e:e[2])
-    paths = {0:0}
-    weights = [0]
-    prev = 0
-    make_set(len(tree)+1)
-    for a,b,w in tree:
-        if w != prev:
-            weights.append(w)
-            paths[w] = paths[prev]
-        add_edge(a,b,paths,w)
-        prev=w
-    for l,r in queries:
-        wr = weights[bisect_right(weights,r)-1]
-        wl = weights[bisect_right(weights,l-1)-1]
-        yield paths[wr]-paths[wl]
-
-# An 8-puzzle is a game played on a 3 x 3 board of tiles, with the ninth tile missing.
-# The remaining tiles are labeled 1 through 8 but shuffled randomly.
-# Tiles may slide horizontally or vertically into an empty space, but may not be removed from the board.
-#
-# Design a class to represent the board, and find a series of steps
-# to bring the board to the state [[1, 2, 3], [4, 5, 6], [7, 8, None]].
-
-
-
-if __name__ == '__main__':
 
     nq = input().split()
 
@@ -1024,7 +994,107 @@ if __name__ == '__main__':
 # #
 # #     print((myfile.readlines()))
 #
+    :param tree:
+    :param queries:
+    :return:
+    """
+    n = len(tree)+1
+    tree.sort(key=lambda e:e[2])
+    paths = {0:0}
+    weights = [0]
+    prev = 0
+    make_set(len(tree)+1)
+    for a,b,w in tree:
+        if w != prev:
+            weights.append(w)
+            paths[w] = paths[prev]
+        add_edge(a,b,paths,w)
+        prev=w
+    for l,r in queries:
+        wr = weights[bisect_right(weights,r)-1]
+        wl = weights[bisect_right(weights,l-1)-1]
+        yield paths[wr]-paths[wl]
 
+# An 8-puzzle is a game played on a 3 x 3 board of tiles, with the ninth tile missing.
+# The remaining tiles are labeled 1 through 8 but shuffled randomly.
+# Tiles may slide horizontally or vertically into an empty space, but may not be removed from the board.
+#
+# Design a class to represent the board, and find a series of steps
+# to bring the board to the state [[1, 2, 3], [4, 5, 6], [7, 8, None]].
+import heapq
+from copy import copy
+
+class Board:
+    def __init__(self, nums, goal='123456780'):
+        self.goal = list(map(int, goal))
+        self.tiles = list(map(int, nums))
+        self.empty = self.tiles.index(0)
+        self.original = copy(self.tiles)
+        self.heuristic = self.heuristic()
+
+    def __lt__(self, other):
+        return self.heuristic < other.heuristic
+
+    def manhattan(self, a, b):
+        a_row, a_col = a // 3, a % 3
+        b_row, b_col = b // 3, b % 3
+        return abs(a_row - b_row) + abs(a_col - b_col)
+
+    def heuristic(self):
+        total = 0
+        for digit in range(1, 9):
+            total += self.manhattan(self.original.index(digit), self.tiles.index(digit))
+            total += self.manhattan(self.tiles.index(digit), self.goal.index(digit))
+        return total
+
+    def swap(self, empty, diff):
+        tiles = copy(self.tiles)
+        tiles[empty], tiles[empty + diff] = tiles[empty + diff], tiles[empty]
+        return tiles
+
+    def get_moves(self):
+        successors = []
+        empty = self.empty
+
+        if empty // 3 > 0:
+            successors.append((Board(self.swap(empty, -3)), 'D'))
+        if empty // 3 < 2:
+            successors.append((Board(self.swap(empty, +3)), 'U'))
+        if empty % 3 > 0:
+            successors.append((Board(self.swap(empty, -1)), 'R'))
+        if empty % 3 < 2:
+            successors.append((Board(self.swap(empty, +1)), 'L'))
+
+        return successors
+
+    def search(start):
+        heap = []
+        closed = set()
+        heapq.heappush(heap, [start.heuristic, 0, start, ''])
+
+        while heap:
+            _, moves, board, path = heapq.heappop(heap)
+            if board.tiles == board.goal:
+                return moves, path
+
+            closed.add(tuple(board.tiles))
+            for successor, direction in board.get_moves():
+                if tuple(successor.tiles) not in closed:
+                    item = [moves + 1 + successor.heuristic, moves + 1, successor, path + direction]
+                    heapq.heappush(heap, item)
+
+        return float('inf'), None
+
+    def solve(nums):
+        """
+            nums = '124356870'
+            print(Board.solve(nums))
+        :param nums:
+        :return:
+        """
+        start = Board(nums)
+        count, path = Board.search(start)
+        return count, path
 
 if __name__ == '__main__':
     pass
