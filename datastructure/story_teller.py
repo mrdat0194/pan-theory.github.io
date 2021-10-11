@@ -760,6 +760,271 @@ class greedy:
                 i = j
 
 
+class DisjointSet:
+# Kunno And Tree
+# https://math.stackexchange.com/questions/838792/counting-triplets-with-red-edges-in-each-pair?newreg=60eee35f0b3844de852bda39f6dfec88
+# https://www.hackerrank.com/contests/w5/challenges/kundu-and-tree
+    def __init__(self, N):
+        self.parent = [i for i in range(N)]
+        self.total = [1] * N
+
+    def union(self, a, b):
+        a_parent = self.find(a)
+        b_parent = self.find(b)
+        if a_parent != b_parent:
+            self.parent[b_parent] = a_parent
+            self.total[a_parent] += self.total[b_parent]
+
+    def find(self, a):
+        if self.parent[a] != a:
+            self.parent[a] = self.find(self.parent[a])
+        return self.parent[a]
+
+    def get_total(self, a):
+        return self.total[self.find(a)]
+
+# N = int(input())
+# ds = DisjointSet(N)
+# for i in range(N - 1):
+#     x, y, color = input().split()
+#     if color == 'b':
+#         ds.union(int(x) - 1, int(y) - 1)
+# set_size = {ds.find(i): ds.get_total(i) for i in range(N)}
+# complement = sum(x * (x - 1) * (N - x) // 2 +              #1
+#                  x * (x - 1) * (x - 2) // 6                #2
+#                  for x in set_size.values())
+# print((N * (N - 1) * (N - 2) // 6 - complement) % (10 ** 9 + 7))
+#
+
+# super maximum cost query
+# Complete the solve function below.
+from bisect import bisect_left,bisect_right
+parents = {}
+rep = {}
+def make_set(n):
+    global parents,rep
+    parents=dict(zip(range(1,n+1),range(1,n+1)))
+    rep=dict(zip(range(1,n+1),({i} for i in range(1,n+1))))
+
+def add_edge(x, y,paths,w):
+    xroot = find(x)
+    yroot = find(y)
+    paths[w]+=len(rep[xroot])*len(rep[yroot])
+    if xroot == yroot:
+        return
+    else:
+        if len(rep[yroot])<len(rep[xroot]):
+            parents[yroot] = xroot
+            rep[xroot].update(rep[yroot])
+            del rep[yroot]
+        else:
+            parents[xroot] = yroot
+            rep[yroot].update(rep[xroot])
+            del rep[xroot]
+
+def find(x):
+    if parents[x] != x:
+        parent = find(parents[x])
+        parents[x] = parent
+    return parents[x]
+
+@print_param("output_graph_supersum.txt", BASE_DIR)
+def solve(tree, queries):
+    """
+        5 5
+        1 2 3
+        1 4 2
+        2 5 6
+        3 4 1
+        1 1
+        1 2
+        2 3
+        2 5
+        1 6
+    :param tree:
+    :param queries:
+    :return:
+    """
+    n = len(tree)+1
+    tree.sort(key=lambda e:e[2])
+    paths = {0:0}
+    weights = [0]
+    prev = 0
+    make_set(len(tree)+1)
+    for a,b,w in tree:
+        if w != prev:
+            weights.append(w)
+            paths[w] = paths[prev]
+        add_edge(a,b,paths,w)
+        prev=w
+    for l,r in queries:
+        wr = weights[bisect_right(weights,r)-1]
+        wl = weights[bisect_right(weights,l-1)-1]
+        yield paths[wr]-paths[wl]
+
+# An 8-puzzle is a game played on a 3 x 3 board of tiles, with the ninth tile missing.
+# The remaining tiles are labeled 1 through 8 but shuffled randomly.
+# Tiles may slide horizontally or vertically into an empty space, but may not be removed from the board.
+#
+# Design a class to represent the board, and find a series of steps
+# to bring the board to the state [[1, 2, 3], [4, 5, 6], [7, 8, None]].
+
+
+
+if __name__ == '__main__':
+
+    nq = input().split()
+
+    n = int(nq[0])
+
+    q = int(nq[1])
+
+    tree = []
+
+    for _ in range(n-1):
+        tree.append(list(map(int, input().rstrip().split())))
+
+    queries = []
+
+    for _ in range(q):
+        queries.append(list(map(int, input().rstrip().split())))
+
+    result = solve(tree, queries)
+
+
+#
+# #Another solution to super
+#
+# # Complete the solve function below.
+#
+# #!/bin/python3
+#
+#
+# class disjoint_set:
+#     class Node:
+#         def __init__(self, data = 0):
+#             self.data = data
+#             self.parent = self
+#             self.rank = 0
+#             self.size = 1
+#
+#     def __init__(self):
+#         self.items = dict()
+#         self.ans = 0
+#
+#     def make_set(self, data):
+#         if not data in self.items:
+#             self.items[data] = self.Node(data)
+#         return self.items
+#
+#     def find_set(self, data):
+#         if data in self.items:
+#             node = self.items[data]
+#         else:
+#             return False
+#
+#         if node.parent == node:
+#             return node
+#         node.parent = self.find_set(node.parent.data)
+#
+#         return node.parent
+#
+#     def union(self, rep1, rep2):
+#         node1 = self.find_set(rep1)
+#         node2 = self.find_set(rep2)
+#
+#         #print("union: node1 = {} node2 = {}".format(node1.data, node2.data))
+#
+#         if node1 and node2 and node1 != node2:
+#             if node1.rank >= node2.rank:
+#                 if node1.rank == node2.rank:
+#                     node1.rank += 1
+#                 self.ans -= (node1.size*(node1.size - 1))//2 + (node2.size*(node2.size - 1))//2
+#                 node2.parent = node1
+#                 node1.size += node2.size
+#                 self.ans += (node1.size*(node1.size - 1))//2
+#             else:
+#                 self.ans -= (node1.size*(node1.size - 1))//2 + (node2.size*(node2.size - 1))//2
+#                 node1.parent = node2
+#                 node2.size += node1.size
+#                 self.ans += (node2.size*(node2.size - 1))//2
+#         return True
+#
+#     def get_size(self, rep):
+#         return self.find_set(rep).size
+#
+#     def get_ans(self):
+#         return self.ans
+#
+# # Complete the solve function below.
+# def solve(tree, queries):
+#     dset = disjoint_set()
+#     tree = sorted(tree, key=lambda x: x[2])
+#     weights = list(map(lambda x: x[2], tree))
+#     anses = []
+#
+#     for el in tree:
+#         dset.make_set(el[0])
+#         dset.make_set(el[1])
+#         dset.union(el[0], el[1])
+#
+#         anses.append(dset.get_ans())
+#         print("adding {} ans = {}".format(el, dset.get_ans()))
+#
+#     print("weights: {} anses: {}".format(weights, anses))
+#     # do queries
+#     output = []
+#     for q in queries:
+#         qleft, qright = q[0], q[1]
+#
+#         if qright < weights[0]:
+#             output.append(0)
+#         else:
+#             right = bisect_right(weights, qright) - 1
+#             print("query: {} RIGHT weights[{}] = {}".format(q, right, weights[right]))
+#
+#             if qleft <= weights[0]:
+#                 output.append(anses[right])
+#             else:
+#                 left = bisect_left(weights, qleft) - 1
+#                 print("query: {} LEFT weights[{}] = {}".format(q, left, weights[left]))
+#                 output.append(anses[right] - anses[left])
+#
+#
+#     return output
+# #
+# # if __name__ == '__main__':
+# #     os.environ['HOME'] = '/Users/petern/Desktop/Python/DataStructure/graph_supersum.txt'
+# #
+# #     fptr = open(os.environ['HOME'], 'w')
+# #
+# #     nq = input().split()
+# #
+# #     n = int(nq[0])
+# #
+# #     q = int(nq[1])
+# #
+# #     tree = []
+# #
+# #     for _ in range(n-1):
+# #         tree.append(list(map(int, input().rstrip().split())))
+# #
+# #     queries = []
+# #
+# #     for _ in range(q):
+# #         queries.append(list(map(int, input().rstrip().split())))
+# #
+# #     result = solve(tree, queries)
+# #
+# #     fptr.write(str(result))
+# #
+# #     fptr.close()
+# #
+# #     myfile = open(os.environ['HOME'],'r')
+# #
+# #     print((myfile.readlines()))
+#
+
 
 if __name__ == '__main__':
     pass

@@ -1,6 +1,7 @@
 import time
 import os
 from functools import wraps
+import types
 
 def print_param(name_output = "error.txt", BASE_DIR = os.path.dirname(os.path.abspath(__file__))):
     def print_result(func):
@@ -19,7 +20,11 @@ def print_param(name_output = "error.txt", BASE_DIR = os.path.dirname(os.path.ab
             else:
                 f = open(output, "w")
             result = func(*arg, **kwarg)
-            f.write(str(result))
+            if isinstance(result, types.GeneratorType):
+                f.write('\n'.join(map(str, result)))
+                f.write('\n')
+            else:
+                f.write(str(result))
             f.close()
             myfile = open(output, 'r+')
             print(myfile.readlines())
