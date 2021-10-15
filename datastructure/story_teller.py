@@ -702,6 +702,22 @@ class MySpecialQueue:
         ######### DO NOT MODIFY ABOVE ###########
 
 class Stock:
+    def stock_gain():
+        """
+            the most gain
+            # 7
+            # 3 4 1 2 1 5 1
+            :return:
+        """
+        n = int(input())
+        prices = map(int, input().split())
+        print(prices)
+        gain = 0
+        low = next(prices)
+        for p in prices:
+            low = min(low, p)
+            gain = max(gain, p - low)
+        print("gain",gain)
 
     pass
 
