@@ -92,86 +92,6 @@ from functools import reduce #python 3
 #
 
 
-def pickingNumbers(a):
-    # Write your code here
-    #count the instances of the integer in the array
-    from collections import Counter
-
-    a= ["4","6","5","3","3","1"]
-    count = Counter(a)
-    #get the integer count and the integer + 1 count if exists, else 0
-    #for the unique integers in the array
-
-    all_combos = [(count.get(k) + count.get(str(int(k) + 1),0)) for k in count.keys()]
-    #now all we need is the max value of the combos,
-    #keep in mind the combo can be just one integer!
-    print((all_combos))
-    return max(all_combos)
-
-if __name__ == '__main__':
-    #    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    n = int(input().strip())
-
-    a = list(map(int, input().rstrip().split()))
-
-    result = pickingNumbers(a)
-
-#     fptr.write(str(result) + '\n')
-#
-#     fptr.close()
-# 6
-# 4 6 5 3 3 1
-###
-#
-# def climbingLeaderboard(scores, alice):
-#     # List to contain and return Alice's ranks.
-#     results = []
-#
-#     # Unique values from scores, since duplicate scores will have same rank (their index value).
-#     leaderboard = sorted(set(scores), reverse = True)
-#
-#     # Use this var to track index within leaderboard later.
-#     l = len(leaderboard)
-#
-#     # Loop through each of Alice's scores
-#     for a in alice:
-#
-#         # If Alice's score is >= the score at the index of the end of leaderboard...
-#         # Subtract 1 from that index value (which is also the rank) to check the next score up.
-#         # If the score is less than the next score up, the index (rank) will be added to results.
-#         while (l > 0) and (a >= leaderboard[l-1]):
-#             l -= 1
-#
-#         # We add 1 to the appended value to account for 0-indexing.
-#         results.append(l+1)
-#
-#     return results
-#
-# if __name__ == '__main__':
-#     fptr = open(os.environ['OUTPUT_PATH'], 'w')
-#
-#     scores_count = int(input())
-#
-#     scores = list(map(int, input().rstrip().split()))
-#
-#     alice_count = int(input())
-#
-#     alice = list(map(int, input().rstrip().split()))
-#
-#     result = climbingLeaderboard(scores, alice)
-#
-#     fptr.write('\n'.join(map(str, result)))
-#     fptr.write('\n')
-#
-#     fptr.close()
-
-# 6
-# 100 90 90 80 75 60
-# 5
-# 50 65 77 90 102
-
-
 # def palindrome(word):
 #     for i in range(len(word)//2):
 #         if word[i] != word[-i-1]:
@@ -180,33 +100,6 @@ if __name__ == '__main__':
 
 # print(palindrome("abcba"))
 
-
-# Complete the hourglassSum function below.
-# def hourglassSum(arr):
-#     a = max([sum(arr[j][i:i+3]) + arr[j+1][i+1] + sum(arr[j+2][i:i+3])
-#              for j in range(len(arr)-2) for i in range(len(arr[0])-1)] )
-#     return a
-
-# if __name__ == '__main__':
-#     fptr = open(os.environ['OUTPUT_PATH'], 'w')
-#
-#     arr = []
-#
-#     for _ in range(6):
-#         arr.append(list(map(int, input().rstrip().split())))
-#
-#     result = hourglassSum(arr)
-#
-#     fptr.write(str(result) + '\n')
-#
-#     fptr.close()
-# 1 1 1 0 0 0
-# 0 1 0 0 0 0
-# 1 1 1 0 0 0
-# 0 0 2 4 4 0
-# 0 0 0 2 0 0
-# 0 0 1 2 4 0
-#
 
 
 # def leftrotate(n,d,a):

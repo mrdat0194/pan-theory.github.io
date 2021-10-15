@@ -13,6 +13,7 @@ from collections import defaultdict
 
 from my_functions.timer import print_param, timer
 import heapq
+from typing import Set
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -584,6 +585,52 @@ class Player:
         D = sum([1 if x[1] > x[0] else 0 for x in zip(A,B)])
         return [C, D]
 
+    def climbingLeaderboard(scores, alice):
+        """
+        scores_count = int(input())
+
+        scores = list(map(int, input().rstrip().split()))
+
+        alice_count = int(input())
+
+        alice = list(map(int, input().rstrip().split()))
+
+        result = climbingLeaderboard(scores, alice)
+
+        print(result)
+
+    6
+    100 90 90 80 75 60
+    5
+    50 65 90 77 102
+        :param scores:
+        :param alice:
+        :return: array of rank
+        """
+        # List to contain and return Alice's ranks.
+        results = []
+
+        # Unique values from scores, since duplicate scores will have same rank (their index value).
+        leaderboard = sorted(set(scores), reverse = True)
+
+        # Use this var to track index within leaderboard later.
+        l = len(leaderboard)
+
+        # Loop through each of Alice's scores
+        for a in alice:
+
+            # If Alice's score is >= the score at the index of the end of leaderboard...
+            # Subtract 1 from that index value (which is also the rank) to check the next score up.
+            # If the score is less than the next score up, the index (rank) will be added to results.
+            while (l > 0) and (a >= leaderboard[l-1]):
+                l -= 1
+
+            # We add 1 to the appended value to account for 0-indexing.
+            results.append(l+1)
+
+        return results
+
+
 class Solution(object):
     def nextPermutation(self, nums):
         """
@@ -630,7 +677,6 @@ class MySpecialQueue:
             if data != '':
                 self.queue.append(data)
 
-
     def dequeue(self):
         largest = max(self.queue)
         self.queue.remove(largest)
@@ -656,10 +702,11 @@ class MySpecialQueue:
         ######### DO NOT MODIFY ABOVE ###########
 
 class Stock:
+
     pass
 
 
-from typing import Set
+
 
 class Combo:
     """
@@ -1095,6 +1142,75 @@ class Board:
         start = Board(nums)
         count, path = Board.search(start)
         return count, path
+
+
+
+class spiral:
+
+    def shellcalc(n,s):
+        if(n==1):
+            return s
+        elif(n==0):
+            return 0
+        else:
+            sum=4*s+(n-1)*6
+            s=s+4*(n-1)
+            n=n-2
+            return sum+spiral.shellcalc(n,s)
+
+    def main():
+        # call the function and print the value
+        dim = int(input())
+        diagonal = spiral.shellcalc(dim,1)
+        print (diagonal)
+
+def pickingNumbers(a):
+    """
+        n = int(input().strip())
+
+        a = list(map(int, input().rstrip().split()))
+# 6
+# 4 6 5 3 3 1
+    :param a:
+    :return:
+    """
+    # Write your code here
+    #count the instances of the integer in the array
+    from collections import Counter
+
+    a= ["4","6","5","3","3","1"]
+    count = Counter(a)
+    #get the integer count and the integer + 1 count if exists, else 0
+    #for the unique integers in the array
+
+    all_combos = [(count.get(k) + count.get(str(int(k) + 1),0)) for k in count.keys()]
+    #now all we need is the max value of the combos,
+    #keep in mind the combo can be just one integer!
+    print((all_combos))
+    return max(all_combos)
+
+def hourglassSum(arr):
+    """
+
+    for _ in range(6):
+            arr.append(list(map(int, input().rstrip().split())))
+
+    result = hourglassSum(arr)
+    print(result)
+
+# 1 2 3 0 0 0
+# 0 1 0 0 0 0
+# 1 1 1 0 0 0
+# 0 0 2 4 4 0
+# 0 0 0 2 0 0
+# 0 0 1 2 4 0
+    :param arr:
+    :return:
+    """
+    a = max([sum(arr[j][i:i+3]) + arr[j+1][i+1] + sum(arr[j+2][i:i+3])
+             for j in range(len(arr)-2) for i in range(len(arr[0])-1)] )
+    return a
+
 
 if __name__ == '__main__':
     pass
