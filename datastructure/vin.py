@@ -352,6 +352,227 @@ def rectangles(rec1, rec2):
 
     return (right_x - left_x) * (top_y - bottom_y)
 
+### others
+
+def sum(array):
+    """
+        array = list(map(int, input().split()))
+        print(sum(array))
+    :param array:
+    :return:
+    """
+    return array[0] + array[1]
+
+
+def _lis(arr, n):
+
+    # to allow the access of global variable
+    global maximum
+
+    # Base Case
+    if n == 1:
+        return 1
+
+    # maxEndingHere is the length of LIS ending with arr[n-1]
+    maxEndingHere = 1
+
+    """Recursively get all LIS ending with arr[0], arr[1]..arr[n-2]
+       IF arr[n-1] is maller than arr[n-1], and max ending with
+       arr[n-1] needs to be updated, then update it"""
+    for i in range(1, n):
+        res = _lis(arr, i)
+        if arr[i-1] < arr[n-1] and res+1 > maxEndingHere:
+            maxEndingHere = res + 1
+
+    # Compare maxEndingHere with overall maximum. And
+    # update the overall maximum if needed
+    maximum = max(maximum, maxEndingHere)
+
+    return maxEndingHere
+
+
+def continuous_incr(arr,n):
+    """
+    n = int(input())
+    array = list(map(int, input().split()))
+
+    print(continuous_incr(array,n))
+6
+1 2 5 4 6 2
+    :param arr:
+    :param n:
+    :param maximum:
+    :return:
+    """
+    global maximum
+
+    maximum = 1
+
+    # The function _lis() stores its result in maximum
+    _lis(arr, n)
+
+    return maximum
+
+def lengthOfLIS(nums,n):
+    """
+    n = int(input())
+    array = list(map(int, input().split()))
+
+    print(lengthOfLIS(array,n))
+
+6
+1 2 5 4 6 2
+
+    :type nums: List[int]
+    :rtype: int
+    """
+    LIS = []
+    def insert(target):
+        left, right = 0, len(LIS) - 1
+        # Find the first index "left" which satisfies LIS[left] >= target
+        while left <= right:
+            mid = left + (right - left) // 2
+            if LIS[mid] >= target:
+                right = mid - 1
+            else:
+                left = mid + 1
+        # If not found, append the target.
+        if left == len(LIS):
+            LIS.append(target);
+        else:
+            LIS[left] = target
+
+    for num in nums:
+        insert(num)
+
+    return len(LIS)
+
+
+def isPresent(arr, low, high, value):
+
+    while (low <= high):
+
+        mid = (low + high) // 2
+
+        # value found
+        if (arr[mid] == value):
+            return True
+
+        elif (arr[mid] > value) :
+            high = mid - 1
+        else:
+            low = mid + 1
+
+    # value not found
+    return False
+
+# function to count all pairs
+# from both the sorted arrays
+# whose sum is equal to a given
+# value
+def countPairs(arr1, arr2, m, n, x):
+    """
+    count = 0
+    m = len(arr1)
+    n = len(arr2)
+
+    arr1 = sorted(arr1)
+    arr2 = sorted(arr2)
+
+    for x in arr3:
+        count += countPairs(arr1, arr2,m ,n, x)
+    :param arr1:
+    :param arr2:
+    :param m:
+    :param n:
+    :param x:
+    :return:
+    """
+    count = 0
+    for i in range(m):
+        # for each arr1[i]
+        value = x - arr1[i]
+
+        # check if the 'value'
+        # is present in 'arr2[]'
+        if (isPresent(arr2, 0, n - 1, value)):
+            count += 1
+
+    # required count of pairs
+    return count
+
+from collections import Counter
+
+def countPairs(arr1, arr2, arr3):
+    """
+    n = int(input())
+    arr1 = list(map(int, input().split()))
+    arr2 = list(map(int, input().split()))
+    arr3 = list(map(int, input().split()))
+
+    # arr1 = [1, 5, 3, 7]
+    # arr2 = [2, 3, 5, 8]
+    # arr3 = [10, 3]
+
+    # 3
+    # -1 1 1
+    # -1 2 3
+    # 2 3 -2
+
+    m = len(arr1)
+    n = len(arr2)
+    lookup = dict()
+
+    arr1 = sorted(arr1)
+    arr2 = sorted(arr2)
+
+    # count = countPairs(arr1, arr2, arr3)
+    #
+    # print(count)
+
+
+    # from itertools import permutations
+    #
+    # permut = itertools.permutations(arr1, len(arr2))
+    #
+    # unique_combinations = []
+    #
+    # for comb in permut:
+    #     zipped = zip(comb, arr2)
+    #     unique_combinations.append(list(zipped))
+    #
+    # # printing unique_combination list
+    # print(unique_combinations)
+    # https://stackoverflow.com/questions/54927383/itertools-product-function-with-sum
+
+    import itertools
+
+    a = [arr1, arr2, arr3]
+    permute = itertools.product(*a)
+    counts = 0
+    for i in permute:
+        if (i[0] + i[1] == i[2]):
+            counts += 1
+
+    print(counts)
+
+    :param arr1:
+    :param arr2:
+    :param arr3:
+    :return:
+    """
+    count = 0
+    m = Counter(arr3)
+    n = Counter(arr2)
+    counts = Counter(arr1)
+
+    for i in m:
+        for t in n:
+            complement = i - t
+            if complement in counts.keys():
+                count += counts.get(complement) * m.get(i) * n.get(t)
+    return count
+
 if __name__ == '__main__':
     # mode([1, 1, 2, 3, 3, 3, 3, 4])
     data = [1, 1, 2,2,2,2,2,2, 3, 3, 3, 3, 4,4,4,4,4]
