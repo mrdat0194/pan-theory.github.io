@@ -14,6 +14,8 @@ from collections import defaultdict
 from my_functions.timer import print_param, timer
 import heapq
 from typing import Set
+from typing import List
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -527,6 +529,45 @@ class problem308:
                         F[i][j] += T[i][k] * T[k+1][j] + F[i][k] * F[k+1][j]
 
         return T[0][n - 1]
+
+
+class Node_tree:
+    def __init__(self, val: int):
+        self.val = val
+        self.l = None
+        self.r = None
+
+    def __repr__(self):
+        return "{}=[l->{}, r->{}]".format(self.val, self.l, self.r)
+
+
+def make_cartree(arr: List[int], last: Node_tree, root: Node_tree):
+    """
+    cartree = make_cartree([3, 2, 6, 1, 9], None, None)
+    assert str(cartree) == "1=[l->2=[l->3=[l->None, r->None], r->6=[l->None, r->None]], r->9=[l->None, r->None]]"
+
+    :param arr:
+    :param last:
+    :param root:
+    :return:
+    """
+    if not arr:
+        return root
+
+    node = Node_tree(arr[0])
+    if not last:
+        return make_cartree(arr[1:], node, node)
+
+    if last.val > node.val:
+        node.l = last
+        return make_cartree(arr[1:], node, node)
+
+    last.r = node
+    return make_cartree(arr[1:], last, last)
+
+
+
+
 
 class Player:
     """
@@ -1230,6 +1271,7 @@ def hourglassSum(arr):
 
 if __name__ == '__main__':
     pass
+
 
 
 
