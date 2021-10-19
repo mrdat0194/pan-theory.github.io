@@ -13,7 +13,7 @@ def twoSumHashing(num_arr, pair_sum):
 if __name__ == '__main__':
 
     # Driver Code
-    num_arr = [4, 5, 1, 8]
+    num_arr = [4, 5, 5, 1, 8]
     pair_sum = 9
 
     # Calling function

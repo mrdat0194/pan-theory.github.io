@@ -726,6 +726,12 @@ def estimate_prob(n,k1,k2,m,Log):
     return estimated_probability
 
 def test_estimate_prob(Log):
+    """
+    Log=[]
+    test_estimate_prob(Log)
+    :param Log:
+    :return:
+    """
     x = estimate_prob(100,40,60,1000,Log)
     print(x)
     assert 'float' in str(type(x))
@@ -864,10 +870,9 @@ def combination():
     print("Number of combinations = %i!/(%i!(%i-%i)!) = %i" %(n,k,n,k,len(choose_k)  ))
 
 if __name__ == '__main__':
-    Log=[]
-    test_estimate_prob(Log)
+    # pass
 
-    # test_2()
+    test_2()
     # permute()
     # Coupon_collector.Coupon(0)
 
