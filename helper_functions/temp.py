@@ -17,7 +17,8 @@ from heapq import heapify, heappop, heappush
 import numpy as np
 
 from functools import reduce #python 3
-#
+
+
 # product = reduce((lambda x, y: x * y), [1, 2, 3, 4])
 
 
