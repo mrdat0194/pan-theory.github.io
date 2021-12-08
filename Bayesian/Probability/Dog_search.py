@@ -6,21 +6,18 @@ from numpy import random
 import itertools
 from scipy.special import comb, factorial
 
-# from pgmpy.models import BayesianModel
-# from pgmpy.factors.discrete import TabularCPD
-
 class coin():
     def __init__(self):
         self.num_toss = 10
 
     def toss_coins(self):
-        xpt = np.random.choice(a=['H', 'T'], size=self.num_toss, p=[0.75, 0.25])
+        xpt = np.random.choice(a=['H', 'T'], size=self.num_toss, p=[0.5, 0.5])
         return xpt
 
     def compute_reward(self, in_seq):
         reward = []
-        for idx in range(1, self.num_toss):
-            r = in_seq[idx] == 'T' and in_seq[idx-1] == 'H'
+        for idx in range(0, self.num_toss-1):
+            r = in_seq[idx] == 'T' and in_seq[idx+1] == 'H'
             reward.append(r)
         reward_total = np.sum(reward)
         #print(in_seq, '\n', reward,np.sum(reward) )
@@ -35,11 +32,11 @@ class coin():
         :return:
         '''
 
-        num_simu = 25000
+        num_simu = 1000
         r_vals = []
         for idx in range(num_simu):
-            trial = coin.toss_coins()
-            reward = coin.compute_reward(trial)
+            trial = coin.toss_coins(self)
+            reward = coin.compute_reward(self, trial)
             r_vals.append(reward)
 
         print('Mean R: {0}'.format(np.mean(r_vals)))
@@ -47,8 +44,8 @@ class coin():
 
         #Theory
 
-        n = 10
-        p = 0.75
+        n = 10 -1
+        p = 0.5
         r_mean = n*p*(1-p)
         r_var = n*p*(1-p) + 2*(n-2)*(p**2)*(1-p)**2 + (n-2)*(n-3)*(p**2)*(1-p)**2 - r_mean**2
 
@@ -217,7 +214,8 @@ class coin():
     # 0: 0.78
     # 1: 0.11
     # -1: 0.11
-    #     4.5 Given that the nth transition was a transition to the right (Yn=1), find (approximately) the probability that the state at time n−1 was state 1 (i.e., Xn−1=1). Assume that n is large.
+    #     4.5 Given that the nth transition was a transition to the right (Yn=1), find (approximately)
+    #     the probability that the state at time n−1 was state 1 (i.e., Xn−1=1). Assume that n is large.
 
     def gen_seq_Y2(n_samples = 1000):
         out_seq = []
@@ -278,8 +276,6 @@ class Coupon_collector():
         for i in range(n_simu):
             res.append(Coupon_collector.num_repeats())
         print(np.mean(np.array(res)))
-
-
 
 class Hat():
     def Hat_back_everyone(self):
@@ -871,8 +867,9 @@ def combination():
 
 if __name__ == '__main__':
     # pass
-
-    test_2()
+    coins = coin()
+    coins.test_toss()
+    # test_2()
     # permute()
     # Coupon_collector.Coupon(0)
 

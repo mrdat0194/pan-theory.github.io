@@ -1,20 +1,14 @@
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
 from sklearn.naive_bayes import GaussianNB, MultinomialNB, BernoulliNB
-from tensorflow.python.util import deprecation
-import tensorflow as tf
-import os
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-deprecation._PRINT_DEPRECATION_WARNINGS = False
-
-sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+from sklearn.linear_model import BayesianRidge
 
 
 def model_bayes(X_train, X_test, Y_train, Y_test):
-
-    bayes = MultinomialNB()
+    bayes = BayesianRidge()
+    # bayes = MultinomialNB()
     bayes.fit(X_train, Y_train)
+
     Y_pred = bayes.predict(X_test)
 
     print('')

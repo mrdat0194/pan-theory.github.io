@@ -8,5 +8,5 @@
 # https://en.wikipedia.org/wiki/Gaussian_process
 
 # https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf
-# https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf
+
 

@@ -27,7 +27,9 @@ from dmba import classificationSummary
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+
 print()
+pd.set_option("display.max_rows", None, "display.max_columns", 60, 'display.width', 1000)
 
 # Define paths to data sets. If you don't keep your data in a directory parallel to the code, adjust the method dataDirectory.
 

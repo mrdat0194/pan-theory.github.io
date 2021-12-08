@@ -157,6 +157,7 @@ def random_walk_metropolis(step_sz, color_plot):
     # # plt.show()
     # print(theta_posterior_estimate)
     plt.hist(theta_posterior_estimate, bins=10)
+
     # #sns.distplot(theta_posterior_estimate, hist=False, kde=True, bins=int(20),  hist_kws={'edgecolor':'black'},kde_kws={'linewidth': 1})
     #
     # # x_range = np.linspace(0, 1, 1024)

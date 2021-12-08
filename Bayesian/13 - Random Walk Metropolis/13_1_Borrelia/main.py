@@ -11,7 +11,7 @@ import scipy.special
 
 def main():
     # Q 13.1.1
-    #indep_sampling()
+    # indep_sampling()
 
     # Q 13.1.2
 

@@ -5,7 +5,6 @@ from builtins import range
 # Note: you may need to update your version of future
 # sudo pip install -U future
 
-
 import numpy as np
 import pandas as pd
 from scipy.stats import chi2, chi2_contingency
@@ -37,5 +36,5 @@ B_clk = b.sum()
 B_noclk = b.size - b.sum()
 
 T = np.array([[A_clk, A_noclk], [B_clk, B_noclk]])
-
+# Most authors refer to statistically significant as P < 0.05 and statistically highly significant as P < 0.001 (less than one in a thousand chance of being wrong)
 print(get_p_value(T))

@@ -566,9 +566,6 @@ def make_cartree(arr: List[int], last: Node_tree, root: Node_tree):
     return make_cartree(arr[1:], last, last)
 
 
-
-
-
 class Player:
     """
         series play

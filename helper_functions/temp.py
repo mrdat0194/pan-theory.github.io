@@ -2,7 +2,8 @@
 """
 Pycharm Editor
 
-This is a temporary finished file.
+This is a temporary unfinished file.
+https://github.com/mikexcohen/GED_tutorial
 """
 import math
 import os
@@ -20,7 +21,6 @@ from functools import reduce #python 3
 
 
 # product = reduce((lambda x, y: x * y), [1, 2, 3, 4])
-
 
 # # 0
 # n, d = (3,5)
@@ -63,7 +63,7 @@ from functools import reduce #python 3
 # list(zip(['h', 'e', 'l', 'l', 'o'], [1, 2, 3, 4, 5]))
 # list(zip('hello', range(1, 6)))
 
-# ##
+# # 3
 # def diagonalDifference(a):
 #     # Complete this function
 #     sum1  = 0
@@ -89,20 +89,40 @@ from functools import reduce #python 3
 # #
 # #     fptr.close()
 #
-# ##
-#
+# 3
+# 11 2 4
+# 4 5 6
+# 10 8 -12
 
-
+# # 4
 # def palindrome(word):
 #     for i in range(len(word)//2):
 #         if word[i] != word[-i-1]:
 #             return False
 #     return True
-
+#
 # print(palindrome("abcba"))
-
-
-
+#
+#
+# # 5
+# # Complete the reverseArray function below.
+# def reverseArray(a):
+#     return [str(x) for x in reversed(a)]
+# #
+# # if __name__ == '__main__':
+# #     fptr = open(os.environ['OUTPUT_PATH'], 'w')
+# #
+# #     arr_count = int(input())
+# #
+# #     arr = list(map(int, input().rstrip().split()))
+# #
+# #     res = reverseArray(arr)
+# #
+# #     fptr.write(' '.join(map(str, res)))
+# #     fptr.write('\n')
+# #
+# #     fptr.close()
+#
 # def leftrotate(n,d,a):
 #     arr = [int(arr_t) for arr_t in a]
 #     for _ in range(d):
@@ -110,8 +130,7 @@ from functools import reduce #python 3
 #     print(*arr)
 #
 #     return arr
-
-
+#
 # if __name__ == '__main__':
 #     nd = input().split()
 #
@@ -122,15 +141,15 @@ from functools import reduce #python 3
 #     a = input().rstrip().split()
 #
 #     leftrotate(n,d,a)
-
-
+#
+#
 # 5 4
 # 1 2 3 4 5
 #
-
-
+#
+# # 6
 # Complete the arrayManipulation function below.
-
+#
 # def arrayManipulation(n, queries):
 #     arr = [0]*(n+2)
 #     for a, b, k in queries:
@@ -141,7 +160,7 @@ from functools import reduce #python 3
 #         acc+=x
 #         result = max(result, acc)
 #     return result
-
+#
 # if __name__ == '__main__':
 #     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 #
@@ -165,8 +184,8 @@ from functools import reduce #python 3
 # 1 2 100
 # 2 5 100
 # 3 4 100
-
-
+#
+# # 7
 # Returns true if there is a subset
 # of set[] with sun equal to given sum
 # def isSubsetSum(set,n, sum) :
@@ -187,7 +206,7 @@ from functools import reduce #python 3
 #     # (a) including the last element
 #     # (b) excluding the last element
 #     return isSubsetSum(set, n-1, sum) or isSubsetSum(set, n-1, sum-set[n-1])
-
+#
 # Other solutions
 # A Dynamic Programming solution for subset sum problem
 # Returns true if there is a subset of
@@ -241,7 +260,7 @@ from functools import reduce #python 3
 # #     else:
 # #         print("No subset with given sum")
 #
-#     # This code is contributed by
+# # This code is contributed by
 # # # sahil shelangia.
 # # arr = set
 # # array = set
@@ -262,9 +281,7 @@ from functools import reduce #python 3
 # #
 # # subset(array,num)
 #
-# #
-# ##
-#
+# # 8
 # # Python3 code to demonstrate Difference Array
 #
 # # Creates a diff array D[] for A[] and returns
@@ -326,7 +343,7 @@ from functools import reduce #python 3
 # # printArray()
 # # # This code is contributed by Gitanjali.
 #
-# ##
+# # 9
 # # Time: O(nk) , Space: O(nk)
 # def maxprofitwithktransactions(prices,k):
 #     if not len(prices):
@@ -364,7 +381,7 @@ from functools import reduce #python 3
 # #
 # # maxprofitwithktransaction(prices,k)
 #
-#
+# # 10
 # # Copyright © 2019 AlgoExpert, LLC. All rights reserved.
 # # O(wh) time | O(wh) space
 # def riverSizes(matrix):
@@ -408,6 +425,7 @@ from functools import reduce #python 3
 #         unvisitedNeighbors.append([i, j + 1])
 #     return unvisitedNeighbors
 #
+# # 11
 # ### largestRange: find continuous range in Array.
 #
 # def largestRange(array):
@@ -436,6 +454,7 @@ from functools import reduce #python 3
 #             bestRange = [left + 1, right - 1]
 #     return bestRange
 #
+# # 12
 # ### Birthday chocolate
 #
 # # Complete the birthday function below.
@@ -466,24 +485,7 @@ from functools import reduce #python 3
 # #     fptr.close()
 # #
 #
-# # Complete the reverseArray function below.
-# def reverseArray(a):
-#     return [str(x) for x in reversed(a)]
-# #
-# # if __name__ == '__main__':
-# #     fptr = open(os.environ['OUTPUT_PATH'], 'w')
-# #
-# #     arr_count = int(input())
-# #
-# #     arr = list(map(int, input().rstrip().split()))
-# #
-# #     res = reverseArray(arr)
-# #
-# #     fptr.write(' '.join(map(str, res)))
-# #     fptr.write('\n')
-# #
-# #     fptr.close()
-#
+# # 11
 # # Bisection Algorithm
 #
 # def bisection(f,a,b,N):
@@ -547,6 +549,7 @@ from functools import reduce #python 3
 # #
 # # abs( (1 + 5**0.5)/2 - approx_phi) < error_bound
 #
+# # 13
 # # Graph
 #
 # #!/bin/python3
@@ -606,6 +609,7 @@ from functools import reduce #python 3
 # #
 # #    fptr.close()
 #
+# # 14
 # # Enter your code here. Read input from STDIN. Print output to STDOUT
 #
 # class Node:
@@ -656,8 +660,9 @@ from functools import reduce #python 3
 # #
 # # for query in outputs:
 # #     print(query)
+#STDIN Function ----- -------- 3 6 n = 3, q = 6 Q 1 print the size of the community containing person 1 M 1 2 merge the communities containing persons 1 and 2 ... Q 2 M 2 3 Q 3 Q 2
 #
-
+# # 15
 # #
 # # Complete the minimumAverage function below.
 #
@@ -707,6 +712,7 @@ from functools import reduce #python 3
 #     # 1 9
 #     # 2 5
 #
+# # 16
 # # # O(N^2) setup, O(N) per query.
 # # # This is not properly factored into functions, sorry.
 # #

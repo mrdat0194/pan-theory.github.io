@@ -6,11 +6,6 @@ import tensorflow as tf
 import os
 from sklearn.ensemble import BaggingRegressor
 
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-deprecation._PRINT_DEPRECATION_WARNINGS = False
-
-sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
-
 
 def logistic_model(X_train, X_test, Y_train, Y_test):
 

@@ -29,6 +29,7 @@ def run(train_link, test_link, result_link, aug_link_1, aug_link_2, save_result=
     X_final_test, ID = data_helper.get_data_test(test_link)
     # X_final_test = fit.transform(X_final_test)
     Y_predicted = ada_boost.ada_call(X_final_test, ada_model)
+
     print(Y_predicted)
 
     if save_result == 1:

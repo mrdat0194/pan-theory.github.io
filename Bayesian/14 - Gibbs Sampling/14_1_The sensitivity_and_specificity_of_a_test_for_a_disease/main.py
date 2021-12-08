@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy.special
 
-
 def get_list_val(possible_list):
 
     try:

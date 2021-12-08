@@ -210,46 +210,48 @@ if __name__ == '__main__':
     # print(df_artist_img['insert'])
 
     # Artist_wiki
-    # pd.set_option("display.max_rows", None, "display.max_columns", 60, 'display.width', 1000)
-    # SAMPLE_SPREADSHEET_ID = '1xpFtEI7AhIm5ytc6t1u8DXWOOUTpdjPCKKLND7Hamm4'
-    # SAMPLE_RANGE_NAME = 'Artist_wiki'
-    #
-    # df3 = get_df_from_speadsheet(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
-    #
-    # df3['Memo'] = df3['Memo'].str.lower()
-    # df3['insert'] = '0'
-    # # print(df3['content to add'].apply(lambda x: 1 if len(x) > 10 else 0))
-    # df3['insert'] = df3['content to add'].apply(lambda x: 1 if len(x) > 10 else 0)
-    # df3['content to add'] = df3['content to add'].str.replace("'", r"\'")
-    # df3['content to add'] = df3['content to add'].str.replace('"', r'\"')
-    # print(df3['content to add'][df3['insert'] == 1])
+    pd.set_option("display.max_rows", None, "display.max_columns", 60, 'display.width', 1000)
+    SAMPLE_SPREADSHEET_ID = '1xpFtEI7AhIm5ytc6t1u8DXWOOUTpdjPCKKLND7Hamm4'
+    SAMPLE_RANGE_NAME = 'Artist_wiki'
 
-    # df3['content to add'] =
-    #
-    # df3['insert'] = '0'
-    #
-    # art_wiki_filter = df3[
-    #       (df3['content to add'].notnull())
-    #     & (df3['Artist_uuid'] != '')
-    #     & (df3['url_to_add'].notnull())
-    #     & (df3['url_to_add'] != '')
-    #     & (df3['Memo'] == "added")
-    #     & (df3['content to add'].notnull())
-    #     ][['url_to_add', 'Artist_uuid', 'Memo']].drop_duplicates('Artist_uuid', keep='first')
-    #
-    # row_indexes = artist_filter.index
-    # for row in row_indexes:
-    #         artist_uuid = artist_filter['Artist_uuid'].loc[row]
-    #         url_to_add = artist_filter['url_to_add'].loc[row]
-    #         str_insert = f"insert into v4.crawlingtasks(Id, ActionId,objectid ,TaskDetail, Priority) values (uuid4(), 'OA9CPKSUT6PBGI1ZHPLQUPQCGVYQ71S9','{artist_uuid}',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.url','{url_to_add}','$.object_type','artist','$.when_exists','replace','$.PIC','Copy of  Artist Page 30.11.2020'),99);"
-    #         df3.loc[row, 'insert'] = str_insert
-    # print(df3['insert'][0])
-    #
-    # list_update = df3['insert'].tolist()
-    # list_update.insert(0, 'insert')
-    # list_update = extractDigits(list_update)
-    # range_name = f"{SAMPLE_RANGE_NAME}!J1"
-    # update_value(list_update, range_name, SAMPLE_SPREADSHEET_ID)
+    df3 = get_df_from_speadsheet(SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME)
+
+    df3['Memo'] = df3['Memo'].str.lower()
+    df3['insert'] = '0'
+    # print(df3['content to add'].apply(lambda x: 1 if len(x) > 10 else 0))
+    df3['insert'] = df3['content to add'].apply(lambda x: 1 if len(x) > 10 else 0)
+    df3['content to add'] = df3['content to add'].str.replace("'", r"\'")
+    df3['content to add'] = df3['content to add'].str.replace('"', r'\"')
+    print(df3['content to add'][df3['insert'] == 1])
+
+
+
+    df3['insert'] = '0'
+
+    artist_filter = df3[
+          (df3['content to add'].notnull())
+        & (df3['Artist_uuid'] != '')
+        & (df3['url_to_add'].notnull())
+        & (df3['url_to_add'] != '')
+        & (df3['Memo'] == "added")
+        & (df3['content to add'].notnull())
+        ][['url_to_add', 'Artist_uuid', 'Memo']].drop_duplicates('Artist_uuid', keep='first')
+
+    row_indexes = artist_filter.index
+    for row in row_indexes:
+            artist_uuid = artist_filter['Artist_uuid'].loc[row]
+            url_to_add = artist_filter['url_to_add'].loc[row]
+            str_insert = f"insert into v4.crawlingtasks(Id, ActionId,objectid ,TaskDetail, Priority) values (uuid4(), 'OA9CPKSUT6PBGI1ZHPLQUPQCGVYQ71S9','{artist_uuid}',JSON_SET(IFNULL(crawlingtasks.TaskDetail, JSON_OBJECT()), '$.url','{url_to_add}','$.object_type','artist','$.when_exists','replace','$.PIC','Copy of  Artist Page 30.11.2020'),99);"
+            df3.loc[row, 'insert'] = str_insert
+    print(df3['insert'][0])
+
+    list_update = df3['insert'].tolist()
+    list_update.insert(0, 'insert')
+    list_update = extractDigits(list_update)
+    range_name = f"{SAMPLE_RANGE_NAME}!J1"
+    print(list_update)
+    print(range_name)
+    update_value(list_update, range_name, SAMPLE_SPREADSHEET_ID)
 
     # IFS (OR( F20 = "added"; AND( F20 = "not ok"; NOT(G20 = "none"); NOT(E20 = "none"))) ;"UPDATE artists
     # SET
@@ -262,34 +264,34 @@ if __name__ == '__main__':
     # id = '"& B20 &"'" )
 
 
-    import gspread
-    from google.oauth2.service_account import Credentials
-
-    scopes = [
-        'https://www.googleapis.com/auth/spreadsheets',
-        'https://www.googleapis.com/auth/drive'
-    ]
-
-    credentials = Credentials.from_service_account_file(
-        '/Users/petern/Downloads/pythonapppredict-ecbedb2c4ce5.json',
-        scopes=scopes
-    )
-
-    gc = gspread.authorize(credentials)
-
-    sh = gc.open_by_key("1xpFtEI7AhIm5ytc6t1u8DXWOOUTpdjPCKKLND7Hamm4")
-
-    print(sh.sheet1.get('A1'))
-
-    import pandas as pd
-
-    from gspread_dataframe import get_as_dataframe
-
-
-    worksheet = sh.get_worksheet(0)
-
-    df = get_as_dataframe(worksheet, parse_dates=True, skiprows=1, header=None )
-
-    print(df[4])
-
-    df = pd.read_csv("mycreds1.txt")
+    # import gspread
+    # from google.oauth2.service_account import Credentials
+    #
+    # scopes = [
+    #     'https://www.googleapis.com/auth/spreadsheets',
+    #     'https://www.googleapis.com/auth/drive'
+    # ]
+    #
+    # credentials = Credentials.from_service_account_file(
+    #     '/Users/petern/Downloads/pythonapppredict-ecbedb2c4ce5.json',
+    #     scopes=scopes
+    # )
+    #
+    # gc = gspread.authorize(credentials)
+    #
+    # sh = gc.open_by_key("1xpFtEI7AhIm5ytc6t1u8DXWOOUTpdjPCKKLND7Hamm4")
+    #
+    # print(sh.sheet1.get('A1'))
+    #
+    # import pandas as pd
+    #
+    # from gspread_dataframe import get_as_dataframe
+    #
+    #
+    # worksheet = sh.get_worksheet(0)
+    #
+    # df = get_as_dataframe(worksheet, parse_dates=True, skiprows=1, header=None )
+    #
+    # print(df[4])
+    #
+    # df = pd.read_csv("mycreds1.txt")

@@ -92,13 +92,13 @@ def weight(g, target_nodes, node, limit=-1):
 #     add_edges(g, graph_from, graph_to)
 #     return g.shortest_path_from(val, lambda node: ids[node-1] == color_to_match)
 
-#5 4
-#1 2
-#1 3
-#2 4
-#3 5
-#1 2 3 3 2
-#2
+# 5 4
+# 1 2
+# 1 3
+# 2 4
+# 3 5
+# 1 2 3 3 2
+# 2
 
 if __name__ == '__main__':
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))

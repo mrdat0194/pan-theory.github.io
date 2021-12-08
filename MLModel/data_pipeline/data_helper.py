@@ -129,28 +129,28 @@ def imbalance_solve(X, Y, X_augment_1, Y_augment_1, X_augment_2, Y_augment_2, rm
     X_label1 = []
     len_label0 = 0
 
-    # for i in range(len(Y_extend)):
-    #     if Y_extend[i] == 1:
-    #         X_final.append(X_extend[i])
-    #         Y_final.append(Y_extend[i])
-    #         X_label1.append(X_extend[i])
-    #     else:
-    #         X_row = X_extend[i].copy()
-    #         X_row = list(X_row)
-    #         if X_row.count(rm_values) < rm_thres * len(X_row):
-    #             X_final.append(X_extend[i])
-    #             Y_final.append(Y_extend[i])
-    #             len_label0 += 1
     for i in range(len(Y_extend)):
-        X_row = X_extend[i].copy()
-        X_row = list(X_row)
-        if X_row.count(rm_values) < rm_thres * len(X_row):
+        if Y_extend[i] == 1:
             X_final.append(X_extend[i])
             Y_final.append(Y_extend[i])
-            if Y_extend[i] == 1:
-                X_label1.append(X_extend[i])
-            else:
+            X_label1.append(X_extend[i])
+        else:
+            X_row = X_extend[i].copy()
+            X_row = list(X_row)
+            if X_row.count(rm_values) < rm_thres * len(X_row):
+                X_final.append(X_extend[i])
+                Y_final.append(Y_extend[i])
                 len_label0 += 1
+    # for i in range(len(Y_extend)):
+    #     X_row = X_extend[i].copy()
+    #     X_row = list(X_row)
+    #     if X_row.count(rm_values) < rm_thres * len(X_row):
+    #         X_final.append(X_extend[i])
+    #         Y_final.append(Y_extend[i])
+    #         if Y_extend[i] == 1:
+    #             X_label1.append(X_extend[i])
+    #         else:
+    #             len_label0 += 1
 
     X_augment = []
     Y_augment = []
@@ -196,6 +196,7 @@ def imbalance_solve(X, Y, X_augment_1, Y_augment_1, X_augment_2, Y_augment_2, rm
     Y_final.extend(Y_augment)
     X_final = np.array(X_final)
     Y_final = np.array(Y_final)
+
     print(len(Y_final[Y_final == 1]), len(Y_final[Y_final == 0]))
 
     return X_final, Y_final
