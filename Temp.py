@@ -25,6 +25,15 @@ Created on Thu Jul 11 16:16:49 2019
 # since they have 2 papers with at least 2 citations and
 # the remaining 3 papers have no more than 2 citations.
 
+# def h_index(lst):
+#     result = 0
+#     for i, num_citations in enumerate(reversed(sorted(lst))):
+#         if num_citations > i:
+#             result = i + 1
+#         else:
+#             break
+#     return result
+
 # lst = [-1, 5, 13, 8, 2, 3, 3, 1]
 # k = 5
 # sliding_window_median(lst, k)

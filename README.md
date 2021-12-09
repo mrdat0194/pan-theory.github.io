@@ -1,1 +1,1 @@
-Read index.md instead
+Read index.md instead.
