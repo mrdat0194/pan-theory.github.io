@@ -39,6 +39,28 @@ Created on Thu Jul 11 16:16:49 2019
 #         insort(window, num)
 #         print(window)
 
+# Daily Coding Problem: Problem #385
+# This problem was asked by Apple.
+#
+# You are given a hexadecimal-encoded string that has been XOR'd against a single char.
+#
+# Decrypt the message. For example, given the string:
+#
+# 7a575e5e5d12455d405e561254405d5f1276535b5e4b12715d565b5c551262405d505e575f
+#
+# def xor_decipher(s):
+#     '''
+#         s = '7a575e5e5d12455d405e561254405d5f1276535b5e4b12715d565b5c551262405d505e575f'
+#         xor_decipher(s)
+#     '''
+#     b = bytearray.fromhex(s)
+#
+#     for char in range(256):
+#         result = []
+#         for byte in b:
+#             result.append(byte ^ char)
+#
+#         print(bytes(result).decode())
 
 if __name__ == '__main__':
     pass
