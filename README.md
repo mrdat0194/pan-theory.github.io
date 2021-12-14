@@ -7,3 +7,10 @@ excel : trình bày
 
 tìm cách : python : thực tiễn: implement
 
+Đọc story_teller:
+
+Thuat toan:
+https://github.com/TheAlgorithms/Python
+
+
+
