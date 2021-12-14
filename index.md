@@ -53,12 +53,13 @@ within the project
         - Google_spreadsheet_api: Definition 
         - Google drive with pydrive or quickdrive for ref.
     - info: saving results
-    - models: model of sqlachemy
+    - youtube: Some functions use with youtube content
+    - models: model of sqlalchemy database
     - sql: connection config
     - Elasticsearch: connect and test with database
     - Neo4j:  connect and test with database
     - Mongodb: connect and test with database  
-    - youtube: Some functions use with youtube content
+    
     
 - `my_functions` &mdash; My developing functions to dive deep into solving the core problems.
     - open_cv_function: code to work with openCv:

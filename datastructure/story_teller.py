@@ -10,16 +10,17 @@ from collections import Counter
 from functools import cmp_to_key
 from functools import partial
 from collections import defaultdict
-
-from my_functions.timer import print_param, timer
 import heapq
 from typing import Set
 from typing import List
+
+from my_functions.timer import print_param, timer
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class story_teller:
+
     @print_param("output_miniswap.txt", BASE_DIR)
     def minimumSwaps(arr):
         """
@@ -35,12 +36,14 @@ class story_teller:
 
         arr = list(map(int, input().rstrip().split()))
 
-        res = minimumSwaps(arr)
+        res = story_teller.minimumSwaps(arr)
 
+        Example:
         # 4
         # 4 3 1 2
+        -> 1 2 3 4
 
-        :param arr:
+        :param arr: array = list [1,2,3] { 1: "a", 2..} ( )
         :return:
         """
         ref_arr = sorted(arr)
@@ -1245,7 +1248,6 @@ def pickingNumbers(a):
 
 def hourglassSum(arr):
     """
-
     for _ in range(6):
             arr.append(list(map(int, input().rstrip().split())))
 

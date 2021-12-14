@@ -4,6 +4,12 @@ from functools import wraps
 import types
 
 def print_param(name_output = "error.txt", BASE_DIR = os.path.dirname(os.path.abspath(__file__))):
+    """
+    print and save result
+    :param name_output: .txt file
+    :param BASE_DIR: Where to save file
+    :return:
+    """
     def print_result(func):
         '''
         print_result(sockMerchant(n,ar),"output_sock.txt", BASE_DIR)
