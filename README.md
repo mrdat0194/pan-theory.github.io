@@ -1,4 +1,5 @@
-Read index.md instead
+Read index.md instead, this is just teaching note.
+
 bai tap. mo folder bang commandline
 
 OOP : Object Oriented Programming
@@ -9,8 +10,7 @@ tìm cách : python : thực tiễn: implement
 
 Đọc story_teller:
 
-Thuat toan:
-https://github.com/TheAlgorithms/Python
+Thuat toan: https://github.com/TheAlgorithms/Python
 
 
 
