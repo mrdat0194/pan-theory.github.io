@@ -42,21 +42,24 @@ within the project
 
 ## Library At-A-Glance
 - `adHoc` &mdash; As an analyst, there is always adhoc.
-    - For reproducible result, adHoc can use notebook to test and implement beforehand SQL flow.
-    
-    
+    - For reproducible result, adHoc can use notebook to test and implement beforehand (Eg. SQL flow).
+
+- `Bayesian` &mdash; 
+    - Fundamental usage of Bayesian
+  
 - `main_def` &mdash; The definition that controls all the connection-wide
     - aws: working with aws
     - ggl_api: How to connect to google and edit
         - Google_spreadsheet_api: Definition 
         - Google drive with pydrive or quickdrive for ref.
     - info: saving results
-    - models: model of sqlachemy
+    - youtube: Some functions use with youtube content
+    - models: model of sqlalchemy database
     - sql: connection config
     - Elasticsearch: connect and test with database
     - Neo4j:  connect and test with database
     - Mongodb: connect and test with database  
-    - youtube: Some functions use with youtube content
+    
     
 - `my_functions` &mdash; My developing functions to dive deep into solving the core problems.
     - open_cv_function: code to work with openCv:
@@ -69,7 +72,7 @@ within the project
 - `helper_functions` &mdash; The helper functions define the tools to help others.
     - tools : on-going projects
     - my_sql_connection: example of connecting SQL in ORM and cursors.
-    - 
+    - auto_test
 
 - `datastructure` &mdash; The fun coding time
     - CodingGame : complete Genetic Algorithms,..

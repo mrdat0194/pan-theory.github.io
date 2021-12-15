@@ -94,7 +94,7 @@ class LandingZone():
             # if self._shutle.angle = DANGER_LANDING_ANGLE:
             #     self._shutle.angle = DANGER_LANDING_ANGLE -30
             if self._shutle.angle > DANGER_LANDING_ANGLE:
-                self._shutle.angle = DANGER_LANDING_ANGLE -30
+                self._shutle.angle = DANGER_LANDING_ANGLE - 30
             elif self._shutle.angle < -DANGER_LANDING_ANGLE:
                 self._shutle.angle = -DANGER_LANDING_ANGLE
         else:
