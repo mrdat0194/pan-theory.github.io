@@ -8,7 +8,16 @@ Created on Sun Feb 24 11:56:32 2019
 #setwd()
 # Numpy
 
+import scipy.optimize
 import numpy as np
+def fun(y):
+    x= y**(1.0/3)+y-1
+    return x
+
+a = scipy.optimize.fsolve(fun, np.arange(0, 1, 0.01) )
+print(a[0])
+
+######
 
 arr = np.array([[1,2,3],[4,5,6],[7,8,9]])
 slice = arr[:2,1:3]
