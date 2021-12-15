@@ -3,21 +3,9 @@
 import math
 import numpy as np
 
-# Ví dụ, tập hợp 𝐴=2,3,5,8,11,13 là tập hợp phản nhị phân, tập hợp 𝐵=2,3,5,6,8,11,13 không phải, do nó chứa 2 số 3 và 6.
-
 def antiBinary(x, memo):
-    if x == 1:
-        return 0
-    if x == 2:
-        return 1
-    if x not in memo:
-        if x % 2 == 0:
-            memo += 1
-            antiBinary(x - 1, memo)
-            return memo
-
- 
     """
+    # Ví dụ, tập hợp 𝐴=2,3,5,8,11,13 là tập hợp phản nhị phân, tập hợp 𝐵=2,3,5,6,8,11,13 không phải, do nó chứa 2 số 3 và 6.
 5
 11
 12
@@ -30,13 +18,25 @@ def antiBinary(x, memo):
         myDict = {}
         result = antiBinary(x,myDict)
         print(result)
-        
+    :param x:
+    :param memo:
     :return:
     """
+    if x == 1:
+        return 0
+    if x == 2:
+        return 1
+    if x not in memo:
+        if x % 2 == 0:
+            memo += 1
+            antiBinary(x - 1, memo)
+            return memo
 
 
 ######
 class euler_totient:
+    '''
+
     # https://cp-algorithms.com/algebra/phi-function.html#toc-tgt-6
     # def primeDec(a):
     #     n = a
@@ -85,7 +85,89 @@ class euler_totient:
     # def lcm(m, phim):
     #     return (m * phim) // math.gcd(m, phim)
     #
-    import math
+
+    def fpow(a,b):
+        res=1
+        while b:
+            if b&1:
+                res=res*a
+            a=a*a
+            b>>=1
+        return res
+
+    def fpow(a,b,mod):
+        res=1
+        while b:
+            if b&1:
+                res=res*a%mod
+            a=a*a%mod
+            b>>=1
+        return res
+
+    def gcd(a,b):
+        if b==0:
+            return a
+        return gcd(b,a%b)
+
+    def phi(x):
+        res=x
+        t=x
+        i=2
+        while i*i<=t:
+            if t%i==0:
+                res-=res//i
+                while t%i==0:
+                    t//=i
+            i+=1
+        if t>1:
+            res-=res//t
+        return res
+
+    def lcm(a,b):
+        return a//gcd(a,b)*b
+
+    def exgcd(a,b):
+        if b==0:
+            return [a,1,0]
+        tmp=exgcd(b,a%b)
+        d=tmp[0]
+        x=tmp[1]
+        t=tmp[1]
+        y=tmp[2]
+        x=y
+        y=t-a//b*y
+        return [d,x,y]
+
+    def excrt(r1,m1,r2,m2):
+        M=lcm(m1,m2)
+        d=gcd(m1,m2)
+        p1=m1//d
+        p2=m2//d
+        tmp=exgcd(p1,p2)
+        l1=tmp[1]
+        return (r1+(r2-r1)//d*l1*m1+M)%M
+
+    def solve(a,m):
+        if m==1:
+            return 1
+        pm=phi(m)
+        d=gcd(m,pm)
+        t=solve(a,d)
+        at=fpow(a,t,m)
+        trash,x,y=exgcd(m//d,pm//d)
+        x=x*(((t-at)%pm+pm)%pm)//d
+        x=((x%(pm//d))+pm//d)%(pm//d)+pm//d
+        return x*m+at
+
+    T=int(input())
+    for i in range(1,T+1):
+        a,m=map(int,input().split())
+        print(solve(a,m))
+
+
+    '''
+
+
     def prime_division(n):
         x = 2
         d = {}
@@ -120,6 +202,10 @@ class euler_totient:
 
     def main():
         """
+    https://atcoder.jp/contests/tenka1-2017/tasks/tenka1_2017_f
+
+    checking by 3**result -result  :: 8
+
     4
     3 8
     2 4
@@ -131,7 +217,7 @@ class euler_totient:
     177 168
     2028 88772
 
-    euler_toitient.main()
+    euler_totient.main()
 
         :return:
         """
@@ -185,62 +271,66 @@ def LongestIncreasingSubsequenceLength(v):
             print(bisect_left(tail, v[i], 0, length-1))
     return length
 
+class T3sum:
+    """
+    list result of sum of 2 arrays
+    arr1 = [1, 2]
+    arr1 = [1, 2, 3]
+    arr2 = [1, 2, 1]
+    T3sum.findCount(arr1, arr2)
+    """
+    def multiply(A,B):
+        n = 1
 
-def multiply(A,B):
-    n = 1
+        while (n < len(A)+ len(B)):
+            n <<= 1
 
-    while (n < len(A)+ len(B)):
-        n <<= 1
-
-    A = np.array(A)
-    A.resize(n)
-    B = np.array(B)
-    B.resize(n)
-
-
-    Fa = np.fft.fft(A)
-    Fb = np.fft.fft(B)
-
-    FA = Fa*Fb
-
-    FA = np.fft.ifft(FA)
-
-    result = list()
-
-    for i in range(n):
-        result.append(round(FA[i].real))
-
-    return result
-
-def findCount(Arr1, Arr2):
-    MAX = max(max(Arr1), max(Arr2))
-
-    n = len(Arr1)
-    m = len(Arr2)
-
-    A = [0]*(MAX+1)
-    for i in range(n):
-        A[Arr1[i]] += 1
-
-    B = [0]*(MAX+1)
-    for i in range(m):
-        B[Arr2[i]] += 1
+        A = np.array(A)
+        A.resize(n)
+        B = np.array(B)
+        B.resize(n)
 
 
-    P = multiply(A,B)
+        Fa = np.fft.fft(A)
+        Fb = np.fft.fft(B)
+
+        FA = Fa*Fb
+
+        FA = np.fft.ifft(FA)
+
+        result = list()
+
+        for i in range(n):
+            result.append(round(FA[i].real))
+
+        return result
+
+    def findCount(Arr1, Arr2):
+
+        MAX = max(max(Arr1), max(Arr2))
+
+        n = len(Arr1)
+        m = len(Arr2)
+
+        A = [0]*(MAX+1)
+        for i in range(n):
+            A[Arr1[i]] += 1
+
+        B = [0]*(MAX+1)
+        for i in range(m):
+            B[Arr2[i]] += 1
 
 
-    for i in range(2*MAX+1):
-        if P[i] > 0:
-            print(str(i) + "->" + str(P[i]))
+        P = T3sum.multiply(A,B)
+
+
+        for i in range(2*MAX+1):
+            if P[i] > 0:
+                print(str(i) + "->" + str(P[i]))
 
 
 if __name__=='__main__':
-    arr1 = [1, 2]
-    arr2 = [1, 2, 1]
-    findCount(arr1, arr2)
-
-
+    pass
 
 
 
