@@ -136,8 +136,8 @@ class story_teller:
             # range(P-1,i).  To make sure we don't try an
             # index less than zero, replace P-1 with
             # max P-1,0)
-
-            for j in range(max(P-i,0),i):
+            # change 100 accordingly
+            for j in range(max(P-100,0),i):
                 if Q[j] > P:
                     moves += 1
         return moves
@@ -182,7 +182,6 @@ class story_teller:
         for i in range(len(string)):
             for j in range(1, len(string) - i + 1):
                 key = frozenset(Counter(string[i:i+j]).items()) # O(N) time key extract
-                print(key)
                 buckets[key] = buckets.get(key, 0) + 1
         count = 0
         # print(buckets)
@@ -238,7 +237,6 @@ class story_teller:
         for word in magazine:
             d.setdefault(word, 0)
             d[word] += 1
-            # print(d)
         for word in note:
             if word in d:
                 d[word] -= 1

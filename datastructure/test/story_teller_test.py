@@ -13,6 +13,13 @@ class TestStory(unittest.TestCase):
         res = story_teller.minimumBribes(arr)
         self.assertEqual(res, 4)
 
+        arr = [5,1,2,3,4]
+        res = story_teller.minimumBribes(arr)
+        self.assertEqual(res, 4)
+
+        arr = [5,4,3,1,2]
+        res = story_teller.minimumBribes(arr)
+        self.assertEqual(res, 9)
 
 if __name__ == '__main__':
 
