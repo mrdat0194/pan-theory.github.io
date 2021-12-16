@@ -140,8 +140,7 @@ class story_teller:
             for j in range(max(P-i,0),i):
                 if Q[j] > P:
                     moves += 1
-            print(moves)
-            return moves
+        return moves
 
     @print_param("twoString.txt", BASE_DIR)
     def twoStrings(s1, s2):
