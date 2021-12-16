@@ -65,8 +65,8 @@ within the project
     - open_cv_function: code to work with openCv:
         - Blink detection ...
     - text_similarity: code to work with fuzzy word
-    - Music: editting music  
-    - others (Pic_toText, Text_toSpeech)
+    - ###### Music: editting music
+  - others (Pic_toText, Text_toSpeech)
     
     
 - `helper_functions` &mdash; The helper functions define the tools to help others.
