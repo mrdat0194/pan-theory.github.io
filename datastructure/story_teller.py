@@ -1,5 +1,6 @@
 #!/bin/python3
 
+
 import os
 import math
 import random
@@ -15,7 +16,6 @@ from typing import Set
 from typing import List
 
 from my_functions.timer import print_param, timer
-
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -47,7 +47,9 @@ class story_teller:
         :return:
         """
         ref_arr = sorted(arr)
+
         index_dict = {v: i for i,v in enumerate(arr)}
+
         swaps = 0
 
         for i,v in enumerate(arr):
@@ -87,11 +89,11 @@ class story_teller:
                 q = list(map(int, input().rstrip().split()))
 
             story_teller.minimumBribes(q)
-        # 2
-        # 5
-        # 2 1 5 3 4
-        # 5
-        # 2 5 1 3 4
+        2
+        5
+        2 1 5 3 4
+        5
+        2 5 1 3 4
 
         :param Q:
         :return:
@@ -118,7 +120,6 @@ class story_teller:
             #     print("Too chaotic")
             #     return
             #
-
             # From here on out, we don't care if P has moved
             # forwards, it is better to count how many times
             # P has RECEIVED a bribe, by looking at who is
@@ -135,7 +136,7 @@ class story_teller:
             # range(P-1,i).  To make sure we don't try an
             # index less than zero, replace P-1 with
             # max P-1,0)
-
+            # change 100 accordingly
             for j in range(max(P-100,0),i):
                 if Q[j] > P:
                     moves += 1
@@ -181,7 +182,6 @@ class story_teller:
         for i in range(len(string)):
             for j in range(1, len(string) - i + 1):
                 key = frozenset(Counter(string[i:i+j]).items()) # O(N) time key extract
-                # print(key)
                 buckets[key] = buckets.get(key, 0) + 1
         count = 0
         # print(buckets)
@@ -237,7 +237,6 @@ class story_teller:
         for word in magazine:
             d.setdefault(word, 0)
             d[word] += 1
-            # print(d)
         for word in note:
             if word in d:
                 d[word] -= 1
@@ -262,7 +261,6 @@ class story_teller:
         :param ar: 10 20 20 10 10 30 50 10 20
         :return: sum of pair of sock
         """
-
         sum=0
         for values in Counter(ar).values():
             sum+=values//2
@@ -1268,7 +1266,9 @@ def hourglassSum(arr):
 
 
 if __name__ == '__main__':
-    pass
+
+    print(story_teller.sherlockAndAnagrams("ifailuhkqq"))
+
 
 
 
