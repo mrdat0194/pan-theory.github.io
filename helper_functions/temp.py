@@ -19,6 +19,20 @@ import numpy as np
 
 from functools import reduce #python 3
 
+import pandas as pd
+import ast
+
+table = pd.read_csv("regular_expression_test.txt", header = None, usecols=[0], names=['colA'])
+
+row_indexes = table.index
+
+for row in row_indexes:
+    value = str(table['colA'].loc[row])
+    if value != 'nan':
+        res = ast.literal_eval(value)
+        for values in res:
+            print(values)
+            print(values[0])
 
 # product = reduce((lambda x, y: x * y), [1, 2, 3, 4])
 
