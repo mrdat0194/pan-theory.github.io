@@ -7,7 +7,7 @@ import pandas as pd
 
 def creat_new_sheet_and_update_data_from_df(df: object, gsheet_id: str, new_sheet_name: str):
     '''
-    :param df: dataframe column_type: not date_time and fillna before update value to gsheet, Eg: df.fillna(value='None').astype({"created_at": 'str'})
+    :param df: pandas dataframe column_type: not date_time and fillna before update value to gsheet, Eg: df.fillna(value='None').astype({"created_at": 'str'})
     :param gsheet_id:
     :param new_sheet_name:
     :return:

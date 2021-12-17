@@ -64,5 +64,6 @@ def heap_sort(arr):
 
 
 heap = [5, 10, 4, 8, 3, 0, 9, 11]
+
 heap_sort(heap)
 print(*heap)

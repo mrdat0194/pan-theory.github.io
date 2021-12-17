@@ -28,12 +28,11 @@ k = norm.ppf(CR)
 
 h_y =0.6
 
-safety_stock = norm.ppf(CR)*std_D*np.sqrt(day_to_check+day_to_fill)
+safety_stock = norm.ppf(CR)*std_D*np.sqrt(day_to_check + day_to_fill)
 
 order_upto = Demand*(day_to_check+day_to_fill) + k*std_D*np.sqrt(day_to_check+day_to_fill)
 
 EOQ = np.sqrt((2*Demand*order_cost)/(holding_cost))
-
 
 print(EOQ)
 

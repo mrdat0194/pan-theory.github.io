@@ -35,6 +35,7 @@ warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 warnings.filterwarnings(action='ignore', category=UndefinedMetricWarning)
 
 data = pd.read_csv('/Users/petern/ML-From-Scratch/mlfromscratch/data/TempLinkoping2016.txt', sep="\t")
+
 time = np.atleast_2d(data["time"].values).T
 temp = np.atleast_2d(data["temp"].values).T
 
@@ -59,8 +60,6 @@ y_pretrain = list()
 # nn package also has different loss functions.
 # we use MSE for a regression task
 criterion = torch.nn.MSELoss()
-
-
 
 for mod in range(n_networks):
     # nn package to create our linear model
@@ -269,3 +268,6 @@ plt.show()
 # m2 = ax1.scatter(366 * X_test, Y_test, color=cmap(0.5), s=10)
 #
 # plt.show()
+
+
+
