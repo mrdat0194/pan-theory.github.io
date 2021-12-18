@@ -274,11 +274,16 @@ def LongestIncreasingSubsequenceLength(v):
 class T3sum:
     """
     list result of sum of 2 arrays
+
+    # arr1 = [1, 2, 3]
+
     arr1 = [1, 2]
-    arr1 = [1, 2, 3]
     arr2 = [1, 2, 1]
+
+
     T3sum.findCount(arr1, arr2)
     """
+
     def multiply(A,B):
         n = 1
 
@@ -320,9 +325,7 @@ class T3sum:
         for i in range(m):
             B[Arr2[i]] += 1
 
-
         P = T3sum.multiply(A,B)
-
 
         for i in range(2*MAX+1):
             if P[i] > 0:
@@ -330,7 +333,11 @@ class T3sum:
 
 
 if __name__=='__main__':
-    pass
+    arr1 = [1, 2]
+    arr2 = [1, 2, 1]
+
+
+
 
 
 

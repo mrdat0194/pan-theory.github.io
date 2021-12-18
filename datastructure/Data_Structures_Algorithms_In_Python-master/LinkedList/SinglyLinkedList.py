@@ -104,4 +104,4 @@ if __name__ == '__main__':
     linked_list.insert_at_beg(1)
     linked_list.insert_at_beg(9)
     linked_list.print_data()
-    linked_list.index_valuefind(1) 
+    linked_list.index_valuefind(2)

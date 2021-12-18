@@ -1,6 +1,8 @@
 n = int(input())  # the number of temperatures to analyse
 """
-the first comes -1 or 1  will be save as closest.
+the first comes -1 or 1  will be save as closest as 0
+4
+-2 1 3 5 
 """
 closest = None
 

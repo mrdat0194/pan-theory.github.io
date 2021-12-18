@@ -20,7 +20,7 @@ from my_functions.timer import print_param, timer
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class story_teller:
-
+    @timer
     @print_param("output_miniswap.txt", BASE_DIR)
     def minimumSwaps(arr):
         """
@@ -95,7 +95,7 @@ class story_teller:
         5
         2 5 1 3 4
 
-        :param Q:
+        :param Q: arr
         :return:
         '''
         #
@@ -138,6 +138,7 @@ class story_teller:
             # max P-1,0)
             # change 100 accordingly
             for j in range(max(P-100,0),i):
+
                 if Q[j] > P:
                     moves += 1
         return moves

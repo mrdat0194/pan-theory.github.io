@@ -19,6 +19,7 @@ def partition(arr, low, high):
 
 
 # Function to do Quick sort
+
 def quickSort(arr, low, high):
     if low < high:
         # pivot is set to its right position after partition call
@@ -37,6 +38,7 @@ print("Before sorting array is:")
 for i in range(n):
     print(arr[i], end=' -> ')
 print('end')
+
 
 quickSort(arr, 0, n - 1)
 
