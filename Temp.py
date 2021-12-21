@@ -71,6 +71,81 @@ Created on Thu Jul 11 16:16:49 2019
 #
 #         print(bytes(result).decode())
 
+# Daily Coding Problem: Problem #390
+# You are given an unsorted list of 999,000 unique integers, each from 1 and 1,000,000. Find the missing 1000 numbers.
+# What is the computational and space complexity of your solution?
+# def find_missing_nums(lst):
+#     # Initialize our bitarray and set
+#     bitarray = [False for _ in range(1000000)]
+#     s = set(lst)
+#
+#     # Go over nums from 1 to n + 1
+#     for i in range(1, 1000001):
+#         if i in s:
+#             bitarray[i - 1] = True
+#
+#     # Iterate over bitarray, generate results
+#     results = []
+#     for i in range(1, 1000001):
+#         if not bitarray[i - 1]:
+#             results.append(i)
+#     return results
+
+
+# Daily Coding Problem: Problem #391
+# user1 = ['/home', '/register', '/login', '/user', '/one', '/two']
+# user2 = ['/home', '/red', '/login', '/user', '/one', '/pink']
+# You should return the following:
+#
+# ['/login', '/user', '/one']
+# def longest_contiguous_history(user1, user2):
+#     longest_result = []
+#     for i in range(len(user1)):
+#         for j in range(i + 1, len(user1) + 1):
+#             subarray1 = user1[i:j]
+#
+#             for k in range(len(user2) - len(subarray1)):
+#                 subarray2 = user2[k:k + len(subarray1)]
+#                 if subarray1 == subarray2 and len(subarray1) > len(longest_result):
+#                     longest_result = subarray1
+#
+#     return longest_result
+
+# Daily Coding Problem: Problem #392
+# Determine the perimeter of this island.
+#
+# For example, given the following matrix:
+#
+# [[0, 1, 1, 0],
+#  [1, 1, 1, 0],
+#  [0, 1, 1, 0],
+#  [0, 0, 1, 0]]
+# Return 14.
+# def get_num_neighbours(board, r, c):
+#     num = 0
+#     if r > 0:
+#         num += board[r - 1][c] == 1
+#
+#     if r < len(board) - 1:
+#         num += board[r + 1][c] == 1
+#
+#     if c > 0:
+#         num += board[r][c - 1] == 1
+#
+#     if c < len(board[0]) - 1:
+#         num += board[r][c + 1] == 1
+#
+#     return num
+#
+#
+# def island_perimeter(board):
+#     perimeter = 0
+#     for r, row in enumerate(board):
+#         for c, val in enumerate(row):
+#             if val == 1:
+#                 perimeter += 4 - get_num_neighbours(board, r, c)
+#     return perimeter
+
 if __name__ == '__main__':
     pass
 

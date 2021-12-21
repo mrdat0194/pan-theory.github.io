@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$USER_HOME$/CS224W_Winter2021/.idea/CS224W_Winter2021.iml" filepath="$USER_HOME$/CS224W_Winter2021/.idea/CS224W_Winter2021.iml" />
+      <module fileurl="file://$USER_HOME$/Clean-Code-in-Python-Second-Edition/.idea/Clean-Code-in-Python-Second-Edition.iml" filepath="$USER_HOME$/Clean-Code-in-Python-Second-Edition/.idea/Clean-Code-in-Python-Second-Edition.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pan-theory.iml" filepath="$PROJECT_DIR$/.idea/pan-theory.iml" />
       <module fileurl="file://$USER_HOME$/solid.python/.idea/solid.python.iml" filepath="$USER_HOME$/solid.python/.idea/solid.python.iml" />
     </modules>

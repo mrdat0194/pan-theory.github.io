@@ -123,6 +123,6 @@ insertNode(newBST,80)
 insertNode(newBST,100)
 insertNode(newBST,20)
 insertNode(newBST,40)
-print(deleteBST(newBST))
+# print(deleteBST(newBST))
 levelOrderTraversal(newBST)
 

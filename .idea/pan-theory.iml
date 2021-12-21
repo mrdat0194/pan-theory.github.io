@@ -8,5 +8,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CS224W_Winter2021" />
     <orderEntry type="module" module-name="solid.python" />
+    <orderEntry type="module" module-name="Clean-Code-in-Python-Second-Edition" />
   </component>
 </module>

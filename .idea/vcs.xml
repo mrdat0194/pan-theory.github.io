@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$USER_HOME$/Clean-Code-in-Python-Second-Edition" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/adHoc/F/Rico/codebase" vcs="Git" />
     <mapping directory="$USER_HOME$/solid.python" vcs="Git" />
   </component>
