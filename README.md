@@ -18,15 +18,14 @@ sort and timing
 
 4) Thuat toan: https://github.com/TheAlgorithms/Python
                 https://github.com/keon/algorithms.git
-
-5) ML/AI: https://probml.github.io/pml-book/
-   https://github.com/Atcold/pytorch-Deep-Learning.git
-   https://github.com/eriklindernoren/ML-From-Scratch.git
-   https://github.com/ageron/handson-ml2.git
    
-6) Solid coding/ Clean code: https://github.com/PacktPublishing/Clean-Code-in-Python-Second-Edition.git
+   
+5) Solid coding/ Clean code: https://github.com/PacktPublishing/Clean-Code-in-Python-Second-Edition.git
    https://github.com/mynameisfiber/high_performance_python_2e.git
 
 
-
+6) ML/AI: https://probml.github.io/pml-book/
+   https://github.com/Atcold/pytorch-Deep-Learning.git
+   https://github.com/eriklindernoren/ML-From-Scratch.git
+   https://github.com/ageron/handson-ml2.git
 

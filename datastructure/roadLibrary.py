@@ -12,6 +12,7 @@ def DFSrec(adj,s,visited,val):
 
 def roadsAndLibraries(n, c_lib, c_road, cities):
     '''
+    https://www.hackerrank.com/challenges/torque-and-development/problem
     STDIN       Function
 -----       --------
 2           q = 2

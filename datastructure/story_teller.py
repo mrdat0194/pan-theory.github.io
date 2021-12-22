@@ -247,8 +247,8 @@ class story_teller:
         return all([x >= 0 for x in d.values()])
 
 
-    def ransom_note(magazine, rasom):
-        return (Counter(rasom) - Counter(magazine)) == {}
+    def ransom_note(magazine, ransom):
+        return (Counter(ransom) - Counter(magazine)) == {}
 
     @timer
     @print_param("output_sock.txt", BASE_DIR)
