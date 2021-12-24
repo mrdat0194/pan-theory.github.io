@@ -146,6 +146,20 @@ Created on Thu Jul 11 16:16:49 2019
 #                 perimeter += 4 - get_num_neighbours(board, r, c)
 #     return perimeter
 
+# Daily Coding Problem: Problem #395
+# This problem was asked by Robinhood.
+#
+# Given an array of strings, group anagrams together.
+#
+# For example, given the following array:
+#
+# ['eat', 'ate', 'apt', 'pat', 'tea', 'now']
+# Return:
+#
+# [['eat', 'ate', 'tea'],
+#  ['apt', 'pat'],
+#  ['now']]
+
 if __name__ == '__main__':
     pass
 
