@@ -159,6 +159,185 @@ Created on Thu Jul 11 16:16:49 2019
 # [['eat', 'ate', 'tea'],
 #  ['apt', 'pat'],
 #  ['now']]
+#
+# from collections import defaultdict
+#
+# def group_anagrams(words):
+#     groups = defaultdict(list)
+#     for word in words:
+#         key = ''.join(sorted(word))
+#         groups[key].append(word)
+#
+#     result = []
+#     for group in groups.values():
+#         result.append(group)
+#     return result
+
+# Daily Coding Problem: Problem #399
+# Given a list of strictly positive integers, partition the list into 3 contiguous partitions which each sum up to the same value. If not possible, return null.
+# # Python3 implementation of the given approach
+# https://www.ijcai.org/Proceedings/09/Papers/096.pdf
+# https://www.youtube.com/watch?v=ZaSMm2xvatw
+# # This function returns true if the array
+# # can be divided into three equal sum segments
+# Function to check if all subsets are filled or not
+# def checkSum(sumLeft, k):
+#
+#     r = True
+#     for i in range(k):
+#         if sumLeft[i]:
+#             r = False
+#
+#     return r
+# Helper function for solving `k` partition problem.
+# It returns true if there exist `k` subsets with the given sum
+# def subsetSum(S, n, sumLeft, A, k):
+#
+#     # return true if a subset is found
+#     if checkSum(sumLeft, k):
+#         return True
+#
+#     # base case: no items left
+#     if n < 0:
+#         return False
+#
+#     result = False
+#
+#     # consider current item `S[n]` and explore all possibilities
+#     # using backtracking
+#     for i in range(k):
+#         if not result and (sumLeft[i] - S[n]) >= 0:
+#
+#             # mark the current element subset
+#             A[n] = i + 1
+#
+#             # add the current item to the i'th subset
+#             sumLeft[i] = sumLeft[i] - S[n]
+#             print('sum1',sumLeft)
+#
+#             # recur for remaining items
+#             result = subsetSum(S, n - 1, sumLeft, A, k)
+#
+#             # backtrack: remove the current item from the i'th subset
+#             sumLeft[i] = sumLeft[i] + S[n]
+#             print('sum2',sumLeft)
+#
+#     # return true if we get a solution
+#     return result
+#
+#
+# # Function for solving k–partition problem. It prints the subsets if
+# # set `S[0…n-1]` can be divided into `k` subsets with equal sum
+# def partition(S, k):
+#
+#     # get the total number of items in `S`
+#     n = len(S)
+#
+#     # base case
+#     if n < k:
+#         print("k-partition of set S is not possible")
+#         return
+#
+#     # get the sum of all elements in the set
+#     total = sum(S)
+#     A = [None] * n
+#
+#     # create a list of size `k` for each subset and initialize it
+#     # by their expected sum, i.e., `sum/k`
+#     sumLeft = [total // k] * k
+#     # print(sumLeft)
+#
+#     # return true if the sum is divisible by `k` and set `S` can
+#     # be divided into `k` subsets with equal sum
+#     result = (total % k) == 0 and subsetSum(S, n - 1, sumLeft, A, k)
+#
+#     if not result:
+#         print("k-partition of set S is not possible")
+#         return
+#
+#     # print all k–partitions
+#     for i in range(k):
+#         print(f"Partition {i} is", [S[j] for j in range(n) if A[j] == i + 1])
+#
+#
+# # Input: a set of integers
+# S = [7, 3, 5, 12, 2, 1, 5, 3, 8, 4, 6, 4]
+# k = 5
+#
+# partition(S, k)
+#
+# https://newsletterest.com/newsletters/2109/Daily%20Coding%20Problem?pageIndex=13
+# Daily Coding Problem #405
+# Given a tree, find the largest tree/subtree that is a BST.
+#
+# Given a tree, return the size of the largest tree/subtree that is a BST.
+
+class TreeNode:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.key = key
+
+def is_bst(root):
+    def is_bst_helper(root, min_key, max_key):
+        if root is None:
+            return True
+        if root.key <= min_key or root.key >= max_key:
+            return False
+        return is_bst_helper(root.left, min_key, root.key) and \
+               is_bst_helper(root.right, root.key, max_key)
+
+    return is_bst_helper(root, float('-inf'), float('inf'))
+
+def size(root):
+    if root is None:
+        return 0
+    return size(root.left) + size(root.right) + 1
+
+def largest_bst_subtree(root):
+    def helper(root):
+        # Returns a tuple of (size, root) of the largest subtree.
+        if is_bst(root):
+            return (size(root), root)
+        return max(helper(root.left), helper(root.right), key=lambda x: x[0])
+
+    return helper(root)[1]
+
+def largest_bst_subtree(root):
+    max_size = 0
+    max_root = None
+    def helper(root):
+        # Returns a tuple of (size, min_key, max_key) of the subtree.
+        nonlocal max_size
+        nonlocal max_root
+        if root is None:
+            return (0, float('inf'), float('-inf'))
+        left = helper(root.left)
+        right = helper(root.right)
+        if root.key > left[2] and root.key < right[1]:
+            size = left[0] + right[0] + 1
+            if size > max_size:
+                max_size = size
+                max_root = root
+            return (size, min(root.key, left[1]), max(root.key, right[2]))
+        else:
+            return (0, float('-inf'), float('inf'))
+
+    helper(root)
+    return max_root
+
+self.tree = BST()
+self.tree.insert(10)
+self.tree.insert(15)
+self.tree.insert(6)
+self.tree.insert(4)
+self.tree.insert(9)
+self.tree.insert(12)
+self.tree.insert(24)
+self.tree.insert(7)
+self.tree.insert(20)
+self.tree.insert(30)
+self.tree.insert(18)
 
 if __name__ == '__main__':
     pass
