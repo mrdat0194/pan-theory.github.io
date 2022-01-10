@@ -12,6 +12,7 @@ def DFSrec(adj,s,visited,val):
 
 def roadsAndLibraries(n, c_lib, c_road, cities):
     '''
+    Return total cost
     https://www.hackerrank.com/challenges/torque-and-development/problem
     STDIN       Function
 -----       --------
@@ -27,10 +28,10 @@ def roadsAndLibraries(n, c_lib, c_road, cities):
 1 2
 2 3
 5 6
-    :param n:
-    :param c_lib:
-    :param c_road:
-    :param cities:
+    :param n: number of road can be built
+    :param c_lib: cost of library
+    :param c_road: cost of road building
+    :param cities: road can be built between cities
     :return:
     '''
     print("n",n)
@@ -38,14 +39,13 @@ def roadsAndLibraries(n, c_lib, c_road, cities):
     print("c_road",c_road)
     print("cities",cities)
 
-    if c_road>c_lib:
-        return n*c_lib
+    if c_road > c_lib:
+        return n * c_lib
     else:
 
         ##adjacency matrix construction
         adj = dict()
         for i in cities:
-            print("i",i)
             if i[0] in adj:
                 adj[i[0]].append(i[1])
             else:
@@ -63,9 +63,6 @@ def roadsAndLibraries(n, c_lib, c_road, cities):
                 adj[i] = []
 
 
-        print("adj",adj)
-
-
         ##algorithm
         visited = [0]*(n+1)
 
@@ -79,9 +76,6 @@ def roadsAndLibraries(n, c_lib, c_road, cities):
                 nodes = DFSrec(adj,i,visited,val)
                 countComponents += 1
                 l.append(nodes)
-
-        print("l",l)
-        print("countComponents",countComponents)
 
         total = 0
         for i in l:

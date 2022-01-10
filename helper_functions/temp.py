@@ -765,3 +765,428 @@ for row in row_indexes:
 # # 1 3
 # # 0 4
 #
+
+# Daily Coding Problem: Problem #375
+# [4, 1, 0, 2, 3]
+# This means the researcher has 5 papers with 4, 1, 0, 2, and 3
+# citations respectively. The h-index for this researcher is 2,
+# since they have 2 papers with at least 2 citations and
+# the remaining 3 papers have no more than 2 citations.
+
+# def h_index(lst):
+#     result = 0
+#     for i, num_citations in enumerate(reversed(sorted(lst))):
+#         if num_citations > i:
+#             result = i + 1
+#         else:
+#             break
+#     return result
+
+# lst = [-1, 5, 13, 8, 2, 3, 3, 1]
+# k = 5
+# sliding_window_median(lst, k)
+# from bisect import insort
+#
+# def sliding_window_median(lst, k):
+#     window = sorted(lst[:k])
+#     print(window)
+#     for num_to_remove, num in zip(lst, lst[k:]+[0]):
+#         print((window[int(k / 2)] + window[~int(k / 2)]) / 2.0)
+#         window.remove(num_to_remove)
+#         insort(window, num)
+#         print(window)
+
+# Daily Coding Problem: Problem #385
+# This problem was asked by Apple.
+#
+# You are given a hexadecimal-encoded string that has been XOR'd against a single char.
+#
+# Decrypt the message. For example, given the string:
+#
+# 7a575e5e5d12455d405e561254405d5f1276535b5e4b12715d565b5c551262405d505e575f
+#
+# def xor_decipher(s):
+#     '''
+#         s = '7a575e5e5d12455d405e561254405d5f1276535b5e4b12715d565b5c551262405d505e575f'
+#         xor_decipher(s)
+#     '''
+#     b = bytearray.fromhex(s)
+#
+#     for char in range(256):
+#         result = []
+#         for byte in b:
+#             result.append(byte ^ char)
+#
+#         print(bytes(result).decode())
+
+# Daily Coding Problem: Problem #390
+# You are given an unsorted list of 999,000 unique integers, each from 1 and 1,000,000. Find the missing 1000 numbers.
+# What is the computational and space complexity of your solution?
+# def find_missing_nums(lst):
+#     # Initialize our bitarray and set
+#     bitarray = [False for _ in range(1000000)]
+#     s = set(lst)
+#
+#     # Go over nums from 1 to n + 1
+#     for i in range(1, 1000001):
+#         if i in s:
+#             bitarray[i - 1] = True
+#
+#     # Iterate over bitarray, generate results
+#     results = []
+#     for i in range(1, 1000001):
+#         if not bitarray[i - 1]:
+#             results.append(i)
+#     return results
+
+
+# Daily Coding Problem: Problem #391
+# user1 = ['/home', '/register', '/login', '/user', '/one', '/two']
+# user2 = ['/home', '/red', '/login', '/user', '/one', '/pink']
+# You should return the following:
+#
+# ['/login', '/user', '/one']
+# def longest_contiguous_history(user1, user2):
+#     longest_result = []
+#     for i in range(len(user1)):
+#         for j in range(i + 1, len(user1) + 1):
+#             subarray1 = user1[i:j]
+#
+#             for k in range(len(user2) - len(subarray1)):
+#                 subarray2 = user2[k:k + len(subarray1)]
+#                 if subarray1 == subarray2 and len(subarray1) > len(longest_result):
+#                     longest_result = subarray1
+#
+#     return longest_result
+
+# Daily Coding Problem: Problem #392
+# Determine the perimeter of this island.
+#
+# For example, given the following matrix:
+#
+# [[0, 1, 1, 0],
+#  [1, 1, 1, 0],
+#  [0, 1, 1, 0],
+#  [0, 0, 1, 0]]
+# Return 14.
+# def get_num_neighbours(board, r, c):
+#     num = 0
+#     if r > 0:
+#         num += board[r - 1][c] == 1
+#
+#     if r < len(board) - 1:
+#         num += board[r + 1][c] == 1
+#
+#     if c > 0:
+#         num += board[r][c - 1] == 1
+#
+#     if c < len(board[0]) - 1:
+#         num += board[r][c + 1] == 1
+#
+#     return num
+#
+#
+# def island_perimeter(board):
+#     perimeter = 0
+#     for r, row in enumerate(board):
+#         for c, val in enumerate(row):
+#             if val == 1:
+#                 perimeter += 4 - get_num_neighbours(board, r, c)
+#     return perimeter
+
+# Daily Coding Problem: Problem #395
+# This problem was asked by Robinhood.
+#
+# Given an array of strings, group anagrams together.
+#
+# For example, given the following array:
+#
+# ['eat', 'ate', 'apt', 'pat', 'tea', 'now']
+# Return:
+#
+# [['eat', 'ate', 'tea'],
+#  ['apt', 'pat'],
+#  ['now']]
+#
+# from collections import defaultdict
+#
+# def group_anagrams(words):
+#     groups = defaultdict(list)
+#     for word in words:
+#         key = ''.join(sorted(word))
+#         groups[key].append(word)
+#
+#     result = []
+#     for group in groups.values():
+#         result.append(group)
+#     return result
+
+# Daily Coding Problem: Problem #399
+# Given a list of strictly positive integers, partition the list into 3 contiguous partitions which each sum up to the same value. If not possible, return null.
+# # Python3 implementation of the given approach
+# https://www.ijcai.org/Proceedings/09/Papers/096.pdf
+# https://www.youtube.com/watch?v=ZaSMm2xvatw
+# # This function returns true if the array
+# # can be divided into three equal sum segments
+# Function to check if all subsets are filled or not
+# def checkSum(sumLeft, k):
+#
+#     r = True
+#     for i in range(k):
+#         if sumLeft[i]:
+#             r = False
+#
+#     return r
+# Helper function for solving `k` partition problem.
+# It returns true if there exist `k` subsets with the given sum
+# def subsetSum(S, n, sumLeft, A, k):
+#
+#     # return true if a subset is found
+#     if checkSum(sumLeft, k):
+#         return True
+#
+#     # base case: no items left
+#     if n < 0:
+#         return False
+#
+#     result = False
+#
+#     # consider current item `S[n]` and explore all possibilities
+#     # using backtracking
+#     for i in range(k):
+#         if not result and (sumLeft[i] - S[n]) >= 0:
+#
+#             # mark the current element subset
+#             A[n] = i + 1
+#
+#             # add the current item to the i'th subset
+#             sumLeft[i] = sumLeft[i] - S[n]
+#             print('sum1',sumLeft)
+#
+#             # recur for remaining items
+#             result = subsetSum(S, n - 1, sumLeft, A, k)
+#
+#             # backtrack: remove the current item from the i'th subset
+#             sumLeft[i] = sumLeft[i] + S[n]
+#             print('sum2',sumLeft)
+#
+#     # return true if we get a solution
+#     return result
+#
+#
+# # Function for solving k–partition problem. It prints the subsets if
+# # set `S[0…n-1]` can be divided into `k` subsets with equal sum
+# def partition(S, k):
+#
+#     # get the total number of items in `S`
+#     n = len(S)
+#
+#     # base case
+#     if n < k:
+#         print("k-partition of set S is not possible")
+#         return
+#
+#     # get the sum of all elements in the set
+#     total = sum(S)
+#     A = [None] * n
+#
+#     # create a list of size `k` for each subset and initialize it
+#     # by their expected sum, i.e., `sum/k`
+#     sumLeft = [total // k] * k
+#     # print(sumLeft)
+#
+#     # return true if the sum is divisible by `k` and set `S` can
+#     # be divided into `k` subsets with equal sum
+#     result = (total % k) == 0 and subsetSum(S, n - 1, sumLeft, A, k)
+#
+#     if not result:
+#         print("k-partition of set S is not possible")
+#         return
+#
+#     # print all k–partitions
+#     for i in range(k):
+#         print(f"Partition {i} is", [S[j] for j in range(n) if A[j] == i + 1])
+#
+#
+# # Input: a set of integers
+# S = [7, 3, 5, 12, 2, 1, 5, 3, 8, 4, 6, 4]
+# k = 5
+#
+# partition(S, k)
+#
+# https://newsletterest.com/newsletters/2109/Daily%20Coding%20Problem?pageIndex=13
+# Daily Coding Problem #405
+# Given a tree, find the largest tree/subtree that is a BST.
+# Given a tree, return the size of the largest tree/subtree that is a BST.
+#
+# class Node(object):
+#     def __init__(self, data):
+#         self.data = data
+#         self.left_child = None
+#         self.right_child = None
+#
+#
+# class BST(object):
+#     def __init__(self):
+#         self.root = None
+#
+#     def get_root(self):
+#         return self.root
+#
+#     """
+#         Get the number of elements
+#         Using recursion. Complexity O(logN)
+#     """
+#     def size(self):
+#         return self.recur_size(self.root)
+#
+#     def recur_size(self, root):
+#         if root is None:
+#             return 0
+#         else:
+#             return 1 + self.recur_size(root.left) + self.recur_size(root.right)
+#
+#     """
+#         Search data in bst
+#         Using recursion. Complexity O(logN)
+#     """
+#     def search(self, data):
+#         return self.recur_search(self.root, data)
+#
+#     def recur_search(self, root, data):
+#         if root is None:
+#             return False
+#         if root.data == data:
+#             return True
+#         elif data > root.data:     # Go to right root
+#             return self.recur_search(root.right, data)
+#         else:                      # Go to left root
+#             return self.recur_search(root.left, data)
+#
+#     """
+#         Insert data in bst
+#         Using recursion. Complexity O(logN)
+#     """
+#     def insert(self, data):
+#         if self.root:
+#             return self.recur_insert(self.root, data)
+#         else:
+#             self.root = Node(data)
+#             return True
+#
+#
+#     def recur_insert(self, root, data):
+#         if root.data == data:      # The data is already there
+#             return False
+#         elif data < root.data:     # Go to left root
+#             if root.left_child:          # If left root is a node
+#                 return self.recur_insert(root.left_child, data)
+#             else:                  # left root is a None
+#                 root.left_child = Node(data)
+#                 return True
+#         else:                      # Go to right root
+#             if root.right_child:         # If right root is a node
+#                 return self.recur_insert(root.right_child, data)
+#             else:
+#                 root.right_child = Node(data)
+#                 return True
+#
+#     def insert_diff(self, data):
+#         if self.root:
+#             return self.recur_insert_diff(self.root, data)
+#         else:
+#             self.root = Node(data)
+#             return True
+#
+#     def recur_insert_diff(self, root, data):
+#
+#         if root.data == data:
+#             return False
+#         elif root.data != '4':
+#
+#             if root.left_child:
+#                 return self.recur_insert_diff(root.left_child, data)
+#             else:
+#                 # print(root.data)
+#                 root.left_child = Node(data)
+#                 return True
+#
+#     def inorder(self):
+#         current_node = self.root
+#         self._inorder(current_node)
+#         print('End')
+#
+#     def _inorder(self, current_node):
+#         if current_node is None:
+#             return
+#         self._inorder(current_node.left_child)
+#         print(current_node.data," -> ",end='')
+#         self._inorder(current_node.right_child)
+#
+#
+# def is_bst(root):
+#     def is_bst_helper(root, min_key, max_key):
+#         if root is None:
+#             return True
+#         if root.data <= min_key or root.data >= max_key:
+#             return False
+#         return is_bst_helper(root.left_child, min_key, root.data) and \
+#                is_bst_helper(root.right_child, root.data, max_key)
+#
+#     return is_bst_helper(root, float('-inf'), float('inf'))
+#
+# def size(root):
+#     if root is None:
+#         return 0
+#     return size(root.left_child) + size(root.right_child) + 1
+#
+# def largest_bst_subtree(root):
+#     def helper(root):
+#         # Returns a tuple of (size, root) of the largest subtree.
+#         if is_bst(root):
+#             return (size(root), root)
+#         return max(helper(root.left_child), helper(root.right_child), key=lambda x: x[0])
+#
+#     return helper(root)[1]
+#
+# def largest_bst_subtree(root):
+#     max_size = 0
+#     max_root = None
+#     def helper(root):
+#         # Returns a tuple of (size, min_key, max_key) of the subtree.
+#         nonlocal max_size
+#         nonlocal max_root
+#         if root is None:
+#             return (0, float('inf'), float('-inf'))
+#         left = helper(root.left_child)
+#         right = helper(root.right_child)
+#         if root.data > left[2] and root.data < right[1]:
+#             size = left[0] + right[0] + 1
+#             if size > max_size:
+#                 max_size = size
+#                 max_root = root
+#             return (size, min(root.data, left[1]), max(root.data, right[2]))
+#         else:
+#             return (0, float('-inf'), float('inf'))
+#
+#     helper(root)
+#     return max_root
+#
+# tree = BST()
+# tree.insert(10)
+# tree.insert(15)
+# tree.insert(6)
+# tree.insert(4)
+# tree.insert(9)
+# tree.insert(12)
+# tree.insert(24)
+# tree.insert(7)
+# tree.insert(20)
+# tree.insert(30)
+# tree.insert(18)
+# # tree.insert_diff(100)
+# tree.inorder()
+# print(is_bst(tree.get_root()))
+# print(largest_bst_subtree(tree.get_root()).data)
+# print(size(tree.get_root()))
+# print(size(largest_bst_subtree(tree.get_root())))
