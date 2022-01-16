@@ -282,7 +282,7 @@ class story_teller:
             for _ in range(q):
                 queries.append(list(map(int, input().rstrip().split())))
 
-            story_teller.freqQuery(queries
+            story_teller.freqQuery(queries)
 
         :param queries:
         8
@@ -314,28 +314,6 @@ class story_teller:
                 results.append(1 if freqs[value] else 0)
         print(freqs)
         return results
-
-    def coinChange(totalNumber, coins):
-        """
-            Greedy
-            story_teller.coinChange(201, [1,2,5,20,50,100])
-
-        :param coins: [1,2,5,20,50,100]
-        :return:
-        """
-        N = totalNumber
-        coins.sort()
-        index = len(coins)-1
-        while True:
-            coinValue = coins[index]
-            if N >= coinValue:
-                print(coinValue)
-                N = N - coinValue
-            if N < coinValue:
-                index -= 1
-
-            if N == 0:
-                break
 
     @print_param("valleycount.txt", BASE_DIR)
     def countingValleys(n, s):
@@ -543,7 +521,10 @@ class Node_tree:
 
 
 def make_cartree(arr: List[int], last: Node_tree, root: Node_tree):
-    """
+    """cartree
+    cartree = make_cartree([4,3,7,2,6,1,9], None, None)
+    print(str(cartree) == '1=[l->2=[l->3=[l->4=[l->None, r->None], r->7=[l->None, r->None]], r->6=[l->None, r->None]], r->9=[l->None, r->None]]'
+
     cartree = make_cartree([3, 2, 6, 1, 9], None, None)
     assert str(cartree) == "1=[l->2=[l->3=[l->None, r->None], r->6=[l->None, r->None]], r->9=[l->None, r->None]]"
 
@@ -552,6 +533,7 @@ def make_cartree(arr: List[int], last: Node_tree, root: Node_tree):
     :param root:
     :return:
     """
+
     if not arr:
         return root
 
@@ -581,6 +563,7 @@ class Player:
         if val == 0:
             return -1 if a.name < b.name else 1
         return val
+
     def score_billboard(data):
         """
         Name - Score compare one another
@@ -761,8 +744,6 @@ class Stock:
     pass
 
 
-
-
 class Combo:
     """
         Daily Coding Problem: Problem #313
@@ -862,6 +843,28 @@ class greedy:
                 print(activities[j][0])
                 i = j
 
+    def coinChange(totalNumber, coins):
+        """
+            Greedy
+            greedy.coinChange(201, [1,2,5,20,50,100])
+
+        :param coins: [1,2,5,20,50,100]
+        :return:    100
+                    100
+                    1
+        """
+        N = totalNumber
+        coins.sort()
+        index = len(coins)-1
+        while True:
+            coinValue = coins[index]
+            if N >= coinValue:
+                N = N - coinValue
+            if N < coinValue:
+                index -= 1
+            if N == 0:
+                break
+
 
 class DisjointSet:
 # Kunno And Tree
@@ -897,10 +900,11 @@ class DisjointSet:
 #                  x * (x - 1) * (x - 2) // 6                #2
 #                  for x in set_size.values())
 # print((N * (N - 1) * (N - 2) // 6 - complement) % (10 ** 9 + 7))
-#
+
 
 # super maximum cost query
 # Complete the solve function below.
+
 from bisect import bisect_left,bisect_right
 parents = {}
 rep = {}
@@ -1213,7 +1217,7 @@ class spiral:
             n=n-2
             return sum+spiral.shellcalc(n,s)
 
-    def main():
+    def main(object):
         # call the function and print the value
         dim = int(input())
         diagonal = spiral.shellcalc(dim,1)
@@ -1221,13 +1225,14 @@ class spiral:
 
 def pickingNumbers(a):
     """
+    Given an array of integers, find the longest subarray where the absolute difference between any two elements is less than or equal to 1
         n = int(input().strip())
 
         a = list(map(int, input().rstrip().split()))
-# 6
-# 4 6 5 3 3 1
+    6
+    4 6 5 3 3 1
     :param a:
-    :return:
+    :return: [2, 1, 2, 3, 1]
     """
     # Write your code here
     #count the instances of the integer in the array
@@ -1239,9 +1244,10 @@ def pickingNumbers(a):
     #for the unique integers in the array
 
     all_combos = [(count.get(k) + count.get(str(int(k) + 1),0)) for k in count.keys()]
-    #now all we need is the max value of the combos,
-    #keep in mind the combo can be just one integer!
-    print((all_combos))
+    print(count.keys())
+    # now all we need is the max value of the combos,
+    # keep in mind the combo can be just one integer!
+    print(all_combos)
     return max(all_combos)
 
 def hourglassSum(arr):
@@ -1267,10 +1273,7 @@ def hourglassSum(arr):
 
 
 if __name__ == '__main__':
-
-    print(story_teller.sherlockAndAnagrams("ifailuhkqq"))
-
-
+    pass
 
 
 

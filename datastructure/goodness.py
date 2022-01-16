@@ -1,5 +1,6 @@
 '''
 finding goodness of a str with lowercase and number
+
 '''
 import re
 import operator
