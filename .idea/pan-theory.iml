@@ -9,5 +9,9 @@
     <orderEntry type="module" module-name="CS224W_Winter2021" />
     <orderEntry type="module" module-name="solid.python" />
     <orderEntry type="module" module-name="Clean-Code-in-Python-Second-Edition" />
+    <orderEntry type="module" module-name="VMLS-Companions" />
+    <orderEntry type="module" module-name="audioDataAugmentationTutorial" />
+    <orderEntry type="module" module-name="hum2song" />
+    <orderEntry type="module" module-name="dspguide-code" />
   </component>
 </module>

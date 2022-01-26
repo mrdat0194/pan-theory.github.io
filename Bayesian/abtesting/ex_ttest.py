@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-# get data
+# get data, 2 ads bring significant clicks
 df = pd.read_csv('advertisement_clicks.csv')
 a = df[df['advertisement_id'] == 'A']
 b = df[df['advertisement_id'] == 'B']

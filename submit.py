@@ -282,6 +282,28 @@ class T3sum:
 
 
     T3sum.findCount(arr1, arr2)
+
+    eg:
+    import time
+    start = time.time()
+    from collections import Counter
+    arr1 = [1, 2]
+    arr2 = [1, 2, 1]
+
+    sum = []
+    for ar1 in arr1:
+        for ar2 in arr2:
+            sum.append(ar1 + ar2)
+
+    print(Counter(sum))
+
+    end = time.time()
+    print(end - start)
+
+    start = time.time()
+    T3sum.findCount(arr1, arr2)
+    end = time.time()
+    print(end - start)
     """
 
     def multiply(A,B):
@@ -333,9 +355,7 @@ class T3sum:
 
 
 if __name__=='__main__':
-    arr1 = [1, 2]
-    arr2 = [1, 2, 1]
-
+    pass
 
 
 
