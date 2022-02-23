@@ -1190,3 +1190,21 @@ for row in row_indexes:
 # print(largest_bst_subtree(tree.get_root()).data)
 # print(size(tree.get_root()))
 # print(size(largest_bst_subtree(tree.get_root())))
+
+# import sympy
+# sympy.init_printing()
+# from sympy import Symbol
+#
+# from sympy import diff, exp, sin, sqrt
+#
+# y = Symbol('y')
+#
+# y = sympy.Symbol("y")
+#
+# sigmoid = 1 / (1 + sympy.exp(-y))
+#
+# sig_der = sympy.diff(sigmoid, y)
+#
+# print(sig_der.evalf(subs={y: 0}))
+#
+# p = sympy.plot(sig_der);

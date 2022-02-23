@@ -13,5 +13,8 @@
     <orderEntry type="module" module-name="audioDataAugmentationTutorial" />
     <orderEntry type="module" module-name="hum2song" />
     <orderEntry type="module" module-name="dspguide-code" />
+    <orderEntry type="module" module-name="mt3" />
+    <orderEntry type="module" module-name="Classical-Piano-Composer" />
+    <orderEntry type="module" module-name="Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" />
   </component>
 </module>
