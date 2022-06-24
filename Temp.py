@@ -15,50 +15,21 @@ Created on Thu Jul 11 16:16:49 2019
 
 # 1. append to excel
 # Complete_Function.append_df_to_excel("/Users/petern/Desktop/hello.xlsx" ,"a")
-import torch.distributions as D
 
-import os
-from collections import OrderedDict
+# Lesson 1
 
-
-def compress_array(arr):
-    compressed = []
-    count = 1
-    char = arr[0]
-    for i in range(1,len(arr)):
-      if arr[i] == char:
-        count = count + 1
-      else :
-        compressed.append(char)
-        compressed.append(count)
-        char = arr[i]
-        count = 1
-    compressed.append(char)
-    compressed.append(count)
-    return compressed
+# from scipy.stats import norm
 #
-# def compress_array(arr):
-#     # Enter your code here
-#     dict = OrderedDict.fromkeys(arr, 0)
-#     print(dict)
-#     for ch in arr:
+# print('%.4f' % (norm.cdf(-2, loc=3, scale=4) - norm.cdf(2, loc=3, scale=4)))
 #
-#         dict[ch] += 1
-#
-#     output = []
-#     for key, value in dict.items():
-#         print(key)
-#         print(value)
-#         output.append(key)
-#         output.append(str(value))
-#     return output
+# print('%.4f' % (norm.cdf(-0.25) - norm.cdf(-1.25)))
 
 
-# if __name__ == '__main__':
-#
-#     arr = [int(a) for a in input().split()]
-#     result = compress_array(arr)
-#     print(' '.join(map(str, result)))
+if __name__ == '__main__':
+    print("'HAN','SGN','DAD','PQC','CXR','BMV','CAH','VCA','VCL','VCS','DLI','DIN','VDH','HPH','HUI','PXU','UIH','VKG','THD','TBB','VDO','VII'".replace("'", "").replace(",","|"))
+
+
+
 
 
 

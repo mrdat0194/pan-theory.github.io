@@ -60,15 +60,14 @@ class coin():
         num_tails = 1
         while True:
             head = np.random.uniform(size=1) > 0.5
-            #res.append(head[0])
             if not head: # tails
                 num_tails += 1
             else:  # heads
                 break
         return num_tails
 
-    def twoCoint(self):
-        ''' Problem 6: Tossing a pair of coins
+    def twoCoin(self):
+        ''' Problem 6: Tossing three pair of coins
         '''
         pass
 
@@ -86,6 +85,7 @@ class coin():
     def test_toss2(self):
         '''
         Problem 7: Sum of a random number of r.v.'s
+        https://www.chegg.com/homework-help/questions-and-answers/problem-7-sum-random-number-rv-s-2-points-possible-graded-fair-coin-flipped-independently--q32006745
         :return:
         '''
         X_array = []
@@ -817,6 +817,7 @@ def compositions(k, n):
             for j in compositions(k - 1, n - i): #i + n-i = n
                 s.add((i,) + j)
         return s
+
 def constrained_compositions(n, m):
     '''
     Constrain compositions sum up to n
@@ -867,9 +868,9 @@ def combination():
 
 if __name__ == '__main__':
     # pass
-    coins = coin()
-    coins.test_toss()
-    # test_2()
+    # coins = coin()
+    # coins.test_toss()
+    test_2()
     # permute()
     # Coupon_collector.Coupon(0)
 

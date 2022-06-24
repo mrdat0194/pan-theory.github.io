@@ -1208,3 +1208,82 @@ for row in row_indexes:
 # print(sig_der.evalf(subs={y: 0}))
 #
 # p = sympy.plot(sig_der);
+
+
+
+# import os
+# from collections import OrderedDict
+# # arr = [int(a) for a in input().split()]
+# # result = compress_array(arr)
+# # print(' '.join(map(str, result)))
+#
+# def compress_array(arr):
+#     '''
+#     Continuous
+#     :param arr: 1 1 1 4 4 3 1 3
+#     :return:
+#     '''
+#     compressed = []
+#     count = 1
+#     char = arr[0]
+#     for i in range(1,len(arr)):
+#       if arr[i] == char:
+#         count = count + 1
+#       else :
+#         compressed.append(char)
+#         compressed.append(count)
+#         char = arr[i]
+#         count = 1
+#     compressed.append(char)
+#     compressed.append(count)
+#     return compressed
+#
+# def compress_array(arr):
+#     '''
+#     Don't need to be continuous
+#     :param arr: 1 1 1 4 4 3 1 3
+#     :return:
+#     '''
+#     # Enter your code here
+#     dict = OrderedDict.fromkeys(arr, 0)
+#     print(dict)
+#     for ch in arr:
+#
+#         dict[ch] += 1
+#
+#     output = []
+#     for key, value in dict.items():
+#         print(key)
+#         print(value)
+#         output.append(key)
+#         output.append(str(value))
+#     return output
+#
+# class Solution:
+#     '''https://dev.to/seanpgallivan/solution-binary-tree-cameras-1a5i#idea
+#
+#     # # roots = [0, 0, null, 0, null, 0, null, null, 0]
+#     # root = Solution(0)
+#     # root.left = Solution(0)
+#     # root.left.left = Solution(0)
+#     # root.left.left.left = Solution(0)
+#     # root.left.left.left.right = Solution(0)
+#     #
+#     # print(Solution.minCameraCover(root))
+#
+#     '''
+#     def __init__(self, k):
+#         self.key = k
+#         self.left = None
+#         self.right = None
+#         self.ans = 0
+#
+#     def minCameraCover(self) -> int:
+#         def dfs(node) -> int:
+#             if not node: return 0
+#             val = dfs(node.left) + dfs(node.right)
+#             if val == 0: return 3
+#             if val < 3: return 0
+#             self.ans += 1
+#             return 1
+#         return self.ans + 1 if dfs(self) > 2 else self.ans

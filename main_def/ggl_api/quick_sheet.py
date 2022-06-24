@@ -7,6 +7,7 @@ from google.auth.transport.requests import Request
 import pandas as pd
 import numpy as np
 
+# https://developers.google.com/sheets/api/quickstart/python
 # https://gspread.readthedocs.io/en/latest/user-guide.html#using-gspread-with-pandas
 # If modifying these scopes, delete the file token.pickle.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
@@ -251,7 +252,7 @@ if __name__ == '__main__':
     range_name = f"{SAMPLE_RANGE_NAME}!J1"
     print(list_update)
     print(range_name)
-    update_value(list_update, range_name, SAMPLE_SPREADSHEET_ID)
+    # update_value(list_update, range_name, SAMPLE_SPREADSHEET_ID)
 
     # IFS (OR( F20 = "added"; AND( F20 = "not ok"; NOT(G20 = "none"); NOT(E20 = "none"))) ;"UPDATE artists
     # SET
