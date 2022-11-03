@@ -1,8 +1,8 @@
 Read index.md instead, this is just teaching note. 
 
-1) bai tap. mo folder bang commandline
+1) Bai tap. mo folder bang commandline
 
-2) excel : trình bày -> tìm cách : python : thực tiễn: implement
+2) Excel : trình bày -> tìm cách : python : thực tiễn: implement
 
 + Đọc story_teller: biết thuật toán - data_structure
 
