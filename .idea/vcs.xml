@@ -8,6 +8,8 @@
     <mapping directory="$USER_HOME$/audioDataAugmentationTutorial" vcs="Git" />
     <mapping directory="$USER_HOME$/dspguide-code" vcs="Git" />
     <mapping directory="$USER_HOME$/hum2song" vcs="Git" />
+    <mapping directory="$USER_HOME$/pyrs" vcs="Git" />
+    <mapping directory="$USER_HOME$/smac" vcs="Git" />
     <mapping directory="$USER_HOME$/solid.python" vcs="Git" />
   </component>
 </project>

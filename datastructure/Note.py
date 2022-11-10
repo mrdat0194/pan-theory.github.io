@@ -5,38 +5,143 @@ Created on Sun Feb 24 11:56:32 2019
 
 @author: petern
 """
-#setwd()
-# Numpy
 
-import scipy.optimize
-import numpy as np
-def fun(y):
-    x= y**(1.0/3)+y-1
-    return x
+# Daily Coding Problem: Problem #687 [Hard]
 
-a = scipy.optimize.fsolve(fun, np.arange(0, 1, 0.01) )
-print(a[0])
+# This problem was asked by Airbnb.
+#
+# An 8-puzzle is a game played on a 3 x 3 board of tiles, with the ninth tile missing. The remaining tiles are labeled 1 through 8 but shuffled randomly. Tiles may slide horizontally or vertically into an empty space, but may not be removed from the board.
+#
+# Design a class to represent the board, and find a series of steps to bring the board to the state [[1, 2, 3], [4, 5, 6], [7, 8, None]].
+
+# #289
+# The game of Nim is played as follows. Starting with three heaps, each containing a variable number of items, two players take turns removing one or more items from a single pile.
+# https://github.com/ruppysuppy/Daily-Coding-Problem-Solutions/blob/master/Solutions/289.py
+
+# #673
+# This problem was asked by LinkedIn.
+# 
+# Given a list of points, a central point, and an integer k, find the nearest k points from the central point.
+#
+# For example, given the list of points [(0, 0), (5, 4), (3, 1)], the central point (1, 2), and k = 2, return [(0, 0), (3, 1)].
+
+
+
+"""
+#195
+This problem was asked by Google.
+Let A be an N by M matrix in which every row and every column is sorted.
+
+Given i1, j1, i2, and j2, compute the number of elements of M smaller than M[i1, j1] and larger than M[i2, j2].
+
+For example, given the following matrix:
+
+[[1, 3, 7, 10, 15, 20],
+ [2, 6, 9, 14, 22, 25],
+ [3, 8, 10, 15, 25, 30],
+ [10, 11, 12, 23, 30, 35],
+ [20, 25, 30, 35, 40, 45]]
+And i1 = 1, j1 = 1, i2 = 3, j2 = 3, return 15 as there are 15 numbers in the matrix smaller than 6 or greater than 23.
+
+"""
+#
+# from typing import List
+#
+#
+# def get_num_in_range(mat: List[List[int]], i1: int, j1: int, i2: int, j2: int) -> int:
+#     num1, num2 = mat[i1][j1], mat[i2][j2]
+#     count = sum([len([x for x in row if (x < num1 and x > num2)]) for row in mat])
+#     return count
+#
+#
+# if __name__ == "__main__":
+#     mat = [
+#         [1, 3, 7, 10, 15, 20],
+#         [2, 6, 9, 14, 22, 25],
+#         [3, 8, 10, 15, 25, 30],
+#         [10, 11, 12, 23, 30, 35],
+#         [20, 25, 30, 35, 40, 45],
+#     ]
+#     print(get_num_in_range(mat, 3, 3, 1, 1))
+#
+#     matrix = [
+#         [1, 2, 3, 4],
+#         [5, 8, 9, 13],
+#         [6, 10, 12, 14],
+#         [7, 11, 15, 16]
+#     ]
+#     print(get_num_in_range(matrix, 1, 3, 3, 1))
+#
+#     matrix = [
+#         [1, 2, 3, 4],
+#         [5, 6, 7, 8],
+#         [10, 11, 12, 13],
+#         [20, 21, 22, 23]
+#     ]
+#     print(get_num_in_range(matrix, 3, 3, 1, 0))
+#
+#
+# """
+# SPECS:
+# TIME COMPLEXITY: O(n ^ 2)
+# SPACE COMPLEXITY: O(n ^ 2)
+# """
+
+# from my_functions import timer
+
+# 1. move_file
+
+# from my_functions import Complete_Function
+#
+# Complete_Function.Move_file.Data_move("hello.py" ,"/Users/petern/Desktop/samV/Project/", "/Users/petern/Desktop/samV/Project/helper_functions/")
+
+# 1. append to excel
+# Complete_Function.append_df_to_excel("/Users/petern/Desktop/hello.xlsx" ,"a")
+
+# Lesson 1
+
+# from scipy.stats import norm
+#
+# print('%.4f' % (norm.cdf(-2, loc=3, scale=4) - norm.cdf(2, loc=3, scale=4)))
+#
+# print('%.4f' % (norm.cdf(-0.25) - norm.cdf(-1.25)))
+
+# Lesson 2
+# print("'HAN','SGN','DAD','PQC','CXR','BMV','CAH','VCA','VCL','VCS','DLI','DIN','VDH','HPH','HUI','PXU','UIH','VKG','THD','TBB','VDO','VII'".replace("'", "").replace(",","|"))
+
+# Lesson 3
 
 ######
-
-arr = np.array([[1,2,3],[4,5,6],[7,8,9]])
-slice = arr[:2,1:3]
-print(slice)
-print(slice[0,0])
-
+# setwd()
+# Numpy
 #
+# import scipy.optimize
+# import numpy as np
+# def fun(y):
+#     x= y**(1.0/3)+y-1
+#     return x
+#
+# a = scipy.optimize.fsolve(fun, np.arange(0, 1, 0.01) )
+# print(a[0])
 
-print(arr[arr<0])
+######
+# import numpy as np
+# arr = np.array([[1,2,3],[4,5,6],[7,8,9]])
+# slice = arr[:2,1:3]
+# print(slice)
+# print(slice[0,0])
 
-A = np.array([[1],[2]])
-B = np.array([[1,2],[3,4]])
-print(A + B)
+# print(arr[arr<0])
+#
+# A = np.array([[1],[2]])
+# B = np.array([[1,2],[3,4]])
+# print(A + B)
 
+######
 # Pandas
 import pandas as pd
-#
 
-#Dict_to_frame
+# Dict_to_frame
 # Dictionary with list object in values
 studentData = {
     'name': ['jack', 'Riti', 'Aadi'],

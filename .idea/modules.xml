@@ -12,6 +12,8 @@
       <module fileurl="file://$USER_HOME$/hum2song/.idea/hum2song.iml" filepath="$USER_HOME$/hum2song/.idea/hum2song.iml" />
       <module fileurl="file://$USER_HOME$/mt3/.idea/mt3.iml" filepath="$USER_HOME$/mt3/.idea/mt3.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/pan-theory.iml" filepath="$PROJECT_DIR$/.idea/pan-theory.iml" />
+      <module fileurl="file://$USER_HOME$/pyrs/.idea/pyrs.iml" filepath="$USER_HOME$/pyrs/.idea/pyrs.iml" />
+      <module fileurl="file://$USER_HOME$/smac/.idea/smac.iml" filepath="$USER_HOME$/smac/.idea/smac.iml" />
       <module fileurl="file://$USER_HOME$/solid.python/.idea/solid.python.iml" filepath="$USER_HOME$/solid.python/.idea/solid.python.iml" />
     </modules>
   </component>
