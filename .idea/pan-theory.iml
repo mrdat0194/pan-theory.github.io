@@ -18,5 +18,8 @@
     <orderEntry type="module" module-name="Probabilistic-Programming-and-Bayesian-Methods-for-Hackers" />
     <orderEntry type="module" module-name="smac" />
     <orderEntry type="module" module-name="pyrs" />
+    <orderEntry type="module" module-name="machine-learning-imbalanced-data" />
+    <orderEntry type="module" module-name="NYU-DLSP21" />
+    <orderEntry type="module" module-name="pytorch-Deep-Learning" />
   </component>
 </module>

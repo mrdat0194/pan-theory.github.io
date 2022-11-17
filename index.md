@@ -82,7 +82,11 @@ within the project
 - `MLModel` &mdash; Components
     - data_pipeline: helper function nn and ml
     - MLData: dataset
-    - model: code in-progress
+    - model: 
+      - code:
+        - xgboost
+      - EDA
+      - imbalance
     - model_nn_save: weight
     - openCV: image processing
     - run: factory
