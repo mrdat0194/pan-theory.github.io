@@ -41,6 +41,7 @@ pip install -r requirements.txt
 within the project
 
 ## Library At-A-Glance
+- `assets-image-index` &mdash; Used for web https://mrdat0194.github.io/pan-theory/
 - `adHoc` &mdash; As an analyst, there is always adhoc.
     - For reproducible result, adHoc can use notebook to test and implement beforehand (Eg. SQL flow).
 
