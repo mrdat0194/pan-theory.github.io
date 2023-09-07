@@ -6,6 +6,95 @@ Created on Sun Feb 24 11:56:32 2019
 @author: petern
 """
 
+
+# No1 given the infinite sequence of numbers: {1,2,2,3,3,3,...} (number k apperas eactly k times in the sequence) given an integer i, return the ith digit in the sequence above
+
+# def find_ith_digit(i):
+#     # Find the group number to which the ith digit belongs
+#     group = 1
+#     while i > group * (group + 1) // 2:
+#         group += 1
+#
+#     # Calculate the position of the ith digit within the group
+#     position_within_group = i - group * (group - 1) // 2
+#
+#     # Return the group number (k) which represents the ith digit
+#     return group
+#
+# # Example usage:
+# i = 10
+# result = find_ith_digit(i)
+# print(f"The {i}th digit in the sequence is: {result}")
+
+
+# No2 Huma khan is a graduate studnt at slide education. as a part of the regular assignment process, the students of slide education are asked to display the last unique character in the given string. help huma khan to solve the prolem in python. if no such unique character is present, display "none"
+# def last_unique_character(s):
+#     char_count = {}  # Dictionary to store character frequencies
+#
+#     # Count the occurrences of each character in the string
+#     for char in s:
+#         char_count[char] = char_count.get(char, 0) + 1
+#
+#     # Traverse the string in reverse to find the last unique character
+#     for char in reversed(s):
+#         if char_count[char] == 1:
+#             return char
+#
+#     return "none"  # If no unique character is found
+#
+# # Example usage:
+# input_string = "slideeducation"
+# result = last_unique_character(input_string)
+# print("The last unique character is:", result)
+
+# No3 given a pyramid of integers, it is possible to traverse different paths from top to bottom. find the highest sum obtained by adding the numbers in the path using python
+# def highest_sum_pyramid(pyramid):
+#     if not pyramid or not pyramid[0]:
+#         return 0
+#
+#     rows = len(pyramid)
+#
+#     # Create a memoization table to store the maximum sum for each position in the pyramid
+#     memo = [[0] * (i + 1) for i in range(rows)]
+#
+#     # Initialize the memo table with the values of the bottom row of the pyramid
+#     memo[rows - 1] = pyramid[rows - 1]
+#
+#     # Start from the second-to-last row and work upwards
+#     for row in range(rows - 2, -1, -1):
+#         for col in range(row + 1):
+#             # The maximum sum at a position is the sum of the current value plus
+#             # the maximum of the two adjacent values in the row below
+#             memo[row][col] = pyramid[row][col] + max(memo[row + 1][col], memo[row + 1][col + 1])
+#
+#     # The highest sum will be at the top of the pyramid
+#     return memo[0][0]
+#
+# # Example usage:
+# pyramid = [
+#     [1, 0, 0, 0],
+#     [2, 3, 0, 0],
+#     [3, 4, 6, 0],
+#     [-1, -2, -3, -4]
+# ]
+#
+# result = highest_sum_pyramid(pyramid)
+# print("The highest sum obtained by traversing the pyramid is:", result)
+
+#
+# input_str = "1 0 0 0\n2 3 0 0\n3 4 6 0\n-1 -2 -3 -4"
+#
+# # Split the input string by newlines to get each row
+# rows_str = input_str.split('\n')
+#
+# # Split each row string by spaces and convert elements to integers
+# pyramid = [[int(num) for num in row_str.split()] for row_str in rows_str]
+#
+# # Print the resulting 2D list
+# print(pyramid)
+
+
+
 # Daily Coding Problem: Problem #687 [Hard]
 
 # This problem was asked by Airbnb.
