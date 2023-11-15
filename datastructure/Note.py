@@ -6,7 +6,6 @@ Created on Sun Feb 24 11:56:32 2019
 @author: petern
 """
 
-
 # No1 given the infinite sequence of numbers: {1,2,2,3,3,3,...} (number k apperas eactly k times in the sequence) given an integer i, return the ith digit in the sequence above
 
 # def find_ith_digit(i):
@@ -133,7 +132,7 @@ For example, given the following matrix:
 And i1 = 1, j1 = 1, i2 = 3, j2 = 3, return 15 as there are 15 numbers in the matrix smaller than 6 or greater than 23.
 
 """
-#
+
 # from typing import List
 #
 #

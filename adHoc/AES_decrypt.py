@@ -1,5 +1,5 @@
 # from Cryptodome import Random
-from Crypto.Cipher import AES
+from Cryptodome.Cipher import AES
 
 import base64
 from hashlib import md5
@@ -44,8 +44,11 @@ def decrypt(encrypted, passphrase):
     aes = AES.new(key, AES.MODE_CBC, iv)
     return unpad(aes.decrypt(encrypted[16:]))
 
-password = "My Secret Passphrase".encode()
-ct_b64 = "U2FsdGVkX1/c4g8sJK4kHGvAnBXeaG1RNQdVMmvE39glvfafkWhdVFpXEKwyaflb"
+# password = "My Secret Passphrase".encode()
+# ct_b64 = "U2FsdGVkX1/c4g8sJK4kHGvAnBXeaG1RNQdVMmvE39glvfafkWhdVFpXEKwyaflb"
+
+password = "b".encode()
+ct_b64 = "U2FsdGVkX18Qgpmhv+u3TYTtCBq7TQ76ua2gVK6+iPg="
 print(password)
 pt = decrypt(ct_b64, password)
 

@@ -28,7 +28,7 @@ def skiprows_landing(path):
         print(f"----turn {counter} of landing----")
         results.to_csv(landing_name + str(counter) + ".csv", index=None, header=None, sep=",")
 
-skiprows_landing (path_landing)
+skiprows_landing(path_landing)
 
 
 
