@@ -8,7 +8,6 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-from main_def import credentials, tokens
 
 def copy_presentation(drive_service,presentation_id, copy_title):
     """
@@ -58,8 +57,8 @@ def create_slide(service,presentation_id, slide_id, page_id):
             .execute()
         )
 
-        # create_slide_response = response.get("replies")[0].get("duplicateObjectId")
-        # print(f"Created slide with ID:{(create_slide_response.get('duplicateObjectId'))}")
+        create_slide_response = response.get("replies")[0].get("duplicateObject")['objectId']
+        print(f"Created slide with ID:{create_slide_response}")
     except HttpError as error:
         print(f"An error occurred: {error}")
         print("Slides not created")
@@ -67,30 +66,10 @@ def create_slide(service,presentation_id, slide_id, page_id):
 
 
 
-def drive_get_file(presentation_id, target_folder_id, new_slide):
-    SCOPES = ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/drive.appdata','https://www.googleapis.com/auth/drive.file' ]
-    creds = None
-    # The file token.pickle stores the user's access and refresh tokens, and is
-    # created automatically when the authorization flow completes for the first
-    # time.
-    if os.path.exists(tokens):
-        with open(tokens, 'rb') as token:
-            creds = pickle.load(token)
-    # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                credentials, SCOPES)
-            creds = flow.run_local_server(port=0)
-        # Save the credentials for the next run
-        with open(tokens, 'wb') as token:
-            pickle.dump(creds, token)
+def drive_get_file(creds, presentation_id, target_folder_id, new_slide):
+
 
     service = build('drive', 'v3', credentials=creds)
-
-    results = service.files().list(q="'" + target_folder_id + "' in parents", fields="nextPageToken, files(id, name)").execute()
 
     PRESENTATION_ID = copy_presentation(service, presentation_id, new_slide)
 
@@ -103,15 +82,15 @@ def drive_get_file(presentation_id, target_folder_id, new_slide):
     request.execute()
 
     print(PRESENTATION_ID)
+    results = service.files().list(q="'" + target_folder_id + "' in parents",
+                                   fields="nextPageToken, files(id, name)").execute()
 
     items = results.get('files', [])
-
     if not items:
         print('No files found.')
     else:
         print('Files:')
         for item in items:
-            service.permissions().create(body={"role": "reader", "type": "anyone"}, fileId=item['id']).execute()
             print(u'{0} ({1})'.format(item['name'], item['id']))
 
     return PRESENTATION_ID, items
@@ -125,7 +104,7 @@ def create_image(presentation_id, new_slide, target_folder_id):
   """
 
   # If modifying these scopes, delete the file token.pickle.
-  SCOPES = ['https://www.googleapis.com/auth/presentations.readonly', 'https://www.googleapis.com/auth/presentations' ]
+  SCOPES = ['https://www.googleapis.com/auth/presentations.readonly', 'https://www.googleapis.com/auth/presentations', 'https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/drive.appdata','https://www.googleapis.com/auth/drive.file' ]
 
   # The ID of a sample presentation.
 
@@ -155,11 +134,11 @@ def create_image(presentation_id, new_slide, target_folder_id):
         service.presentations().get(presentationId=presentation_id).execute()
     )
 
-    PRESENTATION_ID, items = drive_get_file(presentation_id, target_folder_id, new_slide)
+    PRESENTATION_ID, items = drive_get_file(creds, presentation_id, target_folder_id, new_slide)
+
+    slides = presentation.get("slides")
 
     for i in range(len(items)-1):
-        slides = presentation.get("slides")
-
         image_id = "MyImage_" + str(i)
         create_slide(service, PRESENTATION_ID, slides[0]['objectId'] ,image_id)
 
@@ -170,17 +149,17 @@ def create_image(presentation_id, new_slide, target_folder_id):
     slides = presentation.get("slides")
 
     for i, slide in enumerate(slides):
-        fileid = items[1]
+        fileid = items[i]
         # print(fileid)
+
         # pylint: disable=invalid-name
         requests = []
         image_id = "MyImage_" + str(i)
 
-        emu4M = {"magnitude": 4000000, "unit": "EMU"}
+        emu4M = {"magnitude": 9000000, "unit": "EMU"}
+
         IMAGE_URL = "https://drive.google.com/uc?export=download&id=" + fileid['id']
-
-        # IMAGE_URL =  "https://drive.google.com/uc?export=download&id=1G9NSkfTPsJTuffXtcjtZ9P1oyfxUmq4p"
-
+       
         print(IMAGE_URL)
 
         requests.append(
@@ -202,6 +181,14 @@ def create_image(presentation_id, new_slide, target_folder_id):
                 }
             }
         )
+
+        # requests.append(
+        #     { "replaceImage": {
+        #     "imageObjectId": image_id,
+        #     "uri": IMAGE_URL,
+        #     "imageReplaceMethod": "CENTER_CROP"
+        #     }
+        #     })
 
         # Execute the request.
         body = {"requests": requests}

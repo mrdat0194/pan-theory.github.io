@@ -22,6 +22,6 @@ for link in linkes:
     driver.get(link)
     time.sleep(3)
 
-    util.fullpage_screenshot(driver, r"C:\Users\mrdat\PycharmProjects\pan-theory\main_def\ggl_api\kasa\Automate_data_model\Pic" + str(n) + ".png")
+    util.fullpage_screenshot(driver, r"C:\Users\mrdat\PycharmProjects\pan-theory\main_def\ggl_api\kasa\Automate_data_model\Pic\No" + str(n) + ".png")
     time.sleep(1)
     n+=1

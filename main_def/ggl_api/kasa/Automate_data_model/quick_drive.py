@@ -61,19 +61,20 @@ def main():
         # Execute the request
         response = request.execute()
 
+        results = service.files().list(q="'" + target_folder_id + "' in parents",
+                                       fields="nextPageToken, files(id, name)").execute()
+        items = results.get('files', [])
+
+        if not items:
+            print('No files found.')
+        else:
+            print('Files:')
+            for item in items:
+                print(u'{0} ({1})'.format(item['name'], item['id']))
+                service.permissions().create(body={"role": "reader", "type": "anyone"}, fileId=item['id']).execute()
+
         print(response)
 
-
-    # results = service.files().list(
-    #     pageSize=10, fields="nextPageToken, files(id, name)").execute()
-    # items = results.get('files', [])
-    #
-    # if not items:
-    #     print('No files found.')
-    # else:
-    #     print('Files:')
-    #     for item in items:
-    #         print(u'{0} ({1})'.format(item['name'], item['id']))
 
 if __name__ == '__main__':
     main()
