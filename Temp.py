@@ -5,6 +5,20 @@ Created on Thu Jul 11 16:16:49 2019
 
 @author: petern
 """
+import pandas as pd
+
+
+data = {'id': [1, 2, 3, 4], 'name': ['Alice', 'Bob', 'Charlie', 'David']}
+df = pd.DataFrame(data)
+print(df)
+# Drop the second row
+df = df.drop(index=1)
+
+# Reset the index
+df = df.reset_index(drop=True)
+
+print(df)
+
 #
 # # # #675
 # # # This problem was asked by Google.
