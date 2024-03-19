@@ -1,27 +1,61 @@
-from selenium.webdriver.chrome.service import Service
-from selenium import webdriver
+# from selenium.webdriver.chrome.service import Service
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.support.ui import Select,WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.common.exceptions import NoSuchElementException
+# from selenium.webdriver import ActionChains
+# from selenium.webdriver.common.keys import Keys
+
+import os
 import util
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select,WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver import ActionChains
 import time
-from selenium.webdriver.common.keys import Keys
+import pandas as pd
+from main_def import MAIN_DIR
+from seleniumbase import SB
 
+def isNaN(num):
+    return num != num
 
-service = Service(executable_path=r"C:\Users\mrdat\PycharmProjects\pan-theory\main_def\ggl_api\kasa\Automate_data_model\chromedriver_win32\chromedriver.exe")
-options = webdriver.ChromeOptions()
-driver = webdriver.Chrome(service=service, options=options)
+executable_path = os.path.join(MAIN_DIR, "ggl_api", "Automate_data_model", "chromedriver_win32","chromedriver.exe")
+print(executable_path)
+# service = Service(executable_path=executable_path)
+# options = webdriver.ChromeOptions()
+
+# driver = webdriver.Chrome(service=service, options=options)
 
 # Global Variable
+save_path = os.path.join(MAIN_DIR, "ggl_api", "Automate_data_model", "info","url.csv")
 
-linkes = ['https://vinfastauto.com/vn_vi', 'https://shop.vinfastauto.com/vn_vi/vinfast-bike.html', 'https://vinfastauto.com/vn_vi/uu-dai']
+
+from pyppeteer import launch
+import asyncio
+
+
+async def capture(link, path_save, ):
+    browser = await launch(headless=True)
+    page = await browser.newPage()
+    await page.goto(link, {'waitUntil': ['load', 'domcontentloaded', 'networkidle0', 'networkidle2']})
+    await page.waitFor(8000)
+
+    await page.screenshot({'path': path_save, 'fullPage': True})
+    await browser.close()
+
+linkes = pd.read_csv(save_path)
+# print(linkes)
+
 n = 0
-for link in linkes:
-    driver.get(link)
-    time.sleep(3)
+row_indexes = linkes.index
+for row in row_indexes:
+    link = linkes['CaptureURL'].loc[row]
+    if not isNaN(link):
+        print(link)
+        with SB(uc=True) as sb:
+            sb.driver.get(link)
+            time.sleep(2)
+            path_save = os.path.join(MAIN_DIR,"ggl_api", "Automate_data_model","Pic", str(n) + ".png")
+            # util.fullpage_screenshot(sb, path_save,link,row)
+            asyncio.get_event_loop().run_until_complete(capture(link,path_save))
 
-    util.fullpage_screenshot(driver, r"C:\Users\mrdat\PycharmProjects\pan-theory\main_def\ggl_api\kasa\Automate_data_model\Pic\No" + str(n) + ".png")
-    time.sleep(1)
-    n+=1
+            time.sleep(1)
+            n+=1
